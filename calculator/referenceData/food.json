@@ -1,0 +1,124 @@
+{
+  "food1": {
+    "food1_1": {
+      "gramDay": 186,
+      "caloriesGram": 2.8,
+      "co2Calories": 0.0003
+    },
+    "food1_2": {
+      "gramDay": 40,
+      "caloriesGram": 3.1,
+      "co2Calories": 0.0004
+    },
+    "food1_3": {
+      "gramDay": 35,
+      "caloriesGram": 3.6,
+      "co2Calories": 0.0003
+    },
+    "food1_4": {
+      "gramDay": 18,
+      "caloriesGram": 4.1,
+      "co2Calories": 0.0007
+    },
+    "food1_5": {
+      "gramDay": 21,
+      "caloriesGram": 1.7,
+      "co2Calories": 0.0006
+    }
+  },
+  "food2": {
+    "food2_1": {
+      "gramDay": 68,
+      "caloriesGram": 2.5,
+      "co2Calories": 0.0001
+    },
+    "food2_2": {
+      "gramDay": 155,
+      "caloriesGram": 0.7,
+      "co2Calories": 0.0013
+    },
+    "food2_3": {
+      "gramDay": 285,
+      "caloriesGram": 1.2,
+      "co2Calories": 0.0003
+    }
+  },
+  "food3": {
+    "food3_1": {
+      "gramDay": 148,
+      "caloriesGram": 2,
+      "co2Calories": 0.003
+    }
+  },
+  "food4": {
+    "food4_1": {
+      "gramDay": 68,
+      "caloriesGram": 1.8,
+      "co2Calories": 0.0017
+    }
+  },
+  "food5": {
+    "food5_1": {
+      "gramDay": 25,
+      "caloriesGram": 1.4,
+      "co2Calories": 0.0008
+    },
+    "food5_2": {
+      "gramDay": 314,
+      "caloriesGram": 0.5,
+      "co2Calories": 0.003
+    },
+    "food5_3": {
+      "gramDay": 22,
+      "caloriesGram": 3,
+      "co2Calories": 0.0003
+    },
+    "food5_4": {
+      "gramDay": 44,
+      "caloriesGram": 3.6,
+      "co2Calories": 0.0022
+    },
+    "food5_5": {
+      "gramDay": 36,
+      "caloriesGram": 5.5,
+      "co2Calories": 0.001331
+    }
+  },
+  "food6": {
+    "food6_1": {
+      "gramDay": 107,
+      "caloriesGram": 0.5,
+      "co2Calories": 0.001156
+    },
+    "food6_2": {
+      "gramDay": 523,
+      "caloriesGram": 0.02,
+      "co2Calories": 0.0026
+    },
+    "food6_3": {
+      "gramDay": 0,
+      "caloriesGram": 0,
+      "co2Calories": 0
+    },
+    "food6_4": {
+      "gramDay": 242,
+      "caloriesGram": 0.3,
+      "co2Calories": 0.001570
+    },
+    "food6_5": {
+      "gramDay": 83,
+      "caloriesGram": 0.4,
+      "co2Calories": 0.0020
+    },
+    "food6_6": {
+      "gramDay": 45,
+      "caloriesGram": 0.7,
+      "co2Calories": 0.007714
+    },
+    "food6_7": {
+      "gramDay": 3,
+      "caloriesGram": 2.9,
+      "co2Calories": 0.001862
+    }
+  }
+}
