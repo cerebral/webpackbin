@@ -38,7 +38,10 @@ const rules = [
           require.resolve('babel-preset-es2015'),
           require.resolve('babel-preset-react')
         ],
-        plugins: ['syntax-dynamic-import']
+        plugins: [
+          'syntax-dynamic-import',
+          'inferno'
+        ]
       }
     }]
   }
