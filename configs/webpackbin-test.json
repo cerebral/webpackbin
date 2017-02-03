@@ -1,0 +1,4 @@
+{
+  "dllServiceUrl": "https://webpack-dll.herokuapps.com",
+  "sandboxServiceUrl": "https://webpack-sandbox.herokuapps.com"
+}

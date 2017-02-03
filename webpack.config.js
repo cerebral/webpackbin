@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path');
-const username = require('username');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -9,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const duckyEnv = process.env.DUCKY_ENV;
+const webpackbinEnv = process.env.WEBPACKBIN_ENV || 'webpackbin-dev';
 
 /*
  LOADERS
@@ -27,35 +26,17 @@ const rules = [
         {loader: 'css-loader', options: {modules: true}}
       ]}
   ),
-  {test: /\.svg/, use: [{loader: 'url-loader'}, {
-    loader: 'svgo-loader', options: {
-      plugins: [
-        {removeTitle: true},
-        {convertColors: {shorthex: false}},
-        {convertPathData: false}
-      ]
-    }
-  }]},
-  {test: /\.png/, use: [{loader: 'url-loader', options: {limit: 1000}}]},
-  {test: /\.jpg/, use: [{loader: 'url-loader', options: {limit: 1000}}]},
-  {test: /\.woff/, use: [{loader: 'url-loader'}]},
-  {test: /\.json/, use: [{loader: 'json-loader'}]},
-  {
+  {test: /\.woff/, use: [{loader: 'url-loader'}]},  {
     test: /\.js?$/,
     include: [
-      path.resolve('client'),
-      path.resolve('utils'),
-      isProduction ? path.resolve('node_modules', 'ducky-components', 'src') : path.resolve('..', 'ducky-components', 'src'),
-      path.resolve('calculator'),
-      path.resolve('resources/languages')
+      path.resolve('src')
     ],
     use: [{
       loader: require.resolve('babel-loader'),
       options: {
         presets: [
           require.resolve('babel-preset-es2015'),
-          require.resolve('babel-preset-react'),
-          require.resolve('babel-preset-stage-0')
+          require.resolve('babel-preset-react')
         ],
         plugins: ['syntax-dynamic-import']
       }
@@ -77,12 +58,9 @@ let plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify(nodeEnv),
-      DUCKY_ENV: JSON.stringify(duckyEnv),
-      TASK_PREFIX: JSON.stringify(isProduction ? '' : username.sync())
+      NODE_ENV: JSON.stringify(nodeEnv)
     }
-  }),
-  new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /nb/)
+  })
 ];
 
 if (isProduction && process.argv[6] !== '--analyzer') {
@@ -131,8 +109,6 @@ if (isProduction) {
 const common = [
   'react',
   'react-dom',
-  'react-date-picker',
-  'moment',
   'cerebral',
   'cerebral-router',
   'cerebral-forms',
@@ -140,10 +116,7 @@ const common = [
   'cerebral-provider-firebase',
   'cerebral-module-useragent',
   'classnames',
-  'firebase',
-  'd3',
-  'rc-tooltip',
-  path.resolve('client', 'common', 'activityIcons.js')
+  'firebase'
 ];
 
 /*
@@ -156,7 +129,7 @@ module.exports = {
     hints: isProduction ? 'warning' : false
   },
   entry: {
-    main: [path.resolve('client', 'ieSucksPolyfill.js'), path.resolve('client', 'main.js')],
+    main: path.resolve('src', 'main.js'),
     common: common
   },
   output: {
@@ -174,17 +147,12 @@ module.exports = {
   resolve: {
     modules: [path.resolve('node_modules')],
     alias: {
-      dc: isProduction ? 'ducky-components' : path.resolve('..', 'ducky-components'),
-      common: path.resolve('client', 'common'),
-      modules: path.resolve('client', 'modules'),
-      computed: path.resolve('client', 'computed'),
-      language: path.resolve('resources', 'languages', 'no', 'index.js'),
-      resources: path.resolve('resources'),
-      text: path.resolve('client', 'text.js'),
-      images: path.resolve('public', 'images'),
-      config: path.resolve('configs', `client-${duckyEnv}.json`),
-      utils: path.resolve('utils'),
-      calculator: path.resolve('calculator')
+      common: path.resolve('src', 'common'),
+      components: path.resolve('src', 'components'),
+      modules: path.resolve('src', 'modules'),
+      computed: path.resolve('src', 'computed'),
+      config: path.resolve('configs', `${webpackbinEnv}.json`),
+      utils: path.resolve('src', 'utils')
     }
   },
   module: {

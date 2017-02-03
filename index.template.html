@@ -1,165 +1,61 @@
 <!doctype html>
-<html lang="<%= htmlWebpackPlugin.options.language %>">
+<html lang="EN">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <meta name="author" content="Ducky" />
-    <meta property="og:title" content="Ducky" />
-    <meta name="twitter:title" content="Ducky" />
-    <meta name="description" content="Ducky gjør det enklere for deg å ta bærekraftige valg i hverdagen. Se effekten av enkle tiltak, finn inspirasjon og delta i månedens utfordring!" />
-    <meta property="og:description" content="Ducky gjør det enklere for deg å ta bærekraftige valg i hverdagen. Se effekten av enkle tiltak, finn inspirasjon og delta i månedens utfordring!" />
-    <meta name="twitter:description" content="Ducky gjør det enklere for deg å ta bærekraftige valg i hverdagen. Se effekten av enkle tiltak, finn inspirasjon og delta i månedens utfordring!" />
-    <meta property="og:image" content="https://www.ducky.no/images/landing-image-1.jpg" />
-    <meta name="twitter:image" content="https://www.ducky.no/images/landing-image-1.jpg" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <meta property="og:locale" content="nb_NO" />
-    <meta property="og:url" content="https://www.ducky.no/" />
-    <meta name="twitter:url" content="https://www.ducky.no/" />
-    <meta name="twitter:site" content="@ducky_no" />
-    <meta name="twitter:domain" content="www.ducky.no" />
-    <meta name="twitter:creator" content="@ducky_no" />
-    <meta property="fb:app_id" content="310786469089118" />
-
-    <link rel="shortcut icon" type="image/png" href="/images/ducky-logo-favicon.png" />
-    <link rel="apple-touch-icon" href="/images/ducky-logo-favicon.png" />
-    <link rel="apple-touch-icon-precomposed" href="/images/ducky-logo-favicon.png" />
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>WebpackBin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
     <style>
-        body {
-            font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
-            background-color: #ECEFF1;
-            margin: 0;
-            overflow-y: scroll;
-        }
-        * {
-            box-sizing: border-box;
-        }
+      html, body {
+        margin: 0;
+        background-color: #242d3c;
+        color: #fff;
+        font-family: Ubuntu, sans-serif;
+        overflow: hidden;
+        height: 100%;
+      }
 
-        textarea, button, input, select {
-          font-family: 'Montserrat', 'Helvetica Neue', sans-serif !important;
-        }
+      #root {
+        height: 100%;
+      }
 
-        #loaderWrapper.hidden {
-          opacity: 0;
-          visibility: hidden;
-        }
+      #loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        height: 97px;
+        margin-top: -69px;
+        margin-left: -250px;
+      }
+      #loader h3 {
+        text-align: center;
+        opacity: 1;
+        animation: pulse 1s infinite;
+        -webkit-animation: pulse 1s infinite;
+      }
 
-        #loaderWrapper {
-            position: fixed;
-            display: flex;
-            height: 100vh;
-            width: 100%;
-            align-items: center;
-            background-color: #ECEFF1;
-            z-index: 9999999;
-            opacity: 1;
-            visibility: visible;
-            transition: visibility 0.25s 0.5s, opacity 0.25s 0.5s ease-in;
-        }
+      @keyframes pulse {
+        0%   {opacity: 1;}
+        50%  {opacity: 0.5;}
+        100% {opacity: 1;}
+      }
 
-        #loaderWrapper .loader_text {
-          margin: 24px auto 0;
-          text-align: center;
-          max-width:288px;
-          font-size:14px;
-          line-height:20px;
-          font-weight:normal;
-          color:#90a4ae;
-        }
+      @-webkit-keyframes pulse {
+        0%   {opacity: 1;}
+        50%  {opacity: 0.5;}
+        100% {opacity: 1;}
+      }
 
-        #loaderWrapper.hidden .iconWrapper {
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        #loaderWrapper .iconWrapper {
-          margin: 0 auto;
-          width:116px;
-          text-indent: -9999em;
-          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQAAAAM1BMVEVMaXGQpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK6QpK55dHImAAAAEHRSTlMAoGDgwNBAEPCAMJBwIFCwFwciRQAAAo9JREFUeNrt2+tq5DAMBWD5fk/0/k+7MBQWmu1OosmJDdX3bxgKB9t1ZGVMSimllFJKKaWUUkoppZT6QbSl+ZdStrpGpBb4G18mR6sm8z+5NmiWzfN/+EgzxMAH04ONnU8wiR5lM5+SN3pOMnxaey5V4AtCokfUzAzIBUg1P9fIzOvlSoEFAoHtLGIIqrOQJaDKUnkQTmAxD57C5aYxZf5AToRR+CMFN1i44cIPljdl93zUCcHxGc7SS7Lu8BUBbJcXUONvIt3PXC9G7QOPoCzYmzp8FquoQP628ivdrYt2gIj+X9xlp4kAXlyO39roqICf1/xeIno3i3Szwe+RMFYisXhPrHjM1F3Fxkrvnw3ZbIn+Gnb/bDeLLF3yB8GXl+bd63MDxzKyMruCY3GS/FkgdKxdMlgdHev4qG7omnWwIFfHn7f5nHK1OTeeObk6m762ycwnmOd6In4vPjzUA+iMUIDVqVxA1vJyFXjykevgc+LMFqFDLiy5cnOqNLNjg39LVbAb1vzhcpFuZPkWudC9PH/O9QR64SMXWiUAy0K+lWIjoRhhKgILLLEt+eYuE62Ya6clcxV6QPJ8UaRHtOVipWiL8XmhWLE3L62OMWo3geUMIlLxLADdtzaT+QZ2jUy4d3aj5fWK5Livd4Am61gA/PuM5BggDGStJ5frksPF2UJ+0TZ/+7KMESHLa/762hkiQEtjubJoroFs0MgZWnObGLTkPBpaMleGHQnnl6oGMIu4ltb8Cro6vlWouDsOco1us0Fb3/MHrCXYbSM5X2F3e+ScJYhUMjaUPJgTh8KygS/zlvDqueaE/KoivpXjzEYCgGbc/Mum8cfWZTA90lQj2lJ2/2UvxcZBSin12/wBAnSVZAILPdoAAAAASUVORK5CYII=);
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 80%;
-          background-color: transparent;
-          opacity: 1;
-          visibility: visible;
-          transition: visibility 0.25s, opacity 0.25s ease-in;
-        }
-
-        #loaderWrapper .loader {
-          border-top: 4px solid rgba(38, 50, 56, 0.1);
-          border-right: 4px solid rgba(38, 50, 56, 0.1);
-          border-bottom: 4px solid rgba(38, 50, 56, 0.1);
-          border-left: 4px solid #90a4ae;
-          -webkit-transform: translateZ(0);
-          -ms-transform: translateZ(0);
-          transform: translateZ(0);
-          -webkit-animation: load8 1.1s infinite linear;
-          animation: load8 1.1s infinite linear;
-        }
-
-        #loaderWrapper .loader,
-        #loaderWrapper .loader:after {
-          border-radius: 50%;
-          width: 116px;
-          height: 116px;
-        }
-
-        @-webkit-keyframes load8 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes load8 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
     </style>
   </head>
   <body>
-    <div id="loaderWrapper">
-      <div class="iconWrapper">
-        <div class="loader"></div>
-      </div>
-    </div>
     <div id="app"></div>
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-    <%=htmlWebpackPlugin.files.webpackManifest%>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-86648909-1', 'auto', {
-        anonymizeIp: true
-      });
-      ga('send', 'pageview');
-
-    </script>
-
-    <%if (htmlWebpackPlugin.options.isProduction) { %>
-      <!-- BEGIN TRACKJS -->
-      <script type="text/javascript">window._trackJs = { token: '4be31096c03942069d4b5a4d425d40fd' };</script>
-      <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
-      <!-- END TRACKJS -->
-    <% } %>
+    <div id="loader">
+      <img src="logo.png"/>
+      <h3>Loading it up!</h3>
+    </div>
   </body>
 </html>

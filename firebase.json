@@ -26,36 +26,6 @@
         "key" : "Cache-Control",
         "value" : "max-age=31536000"
       }]
-    }, {
-      "source" : "/images/avatars/*.@(jpg|png)",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "max-age=31536000"
-      }]
-    }, {
-      "source" : "/images/challengeModals/*.@(jpg|png)",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "max-age=31536000"
-      }]
-    }, {
-      "source" : "/images/covers/*.@(jpg|png)",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "max-age=31536000"
-      }]
-    }, {
-      "source" : "/images/landingPage/*.@(jpg|png)",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "max-age=31536000"
-      }]
-    }, {
-      "source" : "/images/onboarding/*.@(jpg|png)",
-      "headers" : [{
-        "key" : "Cache-Control",
-        "value" : "max-age=31536000"
-      }]
     }]
   }
 }
