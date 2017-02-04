@@ -1,5 +1,4 @@
 {
-  "dllServiceUrl": "https://webpack-dll.herokuapps.com",
   "sandboxServiceUrl": "https://webpack-sandbox.herokuapps.com",
   "firebaseConfig": {
     "apiKey": "AIzaSyAxETSQGV8bB5yNvRyEMaMfV5Yuzyz3Csk",

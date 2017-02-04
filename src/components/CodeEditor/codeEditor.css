@@ -1,0 +1,132 @@
+.cm-s-webpackbin.CodeMirror {
+    background: #202634;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 15px;
+}
+
+.CodeMirror-scrollbar-filler {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.cm-s-webpackbin.CodeMirror .CodeMirror-lines {
+  padding-top: 0;
+}
+
+.cm-s-webpackbin.CodeMirror pre {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.cm-s-webpackbin div.CodeMirror-selected {
+    background: rgba(255,255,255,0.1) !important;
+}
+
+.cm-s-webpackbin.CodeMirror::selection {
+    background: #171c26;
+}
+
+.cm-s-webpackbin.CodeMirror::-moz-selection {
+    background: #171c26;
+}
+
+.cm-s-webpackbin .CodeMirror-gutters {
+    background: #202634;
+    border-right: 0px;
+}
+
+.cm-s-webpackbin .CodeMirror-guttermarker {
+    color: #db2d20;
+}
+
+.cm-s-webpackbin .CodeMirror-guttermarker-subtle {
+    color: #646871;
+}
+
+.cm-s-webpackbin .CodeMirror-linenumber {
+    color: #646871;
+}
+
+.cm-s-webpackbin .CodeMirror-cursor {
+    border-left: 1px solid #FFF !important;
+}
+
+.cm-s-webpackbin span.cm-comment {
+    color: rgba(255,255,255,0.5);
+}
+
+.cm-s-webpackbin span.cm-atom {
+    color: #2196f3;
+}
+
+.cm-s-webpackbin span.cm-number {
+    color: #2196f3;
+}
+
+.cm-s-webpackbin span.cm-property,
+.cm-s-webpackbin span.cm-attribute {
+    color: #1eaa6e;
+}
+
+.cm-s-webpackbin span.cm-keyword {
+    color: #597394;
+}
+
+.cm-s-webpackbin span.cm-qualifier {
+    color: #597394;
+}
+
+
+.cm-s-webpackbin span.cm-string {
+    color: #f0b937;
+}
+
+.cm-s-webpackbin span.cm-variable {
+    color: #4caf50;
+}
+
+.cm-s-webpackbin span.cm-variable-2 {
+    color: #01a0e4;
+}
+
+.cm-s-webpackbin span.cm-def {
+    color: #4caf50;
+}
+
+.cm-s-webpackbin span.cm-bracket {
+    color: #3a3432;
+}
+
+.cm-s-webpackbin span.cm-tag {
+    color: #597394;
+}
+
+.cm-s-webpackbin span.cm-link {
+    color: #a16a94;
+}
+
+.cm-s-webpackbin span.cm-meta {
+    color: #405574;
+}
+
+.cm-s-webpackbin span.cm-error {
+    /* background: rgba(0,0,0,0.1); */
+    background-color: #eb1e64;
+    color: #fff;
+}
+
+.cm-s-webpackbin .CodeMirror-activeline-background {
+    background: #e8f2ff !important;
+}
+
+.cm-s-webpackbin .CodeMirror-matchingbracket {
+    text-decoration: underline;
+    color: #a16a94 !important;
+}
+
+.cm-s-webpackbin .CodeMirror-matchingtag {
+  background-color: #171c26;
+}

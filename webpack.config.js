@@ -35,8 +35,7 @@ const rules = [
       loader: require.resolve('babel-loader'),
       options: {
         presets: [
-          require.resolve('babel-preset-es2015'),
-          require.resolve('babel-preset-react')
+          require.resolve('babel-preset-es2015')
         ],
         plugins: [
           'syntax-dynamic-import',
@@ -110,8 +109,9 @@ if (isProduction) {
  VENDORS
  */
 const common = [
-  'react',
-  'react-dom',
+  'inferno',
+  'inferno-component',
+  'inferno-create-element',
   'cerebral',
   'cerebral-router',
   'cerebral-forms',

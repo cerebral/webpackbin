@@ -1,0 +1,11 @@
+.wrapper {
+  height: 100%;
+  flex: 1;
+}
+
+.wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: #FFF;
+}

@@ -1,3 +1,5 @@
 export default {
-  foo: 'bar'
+  state: {
+    isAuthenticating: true
+  }
 }

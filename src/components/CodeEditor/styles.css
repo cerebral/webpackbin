@@ -1,0 +1,14 @@
+.wrapper {
+  max-width: 60%;
+  flex-basis: 0; /* default value */
+  flex-grow: 1;
+  height: 100%;
+  background-color: #202634;
+  border-right: 2px solid #232e3c;
+  box-sizing: border-box;
+}
+
+.codeWrapper {
+  flex: 1;
+  height: 100%;
+}
