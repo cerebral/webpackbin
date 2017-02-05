@@ -1,6 +1,6 @@
 import isSelectedFile from '../actions/isSelectedFile'
 import setNewSelectedFileIndex from '../actions/setNewSelectedFileIndex'
-import updateBin from 'modules/bin/chains/updateBin'
+import updateSandbox from 'modules/bin/chains/updateSandbox'
 import {splice} from 'cerebral/operators'
 import {state, input} from 'cerebral/tags'
 
@@ -12,5 +12,5 @@ export default [
     ],
     false: []
   },
-  ...updateBin
+  ...updateSandbox
 ]

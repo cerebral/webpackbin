@@ -3,7 +3,7 @@ import {state, string, input} from 'cerebral/tags'
 import addFile from '../actions/addFile'
 import selectNewFile from '../actions/selectNewFile'
 import isValidFile from '../actions/isValidFile'
-import updateBin from 'modules/bin/chains/updateBin'
+import updateSandbox from 'modules/bin/chains/updateSandbox'
 import showSnackbar from 'modules/app/factories/showSnackbar'
 
 export default [
@@ -14,7 +14,7 @@ export default [
       set(state`bin.files.newFileIsEntry`, false),
       set(state`bin.files.showNewFileInput`, false),
       selectNewFile,
-      ...updateBin
+      ...updateSandbox
     ],
     false: [
       ...showSnackbar(

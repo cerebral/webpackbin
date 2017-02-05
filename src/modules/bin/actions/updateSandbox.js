@@ -1,6 +1,6 @@
 import config from 'config'
 
-function updateBin ({http, state, path, resolve}) {
+function updateSandbox ({http, state, path, resolve}) {
   const files = state.get('bin.files.list')
 
   return http.post(config.sandboxServiceUrl, {
@@ -10,4 +10,4 @@ function updateBin ({http, state, path, resolve}) {
     .catch(path.error)
 }
 
-export default updateBin
+export default updateSandbox

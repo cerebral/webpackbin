@@ -11,6 +11,7 @@ export default connect({
   isLoading: state`bin.isLoading`,
   lastSavedDatetime: state`bin.lastSavedDatetime`,
   files: state`bin.files.list`,
+  currentBin: state`bin.currentBin`,
   selectedFileIndex: state`bin.files.selectedFileIndex`,
   codeChanged: signal`bin.codeChanged`,
   codeLinted: signal`bin.codeLinted`,
@@ -20,6 +21,7 @@ export default connect({
 },
   function Desktop ({
     files,
+    currentBin,
     isLoading,
     lastSavedDatetime,
     codeChanged,
@@ -35,6 +37,7 @@ export default connect({
         <div className={styles.editorWrapper}>
           <CodeEditor
             isLoading={false}
+            bin={currentBin}
             file={files[selectedFileIndex]}
             onChange={codeChanged}
             onLint={codeLinted}

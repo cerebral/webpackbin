@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "start": "webpack-dev-server --content-base public/",
-    "deploy": "webpack && firebase deploy --project $WEBPACKBIN_ENV --public public --only \"hosting,database\""
+    "deploy": "webpack && firebase deploy --project $WEBPACKBIN_ENV --public public --only \"hosting,database\"",
+    "rules": "firebase deploy --project webpackbin-test --public public --only \"database\""
   },
   "dependencies": {
     "babel-core": "^6.21.0",

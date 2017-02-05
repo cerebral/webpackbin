@@ -50,7 +50,9 @@ class CodeEditor extends Component {
 
     if (
       prevProps.file.name !== this.props.file.name ||
-      this.props.readOnly && prevProps.file.content !== this.props.file.content
+      this.props.readOnly && prevProps.file.content !== this.props.file.content ||
+      !prevProps.bin && this.props.bin ||
+      prevProps.bin && prevProps.bin.key !== this.props.bin.key
     ) {
       this.setModeAndLinter()
       this.codemirror.getDoc().clearHistory()
@@ -66,6 +68,8 @@ class CodeEditor extends Component {
     const component = this
     const lastCursorPosition = this.props.file.lastCursorPosition
     const currentContent = this.codemirror.getDoc().getValue()
+
+    this.codemirror.getInputField().blur()
 
     function onFocus () {
       component.codemirror.off('focus', onFocus)

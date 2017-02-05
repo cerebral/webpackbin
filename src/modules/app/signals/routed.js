@@ -1,8 +1,8 @@
-import updateBin from '../chains/updateBin'
+import updateSandbox from 'modules/bin/chains/updateSandbox'
 import {set} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 
 export default [
-  ...updateBin,
+  ...updateSandbox,
   set(state`bin.isLoading`, false)
 ]

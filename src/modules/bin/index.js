@@ -1,5 +1,4 @@
-import routed from './signals/routed'
-import saveShortcutPressed from './signals/saveShortcutPressed'
+import saveClicked from './signals/saveClicked'
 import codeChanged from './signals/codeChanged'
 import codeLinted from './signals/codeLinted'
 import linterLoading from './signals/linterLoading'
@@ -10,14 +9,15 @@ import files from './modules/files'
 
 export default {
   state: {
+    currentBin: null,
     isLoading: true,
-    isUpdating: false,
+    isUpdatingSandbox: false,
+    isSaving: false,
     isLinting: false,
     lastSaveDatetime: null
   },
   signals: {
-    routed,
-    saveShortcutPressed,
+    saveClicked,
     codeChanged,
     codeLinted,
     linterLoading,

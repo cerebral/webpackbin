@@ -1,10 +1,10 @@
 {
   "sandboxServiceUrl": "https://webpack-sandbox.herokuapps.com",
   "firebaseConfig": {
-    "apiKey": "AIzaSyAxETSQGV8bB5yNvRyEMaMfV5Yuzyz3Csk",
-    "authDomain": "webpackbin.firebaseapp.com",
-    "databaseURL": "https://webpackbin.firebaseio.com",
-    "storageBucket": "webpackbin.appspot.com",
-    "messagingSenderId": "1020666254102"
+    "apiKey": "AIzaSyCOXwpVZIdNxQi1aehiB1n7eN5e8SHh9WU",
+    "authDomain": "webpackbin-test.firebaseapp.com",
+    "databaseURL": "https://webpackbin-test.firebaseio.com",
+    "storageBucket": "webpackbin-test.appspot.com",
+    "messagingSenderId": "989762970293"
   }
 }

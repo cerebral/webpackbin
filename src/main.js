@@ -16,7 +16,8 @@ const controller = Controller({
   devtools: process.env.NODE_ENV === 'production' ? null : Devtools(),
   router: Router({
     routes: {
-      '/': 'bin.routed'
+      '/': 'app.routed',
+      '/bins/:binKey': 'app.binRouted'
     },
     onlyHash: true
   }),
@@ -24,8 +25,8 @@ const controller = Controller({
     app,
     bin,
     shortcuts: shortcuts({
-      'cmd+s': 'bin.saveShortcutPressed',
-      'ctrl+s': 'bin.saveShortcutPressed'
+      'cmd+s': 'bin.saveClicked',
+      'ctrl+s': 'bin.saveClicked'
     }),
     useragent: UseragentModule()
   },

@@ -1,6 +1,12 @@
 {
   "rules": {
     ".write": false,
-    ".read": false
+    ".read": false,
+    "bins": {
+      "$bin": {
+        ".read": true,
+        ".write": "auth.uid === data.child('owner').val() || auth.uid === newData.child('owner').val()"
+      }
+    }
   }
 }
