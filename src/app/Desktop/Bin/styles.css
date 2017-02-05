@@ -1,3 +1,7 @@
+.wrapper {
+  height: 100%;
+}
+
 .editorWrapper {
   display: flex;
   height: 100%;

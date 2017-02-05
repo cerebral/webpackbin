@@ -48,13 +48,13 @@ export default {
     }
 
     if (loadedModes.indexOf(mode) === -1) {
-      return types[mode]()
+      return types[mode]().then(function (linter) {
+        loadedModes.push(mode)
+
+        return linter
+      })
     }
 
-    return types[mode]().then(function (linter) {
-      loadedModes.push(mode)
-
-      return linter
-    })
+    return types[mode]()
   }
 }

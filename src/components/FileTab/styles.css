@@ -1,0 +1,40 @@
+.wrapper {
+  position: relative;
+  box-sizing: border-box;
+  padding: 15px 30px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.wrapper:hover i {
+  display: block;
+}
+
+.active {
+  border-bottom: 2px solid #eb1e64;
+}
+
+.entry {
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+}
+
+.deleteFile {
+  position: absolute;
+  font-style: normal;
+  display: none;
+  font-size: 14px;
+  right: 5px;
+  top: 5px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.5);
+}
+
+.deleteFile:hover {
+  color: #FFF;
+}

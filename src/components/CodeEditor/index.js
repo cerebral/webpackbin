@@ -9,18 +9,6 @@ import CodeMirror from 'codemirror'
 import styles from './styles.css'
 import modes from './modes'
 
-/*
-@Cerebral({
-  selectedFileIndex: 'bin.selectedFileIndex',
-  files: 'bin.currentBin.files',
-  isLoadingBin: 'bin.isLoadingBin',
-  isRunning: 'bin.isRunning',
-  forceUpdateCode: 'bin.forceUpdateCode',
-  vimMode: 'bin.vimMode',
-  hasJoinedLive: 'live.hasJoined',
-  canControl: canControl
-})
-*/
 class CodeEditor extends Component {
   constructor (props) {
     super(props)
@@ -79,7 +67,7 @@ class CodeEditor extends Component {
     const modeAlreadyLoaded = modes.isLoaded(this.props.file)
 
     if (!modeAlreadyLoaded) {
-      this.props.onLinterLoaded()
+      this.props.onLinterLoading()
     }
 
     modes.set(this.props.file)

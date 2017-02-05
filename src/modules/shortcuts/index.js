@@ -14,6 +14,14 @@ export default function (shortcuts) {
             return
           }
 
+          if (specialKey === 'alt' && !event.altKey) {
+            return
+          }
+
+          if (specialKey === 'shift' && !event.shiftKey) {
+            return
+          }
+
           if (event.keyCode === keyCode) {
             event.preventDefault()
             module.controller.getSignal(shortcuts[shortcut])()
