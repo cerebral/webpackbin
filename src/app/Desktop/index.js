@@ -6,9 +6,10 @@ import IconTextButton from 'components/IconTextButton'
 import Bin from './Bin'
 import styles from './styles.css'
 import PopoverIconButton from 'components/PopoverIconButton'
+import Input from 'components/Input'
 
 export default connect({
-
+  
 },
   function Desktop () {
     return (
@@ -17,6 +18,7 @@ export default connect({
           <IconButton icon='addAssignment' />
           <IconButton icon='stop' />
           <IconButton icon='addFile' />
+          <Input />
           <PopoverIconButton
             icon='addFile'
             title='Heisann?'

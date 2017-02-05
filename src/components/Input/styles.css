@@ -1,0 +1,55 @@
+.addFileWrapper {
+  cursor: pointer;
+  height: 50px;
+  float: left;
+  padding-top: 9px;
+  box-sizing: border-box;
+  border-right: 2px solid #232e3c;
+}
+
+.addFileWrapper:hover {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.wrapper {
+  height: 100%;
+}
+
+.inputWrapper {
+  float: left;
+  padding: 0 10px;
+  line-height: 26px;
+  border-right: 2px solid #232e3c;
+}
+
+.input {
+  border-radius: 3px;
+  margin-top: 9px;
+  padding: 3px 10px;
+  width: 125px;
+  transition: width 0.25 ease-out;
+  background-color: #eee;
+  border: 0;
+  height: 24px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.input:focus {
+  outline: 0;
+}
+
+.entry {
+  display: inline-block;
+  margin: 0 5px;
+  height: 30px;
+}
+
+.entry input {
+  margin-right: 5px;
+}
+
+.entry span {
+  position: relative;
+  top: 1px;
+}
