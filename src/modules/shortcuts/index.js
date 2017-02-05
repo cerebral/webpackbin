@@ -24,6 +24,7 @@ export default function (shortcuts) {
 
           if (event.keyCode === keyCode) {
             event.preventDefault()
+            event.stopPropagation()
             module.controller.getSignal(shortcuts[shortcut])()
           }
         })

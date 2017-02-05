@@ -1,5 +1,6 @@
 export default {
   state: {
-    isAuthenticating: true
+    isAuthenticating: true,
+    snackbar: null
   }
 }

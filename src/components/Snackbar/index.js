@@ -1,10 +1,16 @@
 import Inferno from 'inferno'
 import styles from './styles.css'
+import classnames from 'classnames'
 
-function Snackbar ({text}) {
+function Snackbar (props) {
+  const snackbar = props.snackbar || {text: '', type: 'noral'}
+
   return (
-    <div className={text ? styles.snackbarVisible : styles.snackbar}>
-      {text}
+    <div className={classnames(styles.snackbar, {
+      [styles.visible]: Boolean(snackbar.text),
+      [styles.error]: snackbar.type === 'error'
+    })}>
+      {snackbar.text}
     </div>
   )
 }

@@ -21,9 +21,13 @@
   z-index: 999999999999;
 }
 
-.snackbarVisible {
-  composes: snackbar;
+.visible {
   visibility: visible;
   opacity: 1;
   transform: translate3d(0px, 0px, 0px);
+}
+
+.error {
+  color: #FFF;
+  background-color: #eb1e64;
 }

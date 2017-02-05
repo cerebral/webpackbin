@@ -1,0 +1,18 @@
+.wrapper {
+  display: inline-block;
+  margin: 0 5px;
+  height: 30px;
+}
+
+.wrapper input {
+  margin-right: 5px;
+}
+
+.wrapper span {
+  position: relative;
+  top: 1px;
+}
+
+.disabled span {
+  color: rgba(255,255,255, 0.5);
+}

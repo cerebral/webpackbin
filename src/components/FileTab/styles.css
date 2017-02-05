@@ -38,3 +38,14 @@
 .deleteFile:hover {
   color: #FFF;
 }
+
+.changed {
+  background-color: #eb1e64;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 5px;
+  height: 5px;
+  margin-top: -2.5px;
+}

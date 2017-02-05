@@ -2,7 +2,14 @@ import Inferno from 'inferno'
 import styles from './styles.css'
 import classnames from 'classnames'
 
-function FileTab ({children, active, isEntry, onClick, onRemoveClick}) {
+function FileTab ({
+  children,
+  active,
+  isEntry,
+  onClick,
+  onRemoveClick,
+  isChanged
+}) {
   return (
     <div
       onClick={onClick}
@@ -12,6 +19,7 @@ function FileTab ({children, active, isEntry, onClick, onRemoveClick}) {
     >
       {children}
       {isEntry ? <span className={styles.entry}>entry</span> : null}
+      {isChanged ? <i className={styles.changed} /> : null}
       {onRemoveClick ? (
         <i
           onClick={onRemoveClick}

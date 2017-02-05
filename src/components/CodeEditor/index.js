@@ -14,11 +14,13 @@ class CodeEditor extends Component {
     super(props)
     this.onCodeChange = this.onCodeChange.bind(this)
     this.onUpdateLinting = this.onUpdateLinting.bind(this)
+    this.onCursorChange = this.onCursorChange.bind(this)
   }
   componentDidMount () {
     this.codemirror = CodeMirror(this.codeElement, {
       value: this.props.file.content,
       mode: modes.get(),
+      autofocus: true,
       theme: 'webpackbin',
       matchTags: {bothTags: true},
       autoCloseTags: true,
@@ -36,6 +38,7 @@ class CodeEditor extends Component {
       }
     })
     this.codemirror.on('change', this.onCodeChange)
+    this.codemirror.on('cursorActivity', this.onCursorChange)
     this.setModeAndLinter()
   }
   componentDidUpdate (prevProps) {
@@ -50,13 +53,45 @@ class CodeEditor extends Component {
       this.props.readOnly && prevProps.file.content !== this.props.file.content
     ) {
       this.setModeAndLinter()
-      this.setEditorValue(this.props.file.content)
       this.codemirror.getDoc().clearHistory()
+      this.focusLastCursorPosition()
+      this.setEditorValue(this.props.file.content)
     }
 
     if (prevProps.vimMode !== this.props.vimMode) {
       this.codemirror.setOption('keyMap', this.props.vimMode ? 'vim' : 'default')
     }
+  }
+  focusLastCursorPosition () {
+    const component = this
+    const lastCursorPosition = this.props.file.lastCursorPosition
+    const currentContent = this.codemirror.getDoc().getValue()
+
+    function onFocus () {
+      component.codemirror.off('focus', onFocus)
+      component.codemirror.getDoc().setCursor(lastCursorPosition)
+      document.querySelector('.CodeMirror-cursors').style.display = 'block'
+    }
+
+    function onChange () {
+      component.ignoreNextCursorChange = true
+      component.codemirror.on('focus', onFocus)
+      component.codemirror.off('change', onChange)
+      component.focus()
+    }
+
+    document.querySelector('.CodeMirror-cursors').style.display = 'none'
+    if (currentContent === this.props.file.content) {
+      component.codemirror.on('focus', onFocus)
+      this.focus()
+    } else {
+      component.codemirror.on('change', onChange)
+    }
+  }
+  focus () {
+    setTimeout(() => {
+      this.codemirror.focus()
+    })
   }
   setEditorValue (value) {
     this.isUpdatingCode = true
@@ -77,7 +112,7 @@ class CodeEditor extends Component {
           onUpdateLinting: this.onUpdateLinting
         })
         this.codemirror.setOption('mode', modes.get(this.props.file))
-        this.setEditorValue(this.codemirror.getValue())
+        // this.setEditorValue(this.codemirror.getValue())
 
         if (!modeAlreadyLoaded) {
           this.props.onLinterLoaded()
@@ -90,6 +125,7 @@ class CodeEditor extends Component {
     })
   }
   onCodeChange (instance, event) {
+    this.ignoreNextCursorChange = true
     if (!this.isUpdatingCode) {
       if (event.text.length === 2 && !event.text[0] && !event.text[1]) {
         event.text = ['\n']
@@ -101,6 +137,21 @@ class CodeEditor extends Component {
         text: event.text
       })
     }
+  }
+  onCursorChange (instance) {
+    if (this.ignoreNextCursorChange) {
+      this.ignoreNextCursorChange = false
+
+      return
+    }
+
+    const cursor = this.codemirror.getDoc().getCursor()
+    this.props.onCursorChange({
+      cursorPosition: {
+        line: cursor.line,
+        ch: cursor.ch
+      }
+    })
   }
   render () {
     return (

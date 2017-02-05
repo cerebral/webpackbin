@@ -1,7 +1,7 @@
 import config from 'config'
 
 function updateBin ({http, state, path, resolve}) {
-  const files = state.get('bin.files')
+  const files = state.get('bin.files.list')
 
   return http.post(config.sandboxServiceUrl, {
     files

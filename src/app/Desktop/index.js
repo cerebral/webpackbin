@@ -7,14 +7,14 @@ import Bin from './Bin'
 import styles from './styles.css'
 
 export default connect({
-  snackbarText: state`app.snackbarText`
+  snackbar: state`app.snackbar`
 },
-  function Desktop ({snackbarText}) {
+  function Desktop ({snackbar}) {
     return (
       <div className={styles.wrapper}>
         <NavigationBar />
         <Bin />
-        <Snackbar text={snackbarText} />
+        <Snackbar snackbar={snackbar} />
       </div>
     )
   }

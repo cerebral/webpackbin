@@ -10,12 +10,13 @@ import {state, signal} from 'cerebral/tags'
 export default connect({
   isLoading: state`bin.isLoading`,
   lastSavedDatetime: state`bin.lastSavedDatetime`,
-  files: state`bin.files`,
-  selectedFileIndex: state`bin.selectedFileIndex`,
+  files: state`bin.files.list`,
+  selectedFileIndex: state`bin.files.selectedFileIndex`,
   codeChanged: signal`bin.codeChanged`,
   codeLinted: signal`bin.codeLinted`,
   linterLoading: signal`bin.linterLoading`,
-  linterLoaded: signal`bin.linterLoaded`
+  linterLoaded: signal`bin.linterLoaded`,
+  cursorChanged: signal`bin.cursorChanged`
 },
   function Desktop ({
     files,
@@ -25,7 +26,8 @@ export default connect({
     selectedFileIndex,
     codeLinted,
     linterLoading,
-    linterLoaded
+    linterLoaded,
+    cursorChanged
   }) {
     return (
       <div className={styles.wrapper}>
@@ -38,6 +40,7 @@ export default connect({
             onLint={codeLinted}
             onLinterLoading={linterLoading}
             onLinterLoaded={linterLoaded}
+            onCursorChange={cursorChanged}
             />
           {
             isLoading
