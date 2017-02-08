@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+}
+
+.loadersList {
+  margin: 10px 0;
+  padding: 0;
+  list-style-type: none;
+  width: 175px;
+  min-width: 175px;
+}
+
+.loaderItem {
+  padding: 3px 10px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.activeLoaderItem {
+  background-color: rgba(0,0,0,0.2);
+}
+
+.loaderItem:hover {
+  background-color: rgba(0,0,0,0.2);
+}

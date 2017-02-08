@@ -7,7 +7,7 @@ import AddFile from './AddFile'
 import NavigationSeparator from 'components/NavigationSeparator'
 
 export default connect({
-  files: state`bin.files.list`,
+  files: state`bin.currentBin.files`,
   changedFiles: state`bin.files.changedFiles`,
   selectedFileIndex: state`bin.files.selectedFileIndex`,
   fileClicked: signal`bin.files.fileClicked`,

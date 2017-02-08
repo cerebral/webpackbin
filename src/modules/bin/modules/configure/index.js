@@ -2,6 +2,9 @@ import quickstartClicked from './signals/quickstartClicked'
 import packageQueryChanged from './signals/packageQueryChanged'
 import packageQuerySubmitted from './signals/packageQuerySubmitted'
 import packageToggled from './signals/packageToggled'
+import loaderSelected from './signals/loaderSelected'
+import loaderToggled from './signals/loaderToggled'
+import loaderConfigChanged from './signals/loaderConfigChanged'
 
 export default {
   state: {
@@ -19,13 +22,15 @@ export default {
       template: 'typescriptWithCss'
     }],
     packageQuery: '',
-    packages: {},
-    loaders: {}
+    currentLoader: 'babel'
   },
   signals: {
     quickstartClicked,
     packageQueryChanged,
     packageQuerySubmitted,
-    packageToggled
+    packageToggled,
+    loaderSelected,
+    loaderToggled,
+    loaderConfigChanged
   }
 }

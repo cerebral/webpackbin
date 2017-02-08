@@ -1,10 +1,12 @@
 import config from 'config'
 
 function updateSandbox ({http, state, path, resolve}) {
-  const files = state.get('bin.files.list')
+  const currentBin = state.get('bin.currentBin')
 
   return http.post(config.sandboxServiceUrl, {
-    files
+    files: currentBin.files,
+    packages: currentBin.packages,
+    loaders: currentBin.loaders
   }, {
     withCredentials: true
   })

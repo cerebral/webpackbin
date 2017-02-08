@@ -2,6 +2,7 @@ import Inferno from 'inferno'
 import {connect} from 'cerebral/inferno'
 import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'
+import Description from 'components/Description'
 
 export default connect({
   quickstarts: state`bin.configure.quickstarts`,
@@ -20,7 +21,7 @@ export default connect({
               onClick={() => quickstartClicked({template: quickstart.template})}
             >
               {quickstart.title}
-              <small>{quickstart.description}</small>
+              <Description>{quickstart.description}</Description>
             </li>
           )
         })}

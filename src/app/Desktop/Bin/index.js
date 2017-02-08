@@ -11,8 +11,8 @@ import {state, signal} from 'cerebral/tags'
 export default connect({
   isLoading: state`bin.isLoading`,
   lastSavedDatetime: state`bin.lastSavedDatetime`,
-  files: state`bin.files.list`,
-  currentBin: state`bin.currentBin`,
+  lastForceCodeUpdate: state`bin.lastForceCodeUpdate`,
+  files: state`bin.currentBin.files`,
   selectedFileIndex: state`bin.files.selectedFileIndex`,
   codeChanged: signal`bin.codeChanged`,
   codeLinted: signal`bin.codeLinted`,
@@ -22,7 +22,7 @@ export default connect({
 },
   function Desktop ({
     files,
-    currentBin,
+    lastForceCodeUpdate,
     isLoading,
     lastSavedDatetime,
     codeChanged,
@@ -39,7 +39,7 @@ export default connect({
         <div className={styles.editorWrapper}>
           <CodeEditor
             isLoading={false}
-            bin={currentBin}
+            lastForceCodeUpdate={lastForceCodeUpdate}
             file={files[selectedFileIndex]}
             onChange={codeChanged}
             onLint={codeLinted}

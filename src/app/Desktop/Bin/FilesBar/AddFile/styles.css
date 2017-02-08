@@ -1,3 +1,8 @@
 .wrapper {
   padding: 0 5px;
+  display: flex;
+}
+
+.wrapper input {
+  margin-right: 10px;
 }

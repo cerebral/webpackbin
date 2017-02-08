@@ -51,8 +51,7 @@ class CodeEditor extends Component {
     if (
       prevProps.file.name !== this.props.file.name ||
       this.props.readOnly && prevProps.file.content !== this.props.file.content ||
-      !prevProps.bin && this.props.bin ||
-      prevProps.bin && prevProps.bin.key !== this.props.bin.key
+      prevProps.lastForceCodeUpdate !== this.props.lastForceCodeUpdate
     ) {
       this.setModeAndLinter()
       this.codemirror.getDoc().clearHistory()

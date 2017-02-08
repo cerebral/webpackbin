@@ -15,6 +15,10 @@
   outline: 0;
 }
 
+.input[disabled] {
+  opacity: 0.5;
+}
+
 .dark {
   box-sizing: border-box;
   background-color: #202634;

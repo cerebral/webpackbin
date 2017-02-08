@@ -2,6 +2,7 @@ import updateSandbox from 'modules/bin/chains/updateSandbox'
 import showSnackbar from '../factories/showSnackbar'
 import setCurrentBin from 'modules/bin/actions/setCurrentBin'
 import isCurrentBinKey from 'modules/bin/factories/isCurrentBinKey'
+import forceCodeUpdate from 'modules/bin/actions/forceCodeUpdate'
 import {set} from 'cerebral/operators'
 import {state, input, string} from 'cerebral/tags'
 import {value} from 'cerebral-provider-firebase'
@@ -14,6 +15,7 @@ export default [
       value(string`bins.${input`binKey`}`), {
         success: [
           setCurrentBin,
+          forceCodeUpdate,
           ...updateSandbox
         ],
         error: [

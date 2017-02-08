@@ -1,0 +1,29 @@
+.loaderWrapper {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+  width: 100%;
+  padding: 20px;
+}
+
+.info {
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(255,255,255,0.5);
+}
+
+.section {
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255, 0.05);
+}
+
+.input {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.input input {
+  height: 20px;
+  width: 75px;
+}

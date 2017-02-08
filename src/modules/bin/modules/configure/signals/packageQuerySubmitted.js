@@ -7,7 +7,7 @@ export default [
   set(state`bin.configure.isQueryingPackage`, true),
   getNpmPackage, {
     success: [
-      set(state`bin.configure.packages.${input`result.name`}`, input`result.version`),
+      set(state`bin.currentBin.packages.${input`result.name`}`, input`result.version`),
       set(state`bin.configure.packageQuery`, '')
     ],
     error: [

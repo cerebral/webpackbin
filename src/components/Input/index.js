@@ -6,6 +6,7 @@ function Input (props) {
   return (
     <input
       id={props.id}
+      disabled={props.disabled}
       value={props.value}
       onClick={props.onClick}
       onInput={props.onInput}

@@ -2,11 +2,11 @@ function setCurrentBin ({input, state}) {
   state.set('bin.currentBin', {
     title: input.value.title,
     owner: input.value.owner,
-    key: input.key
+    key: input.key,
+    files: input.value.files,
+    packages: input.value.packages || {},
+    loaders: input.value.loaders || {}
   })
-  state.set('bin.files.list', input.value.files)
-  state.set('bin.configure.loaders', input.value.loaders || {})
-  state.set('bin.configure.packages', input.value.packages || {})
 }
 
 export default setCurrentBin

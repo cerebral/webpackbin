@@ -1,6 +1,6 @@
 .wrapper {
   display: flex;
-  width: 900px;
+  width: 1000px;
 }
 
 .column {
@@ -16,6 +16,7 @@
 
 .header {
   margin: 0;
+  font-size: 18px;
   color: rgba(255,255,255,0.5);
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }

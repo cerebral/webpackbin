@@ -1,16 +1,21 @@
 .wrapper {
   display: inline-block;
-  margin: 0 5px;
+  margin: 0;
   height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .wrapper input {
-  margin-right: 5px;
+  position: relative;
+  margin-right: 7.5px;
+  top: 1px;
+  cursor: pointer;
 }
 
 .wrapper span {
   position: relative;
-  top: 1px;
 }
 
 .disabled span {

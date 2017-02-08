@@ -11,14 +11,14 @@ const templates = {
 function updateBinWithTemplate ({input, state}) {
   const template = templates[input.template]
 
-  state.set('bin.files.list', JSON.parse(JSON.stringify(template.files)))
+  state.set('bin.currentBin.files', JSON.parse(JSON.stringify(template.files)))
 
   if (template.loaders) {
-    state.set('bin.configure.loaders', JSON.parse(JSON.stringify(template.loaders)))
+    state.set('bin.currentBin.loaders', JSON.parse(JSON.stringify(template.loaders)))
   }
 
   if (template.packages) {
-    state.set('bin.configure.packages', JSON.parse(JSON.stringify(template.packages)))
+    state.set('bin.currentBin.packages', JSON.parse(JSON.stringify(template.packages)))
   }
 }
 

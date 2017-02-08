@@ -5,6 +5,7 @@ import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'
 import Quickstart from './Quickstart'
 import Packages from './Packages'
+import Loaders from './Loaders'
 
 export default connect({
   showConfiguration: state`bin.showConfiguration`,
@@ -45,6 +46,7 @@ export default connect({
             <div className={styles.header}>
               Loaders
             </div>
+            <Loaders />
           </div>
         </div>
       </PopoverIconButton>
