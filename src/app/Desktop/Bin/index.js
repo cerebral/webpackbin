@@ -2,6 +2,7 @@ import config from 'config'
 import Inferno from 'inferno'
 import {connect} from 'cerebral/inferno'
 import CodeEditor from 'components/CodeEditor'
+import MainNavigation from './MainNavigation'
 import FilesBar from './FilesBar'
 import Preview from 'components/Preview'
 import styles from './styles.css'
@@ -33,6 +34,7 @@ export default connect({
   }) {
     return (
       <div className={styles.wrapper}>
+        <MainNavigation />
         <FilesBar />
         <div className={styles.editorWrapper}>
           <CodeEditor

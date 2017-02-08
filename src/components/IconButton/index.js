@@ -24,6 +24,7 @@ function IconButton (props) {
             <div className={styles.iconTitle}>
               {props.children}
             </div>
+            {props.tooltip ? <i>{props.tooltip}</i> : null}
           </div>
         ) : (
           <div className={classnames({
@@ -33,6 +34,7 @@ function IconButton (props) {
             [styles.icon]: !props.active && !props.notify && !props.disabled
           })}>
             <div className={icons[props.icon]} />
+            {props.tooltip ? <i>{props.tooltip}</i> : null}
           </div>
         )
       }

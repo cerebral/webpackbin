@@ -73,7 +73,10 @@ class CodeEditor extends Component {
 
     function onFocus () {
       component.codemirror.off('focus', onFocus)
-      component.codemirror.getDoc().setCursor(lastCursorPosition)
+      component.codemirror.getDoc().setCursor(lastCursorPosition || {
+        line: 0,
+        ch: 0
+      })
       document.querySelector('.CodeMirror-cursors').style.display = 'block'
     }
 

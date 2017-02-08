@@ -26,12 +26,16 @@ class PopoverIconButton extends Component {
   }
   render () {
     return (
-      <div className={classNames(styles.wrapper, {[this.props.className]: this.props.className})}>
+      <div className={classNames(styles.wrapper, {
+        [this.props.className]: this.props.className
+      })}>
         <IconButton
           active={this.props.show}
           icon={this.props.icon}
           onClick={this.props.onClick}
-          />
+        >
+          {this.props.label}
+        </IconButton>
         {this.props.show ? this.renderPopup() : null}
       </div>
     )

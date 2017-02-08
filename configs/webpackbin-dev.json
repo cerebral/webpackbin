@@ -1,5 +1,6 @@
 {
   "sandboxServiceUrl": "http://localhost:4000",
+  "npmPackageQueryUrl": "http://localhost:5000/query",
   "firebaseConfig": {
     "apiKey": "AIzaSyCOXwpVZIdNxQi1aehiB1n7eN5e8SHh9WU",
     "authDomain": "webpackbin-test.firebaseapp.com",

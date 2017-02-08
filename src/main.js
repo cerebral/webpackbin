@@ -34,9 +34,7 @@ const controller = Controller({
     FirebaseProvider({
       config: config.firebaseConfig
     }),
-    HttpProvider({
-      withCredentials: true
-    })
+    HttpProvider()
   ]
 })
 

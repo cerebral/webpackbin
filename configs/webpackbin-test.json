@@ -1,5 +1,6 @@
 {
   "sandboxServiceUrl": "https://webpack-sandbox.herokuapps.com",
+  "npmPackageQueryUrl": "http://webpack-dll.herokuapps.com/query",
   "firebaseConfig": {
     "apiKey": "AIzaSyCOXwpVZIdNxQi1aehiB1n7eN5e8SHh9WU",
     "authDomain": "webpackbin-test.firebaseapp.com",

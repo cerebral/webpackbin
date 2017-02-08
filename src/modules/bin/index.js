@@ -4,8 +4,10 @@ import codeLinted from './signals/codeLinted'
 import linterLoading from './signals/linterLoading'
 import linterLoaded from './signals/linterLoaded'
 import cursorChanged from './signals/cursorChanged'
+import configurationClicked from './signals/configurationClicked'
 
 import files from './modules/files'
+import configure from './modules/configure'
 
 export default {
   state: {
@@ -14,7 +16,8 @@ export default {
     isUpdatingSandbox: false,
     isSaving: false,
     isLinting: false,
-    lastSaveDatetime: null
+    lastSaveDatetime: null,
+    showConfiguration: false
   },
   signals: {
     saveClicked,
@@ -22,9 +25,11 @@ export default {
     codeLinted,
     linterLoading,
     linterLoaded,
-    cursorChanged
+    cursorChanged,
+    configurationClicked
   },
   modules: {
-    files
+    files,
+    configure
   }
 }

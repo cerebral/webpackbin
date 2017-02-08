@@ -5,6 +5,8 @@ function updateSandbox ({http, state, path, resolve}) {
 
   return http.post(config.sandboxServiceUrl, {
     files
+  }, {
+    withCredentials: true
   })
     .then(path.success)
     .catch(path.error)

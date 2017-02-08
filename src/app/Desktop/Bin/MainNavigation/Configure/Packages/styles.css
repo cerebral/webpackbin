@@ -1,0 +1,12 @@
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.listItem {}
+
+.subText {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+}

@@ -1,12 +1,6 @@
 .wrapper {
-  height: 100%;
-  float: left;
   position: relative;
-}
-
-.wrapperRight {
-  composes: wrapper;
-  float: right;
+  float: left;
 }
 
 .popup {

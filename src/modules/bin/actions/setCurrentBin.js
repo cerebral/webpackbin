@@ -5,6 +5,8 @@ function setCurrentBin ({input, state}) {
     key: input.key
   })
   state.set('bin.files.list', input.value.files)
+  state.set('bin.configure.loaders', input.value.loaders || {})
+  state.set('bin.configure.packages', input.value.packages || {})
 }
 
 export default setCurrentBin

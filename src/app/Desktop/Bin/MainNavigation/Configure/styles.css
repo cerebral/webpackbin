@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  width: 900px;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+.column2 {
+  flex: 2;
+  padding: 20px;
+}
+
+.header {
+  margin: 0;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 5px;
+}

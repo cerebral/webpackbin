@@ -1,5 +1,6 @@
 import Inferno from 'inferno'
 import styles from './styles.css'
+import classnames from 'classnames'
 
 function Input (props) {
   return (
@@ -15,7 +16,9 @@ function Input (props) {
           props.onCancel()
         }
       }}
-      className={styles.input}
+      className={classnames(styles.input, {
+        [styles.dark]: Boolean(props.dark)
+      })}
       autoFocus={props.autoFocus}
       placeholder={props.placeholder}
       />

@@ -14,3 +14,12 @@
 .input:focus {
   outline: 0;
 }
+
+.dark {
+  box-sizing: border-box;
+  background-color: #202634;
+  color: #cadaed;
+  margin: 0;
+  height: 35px;
+  width: 100%;
+}
