@@ -121,7 +121,7 @@ class CodeEditor extends Component {
           onUpdateLinting: this.onUpdateLinting
         })
         this.codemirror.setOption('mode', modes.get(this.props.file))
-        // this.setEditorValue(this.codemirror.getValue())
+        this.setEditorValue(this.codemirror.getValue())
 
         if (!modeAlreadyLoaded) {
           this.props.onLinterLoaded()
