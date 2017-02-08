@@ -7,6 +7,7 @@ export default [
   set(state`bin.isValid`, input`isValid`),
   when(state`bin.saveWhenDoneLinting`), {
     true: [
+      set(state`bin.saveWhenDoneLinting`, false),
       ...saveClicked
     ],
     false: []

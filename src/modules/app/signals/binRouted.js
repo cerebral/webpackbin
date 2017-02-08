@@ -12,6 +12,7 @@ export default [
     true: [],
     false: [
       set(state`bin.isLoading`, true),
+      set(state`bin.isUpdatingSandbox`, true),
       value(string`bins.${input`binKey`}`), {
         success: [
           setCurrentBin,
