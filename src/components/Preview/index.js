@@ -7,6 +7,9 @@ class Preview extends Component {
     super(props)
     this.onIframeMessage = this.onIframeMessage.bind(this)
   }
+  componentDidMount () {
+    window.onmessage = this.onIframeMessage
+  }
   componentDidUpdate (prevProps) {
     if (this.iframe && prevProps.lastSavedDatetime !== this.props.lastSavedDatetime) {
       this.iframe.src = this.props.src

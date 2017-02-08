@@ -13,7 +13,7 @@ import {state, signal} from 'cerebral/tags'
 export default connect({
   isLoading: state`bin.isLoading`,
   isPackaging: state`bin.isPackaging`,
-  isUpdatingSandbox: state`bin.isUpdatingSandbox`,
+  isLoadingSandbox: state`bin.isLoadingSandbox`,
   lastSavedDatetime: state`bin.lastSavedDatetime`,
   lastForceCodeUpdate: state`bin.lastForceCodeUpdate`,
   files: state`bin.currentBin.files`,
@@ -22,12 +22,14 @@ export default connect({
   codeLinted: signal`bin.codeLinted`,
   linterLoading: signal`bin.linterLoading`,
   linterLoaded: signal`bin.linterLoaded`,
-  cursorChanged: signal`bin.cursorChanged`
+  cursorChanged: signal`bin.cursorChanged`,
+  sandboxLoaded: signal`bin.sandboxLoaded`,
+  appClicked: signal`app.clicked`
 },
-  function Desktop ({
+  function Bin ({
     files,
     isPackaging,
-    isUpdatingSandbox,
+    isLoadingSandbox,
     lastForceCodeUpdate,
     isLoading,
     lastSavedDatetime,
@@ -36,7 +38,9 @@ export default connect({
     codeLinted,
     linterLoading,
     linterLoaded,
-    cursorChanged
+    cursorChanged,
+    sandboxLoaded,
+    appClicked
   }) {
     return (
       <div className={styles.wrapper}>
@@ -57,12 +61,12 @@ export default connect({
             src={isLoading ? null : config.sandboxServiceUrl}
             lastSavedDatetime={lastSavedDatetime}
             onLoading={() => {}}
-            onLoaded={() => {}}
+            onLoaded={sandboxLoaded}
             onLog={(log) => {}}
-            onClick={() => {}}
+            onClick={appClicked}
           />
           <div className={classnames(styles.iframeLoader, {
-            [styles.iframeLoaderVisible]: isUpdatingSandbox
+            [styles.iframeLoaderVisible]: isLoadingSandbox
           })}>
             Loading...
           </div>

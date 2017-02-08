@@ -39,7 +39,10 @@ class CodeEditor extends Component {
     })
     this.codemirror.on('change', this.onCodeChange)
     this.codemirror.on('cursorActivity', this.onCursorChange)
-    this.setModeAndLinter()
+    return modes.preLoadMode('jsx')
+      .then(() => {
+        this.setModeAndLinter()
+      })
   }
   componentDidUpdate (prevProps) {
     if (!prevProps.isLoading && this.props.isLoading) {

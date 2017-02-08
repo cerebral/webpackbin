@@ -1,6 +1,6 @@
 import path from 'path'
 import types from './types'
-const loadedModes = ['js']
+const loadedModes = []
 
 export default {
   get (file) {
@@ -36,6 +36,9 @@ export default {
       default:
         return false
     }
+  },
+  preLoadMode (mode) {
+    return types[mode]()
   },
   isLoaded (file) {
     return loadedModes.indexOf(this.get(file)) !== -1

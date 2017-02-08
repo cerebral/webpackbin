@@ -7,6 +7,7 @@ import linterLoading from './signals/linterLoading'
 import linterLoaded from './signals/linterLoaded'
 import cursorChanged from './signals/cursorChanged'
 import configurationClicked from './signals/configurationClicked'
+import sandboxLoaded from './signals/sandboxLoaded'
 
 import files from './modules/files'
 import configure from './modules/configure'
@@ -30,6 +31,7 @@ export default {
     },
     isLoading: true,
     isUpdatingSandbox: false,
+    isLoadingSandbox: false,
     isSaving: false,
     isLinting: false,
     lastSaveDatetime: null,
@@ -44,7 +46,8 @@ export default {
     linterLoading,
     linterLoaded,
     cursorChanged,
-    configurationClicked
+    configurationClicked,
+    sandboxLoaded
   },
   modules: {
     files,

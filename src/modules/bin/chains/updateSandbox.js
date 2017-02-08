@@ -24,6 +24,7 @@ export default [
       success: [
         setLastSavedDatetime,
         set(state`bin.isUpdatingSandbox`, false),
+        set(state`bin.isLoadingSandbox`, true),
         set(state`bin.isPackaging`, false)
       ],
       error: [
