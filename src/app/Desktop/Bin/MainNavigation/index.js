@@ -7,11 +7,17 @@ import {state, signal} from 'cerebral/tags'
 
 export default connect({
   isSaving: state`bin.isSaving`,
-  saveClicked: signal`bin.saveClicked`
+  showLog: state`bin.showLog`,
+  shouldCheckLog: state`bin.shouldCheckLog`,
+  saveClicked: signal`bin.saveClicked`,
+  logToggled: signal`bin.logToggled`
 },
   function MainNavigation ({
     isSaving,
-    saveClicked
+    showLog,
+    shouldCheckLog,
+    saveClicked,
+    logToggled
   }) {
     return (
       <NavigationBar>
@@ -25,6 +31,14 @@ export default connect({
           Save
         </IconButton>
         <Configure />
+        <IconButton
+          active={showLog}
+          notify={shouldCheckLog}
+          icon='log'
+          onClick={() => logToggled()}
+        >
+          Log
+        </IconButton>
       </NavigationBar>
     )
   }

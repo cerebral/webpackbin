@@ -147,8 +147,8 @@
 	content: "\e12e";
 }
 
-.assignment {composes: font;}
-.assignment:before {
+.log {composes: font;}
+.log:before {
 	content: "\e272";
 }
 

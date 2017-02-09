@@ -16,7 +16,7 @@ export default [
       when(state`bin.isValid`), {
         true: [
           set(state`bin.files.changedFiles`, {}),
-          when(state`bin.currentBin`), {
+          when(state`bin.currentBin.key`), {
             true: [
               isOwnerOfCurrentBin, {
                 true: [

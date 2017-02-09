@@ -8,6 +8,10 @@ import linterLoaded from './signals/linterLoaded'
 import cursorChanged from './signals/cursorChanged'
 import configurationClicked from './signals/configurationClicked'
 import sandboxLoaded from './signals/sandboxLoaded'
+import logSizeToggled from './signals/logSizeToggled'
+import binLogged from './signals/binLogged'
+import logValueToggled from './signals/logValueToggled'
+import logToggled from './signals/logToggled'
 
 import files from './modules/files'
 import configure from './modules/configure'
@@ -32,12 +36,19 @@ export default {
     isLoading: true,
     isUpdatingSandbox: false,
     isLoadingSandbox: false,
+    showIsPackaging: false,
+    showIsLoadingSandbox: false,
     isSaving: false,
     isLinting: false,
-    lastSaveDatetime: null,
+    lastSavedDatetime: null,
     lastForceCodeUpdate: null,
     showConfiguration: false,
-    saveWhenDoneLinting: false
+    saveWhenDoneLinting: false,
+    logs: [],
+    selectedLogPath: [],
+    showLog: false,
+    showFullLog: false,
+    shouldCheckLog: false
   },
   signals: {
     saveClicked,
@@ -47,7 +58,11 @@ export default {
     linterLoaded,
     cursorChanged,
     configurationClicked,
-    sandboxLoaded
+    sandboxLoaded,
+    logSizeToggled,
+    binLogged,
+    logValueToggled,
+    logToggled
   },
   modules: {
     files,

@@ -6,15 +6,29 @@ import showSnackbar from 'modules/app/factories/showSnackbar'
 
 export default [
   set(state`bin.isUpdatingSandbox`, true),
+  set(state`bin.logs`, []),
   [
+    debounce(500), {
+      continue: [
+        when(state`bin.isLoadingSandbox`), {
+          true: [
+            set(state`bin.showIsLoadingSandbox`, true)
+          ],
+          false: [
+            set(state`bin.showIsLoadingSandbox`, false)
+          ]
+        }
+      ],
+      discard: []
+    },
     debounce(1500), {
       continue: [
         when(state`bin.isUpdatingSandbox`), {
           true: [
-            set(state`bin.isPackaging`, true)
+            set(state`bin.showIsPackaging`, true)
           ],
           false: [
-            set(state`bin.isPackaging`, false)
+            set(state`bin.showIsPackaging`, false)
           ]
         }
       ],
@@ -25,7 +39,7 @@ export default [
         setLastSavedDatetime,
         set(state`bin.isUpdatingSandbox`, false),
         set(state`bin.isLoadingSandbox`, true),
-        set(state`bin.isPackaging`, false)
+        set(state`bin.showIsPackaging`, false)
       ],
       error: [
         set(state`bin.isUpdatingSandbox`, false),

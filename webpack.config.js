@@ -39,7 +39,8 @@ const rules = [
         ],
         plugins: [
           'syntax-dynamic-import',
-          'inferno'
+          'inferno',
+          'transform-object-rest-spread'
         ]
       }
     }]

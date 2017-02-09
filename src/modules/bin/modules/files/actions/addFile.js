@@ -13,7 +13,7 @@ function addFile ({state}) {
   if (isEntry) {
     const indexContent = state.get('bin.currentBin.files.0.content')
 
-    state.set('bin.currentBint.files.0.content', indexContent.replace('</body>', `
+    state.set('bin.currentBin.files.0.content', indexContent.replace('</body>', `
     <script src="${newFile.name}"></script>
   </body>
     `))
