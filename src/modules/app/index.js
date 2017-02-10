@@ -2,8 +2,8 @@ import clicked from './signals/clicked'
 import routed from './signals/routed'
 import binRouted from './signals/binRouted'
 import authenticate from './factories/authenticate'
-import leftMenuButtonClicked from './signals/leftMenuButtonClicked'
-import avatarClicked from './signals/avatarClicked'
+import mainMenuButtonClicked from './signals/mainMenuButtonClicked'
+import profileClicked from './signals/profileClicked'
 import createBinClicked from './signals/createBinClicked'
 
 export default {
@@ -11,13 +11,13 @@ export default {
     isAuthenticating: true,
     snackbar: null,
     user: null,
-    leftMenuIsOpened: false,
+    mainMenuIsOpened: false,
     profileMenuIsOpened: false
   },
   signals: {
     clicked,
-    leftMenuButtonClicked,
-    avatarClicked,
+    mainMenuButtonClicked,
+    profileClicked,
     createBinClicked,
     routed: authenticate(routed),
     binRouted: authenticate(binRouted)

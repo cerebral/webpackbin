@@ -4,58 +4,30 @@ import classNames from 'classnames'
 import styles from './styles.css'
 import NavigationBar from 'components/NavigationBar'
 import IconButton from 'components/IconButton'
-import Icon from 'components/Icon'
-import SideMenu from 'components/SideMenu'
-import Avatar from 'components/Avatar'
-import MenuItem from 'components/MenuItem'
 import Configure from './Configure'
 import {state, signal} from 'cerebral/tags'
+import ProfileMenu from './ProfileMenu'
+import MainMenu from './MainMenu'
 
 export default connect({
   isSaving: state`bin.isSaving`,
   showLog: state`bin.showLog`,
   shouldCheckLog: state`bin.shouldCheckLog`,
-  leftMenuIsOpened: state`app.leftMenuIsOpened`,
-  profileMenuIsOpened: state`app.profileMenuIsOpened`,
   saveClicked: signal`bin.saveClicked`,
-  logToggled: signal`bin.logToggled`,
-  leftMenuButtonClicked: signal`app.leftMenuButtonClicked`,
-  avatarClicked: signal`app.avatarClicked`,
-  createBinClicked: signal `app.createBinClicked`
+  logToggled: signal`bin.logToggled`
 },
   function MainNavigation ({
     isSaving,
     showLog,
     shouldCheckLog,
-    leftMenuIsOpened,
-    profileMenuIsOpened,
     saveClicked,
-    logToggled,
-    leftMenuButtonClicked,
-    avatarClicked,
-    createBinClicked
+    logToggled
   }) {
     return (
       <NavigationBar>
         <div className={styles.wrapper}>
           <div className={classNames(styles.flexWrapper, styles.flex)}>
-            <Icon
-              icon='menu'
-              onClick={(e) => {
-                e.stopPropagation()
-                leftMenuButtonClicked()
-              }}
-            >
-              Menu
-            </Icon>
-            <SideMenu
-              side='left'
-              show={leftMenuIsOpened}
-            >
-              <MenuItem onClick={() => createBinClicked()}>
-                Create bin
-              </MenuItem>
-            </SideMenu>
+            <MainMenu />
             <div style={{width: '30px'}} />
             <IconButton
               disabled={isSaving}
@@ -76,23 +48,7 @@ export default connect({
             </IconButton>
           </div>
           <div className={styles.flexWrapper}>
-            <IconButton
-              icon='user'
-              onClick={(e) => {
-                e.stopPropagation()
-                avatarClicked()
-              }}
-            >
-              Profile
-            </IconButton>
-            <SideMenu
-              side='right'
-              show={profileMenuIsOpened}
-            >
-              <MenuItem>
-                Profile menu content
-              </MenuItem>
-            </SideMenu>
+            <ProfileMenu />
           </div>
         </div>
       </NavigationBar>

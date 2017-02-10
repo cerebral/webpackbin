@@ -1,5 +1,6 @@
 import Inferno from 'inferno'
 import styles from './styles.css'
+import icons from 'common/icons.css'
 
 function MenuItem (props) {
   return (
@@ -7,7 +8,10 @@ function MenuItem (props) {
       className={styles.wrapper}
       onClick={props.onClick}
       >
-      {props.children}
+      <div className={icons[props.icon]} />
+      <div className={styles.content}>
+        {props.children}
+      </div>
     </div>
   )
 }

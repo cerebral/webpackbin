@@ -1,19 +1,19 @@
 import Inferno from 'inferno'
 import styles from './styles.css'
-import classnames from 'classnames'
+import classNames from 'classnames'
 import icons from 'common/icons.css'
 
 function IconButton (props) {
   return (
     <button
-      className={styles.button}
+      className={classNames(styles.button, props.className)}
       onClick={props.onClick}
       disabled={props.disabled}
       >
       {
         props.children ? (
           <div className={styles.iconTitleWrapper}>
-            <div className={classnames({
+            <div className={classNames({
               [styles.activeIcon]: props.active,
               [styles.notifyIcon]: props.notify,
               [styles.disabledIcon]: props.disabled,
@@ -27,7 +27,7 @@ function IconButton (props) {
             {props.tooltip ? <i>{props.tooltip}</i> : null}
           </div>
         ) : (
-          <div className={classnames({
+          <div className={classNames({
             [styles.activeIcon]: props.active,
             [styles.notifyIcon]: props.notify,
             [styles.disabledIcon]: props.disabled,
