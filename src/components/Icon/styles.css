@@ -1,0 +1,15 @@
+.button {
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 32px;
+}
+
+.button:focus {
+  outline: none;
+  color: #ccc;
+}
+
+.pointerCursor {
+  cursor: pointer;
+}
