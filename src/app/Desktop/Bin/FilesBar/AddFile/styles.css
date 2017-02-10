@@ -1,8 +1,9 @@
 .wrapper {
-  padding: 0 5px;
+  padding: 0 10px;
   display: flex;
 }
 
 .wrapper input {
+  margin: 0;
   margin-right: 10px;
 }

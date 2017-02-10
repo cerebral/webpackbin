@@ -76,14 +76,15 @@ export default connect({
             </IconButton>
           </div>
           <div className={styles.flexWrapper}>
-            <Avatar
-              size='small'
-              imageUrl='http://www.funnyjunksite.com/pictures/wp-content/uploads/2015/08/Funny-Avatar-Photo.jpg'
+            <IconButton
+              icon='user'
               onClick={(e) => {
                 e.stopPropagation()
                 avatarClicked()
               }}
-            />
+            >
+              Profile
+            </IconButton>
             <SideMenu
               side='right'
               show={profileMenuIsOpened}

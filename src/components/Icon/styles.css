@@ -2,7 +2,8 @@
   background: transparent;
   color: #fff;
   border: none;
-  font-size: 32px;
+  font-size: 28px;
+  padding: 0;
 }
 
 .button:focus {
