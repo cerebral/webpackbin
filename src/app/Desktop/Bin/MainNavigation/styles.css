@@ -1,0 +1,15 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex {
+  flex: 1;
+  display: flex;
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: center;
+}

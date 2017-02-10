@@ -1,11 +1,11 @@
 import updateSandbox from '../chains/updateSandbox'
 import updateBin from '../actions/updateBin'
-import redirectToBin from '../factories/redirectToBin'
 import isOwnerOfCurrentBin from '../actions/isOwnerOfCurrentBin'
-import saveNewBin from '../actions/saveNewBin'
+
 import showSnackbar from 'modules/app/factories/showSnackbar'
+import createNewBin from '../chains/createNewBin'
 import {set, when} from 'cerebral/operators'
-import {state, input} from 'cerebral/tags'
+import {state} from 'cerebral/tags'
 
 export default [
   when(state`bin.isLinting`), {
@@ -36,15 +36,7 @@ export default [
             ],
             false: [
               set(state`bin.isSaving`, true),
-              saveNewBin, {
-                success: [
-                  set(state`bin.currentBin`, input`bin`),
-                  redirectToBin(input`bin.key`)
-                ],
-                error: [
-                  ...showSnackbar('Could not create new bin', 5000, 'error')
-                ]
-              },
+              ...createNewBin,
               set(state`bin.isSaving`, false)
             ]
           }

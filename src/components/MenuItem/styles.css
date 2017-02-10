@@ -1,0 +1,9 @@
+.wrapper {
+  cursor: pointer;
+  padding: 15px 0 15px 25px;
+}
+
+.wrapper:hover {
+  background-color: #202634;
+  color: #fff;
+}

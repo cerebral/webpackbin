@@ -1,0 +1,25 @@
+.avatar {
+    border: none;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+}
+
+.small {
+    width: 32px;
+    height: 32px;
+}
+
+.standard {
+    width: 42px;
+    height: 42px;
+}
+
+.large {
+    width: 48px;
+    height: 48px;
+}
+
+.pointerCursor {
+  cursor: pointer;
+}
