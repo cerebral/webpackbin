@@ -1,13 +1,13 @@
 .avatar {
-    border: none;
-    border-radius: 50%;
-    background-position: center;
-    background-size: cover;
+  border: none;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
 }
 
 .small {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .standard {
@@ -16,8 +16,8 @@
 }
 
 .large {
-    width: 48px;
-    height: 48px;
+  width: 48px;
+  height: 48px;
 }
 
 .pointerCursor {

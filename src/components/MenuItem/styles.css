@@ -1,9 +1,16 @@
 .wrapper {
   cursor: pointer;
-  padding: 15px 0 15px 25px;
+  padding: 16px 0 16px 24px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
 }
 
 .wrapper:hover {
   background-color: #EAEAEA;
   color: #333;
+}
+
+.content {
+  padding-left: 16px;
 }

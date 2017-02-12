@@ -6,7 +6,7 @@ import icons from 'common/icons.css'
 function Icon (props) {
   return (
     <button
-      className={classNames(styles.button, {
+      className={classNames(styles.button, props.className, {
         [styles.pointerCursor]: props.onClick
       })}
       onClick={props.onClick}

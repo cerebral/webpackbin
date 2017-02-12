@@ -1,0 +1,25 @@
+.wrapper {
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.iconButton > div > div {
+  color: #333;
+}
+
+.iconButton > div > div:first-child:hover {
+  background-color: transparent;
+}
+
+.avatar > div {
+  color: #333;
+}
+
+.name {
+  padding-left: 16px;
+}
