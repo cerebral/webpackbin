@@ -66,7 +66,7 @@ let plugins = [
   })
 ];
 
-if (isProduction && process.argv[6] !== '--analyzer') {
+if (isProduction && process.argv[4] !== '--analyzer') {
   plugins = plugins.concat([
     new webpack.HashedModuleIdsPlugin(),
     new InlineManifestWebpackPlugin({
@@ -78,7 +78,7 @@ if (isProduction && process.argv[6] !== '--analyzer') {
   ]);
 }
 
-if (process.argv[6] === '--analyzer') {
+if (process.argv[4] === '--analyzer') {
   plugins = plugins.concat([
     new webpack.optimize.CommonsChunkPlugin({
       names: ['common']

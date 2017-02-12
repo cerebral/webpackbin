@@ -8,6 +8,7 @@
   padding: 10px;
   box-sizing: border-box;
   overflow:scroll;
+  z-index: 99;
 }
 
 .halfWrapper {
