@@ -1,10 +1,10 @@
 import {set, when} from 'cerebral/operators'
-import {state, input} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
 import saveClicked from './saveClicked'
 
 export default [
   set(state`bin.isLinting`, false),
-  set(state`bin.isValid`, input`isValid`),
+  set(state`bin.isValid`, props`isValid`),
   when(state`bin.saveWhenDoneLinting`), {
     true: [
       set(state`bin.saveWhenDoneLinting`, false),

@@ -6,14 +6,15 @@ import NavigationBar from 'components/NavigationBar'
 import IconButton from 'components/IconButton'
 import Icon from 'components/Icon'
 import SideMenu from 'components/SideMenu'
-import Avatar from 'components/Avatar'
 import MenuItem from 'components/MenuItem'
 import Configure from './Configure'
 import {state, signal} from 'cerebral/tags'
+import liveStatus from 'computed/liveStatus'
 
 export default connect({
+  liveStatus,
   isSaving: state`bin.isSaving`,
-  showLog: state`bin.showLog`,
+  showLog: state`bin.currentBin.showLog`,
   shouldCheckLog: state`bin.shouldCheckLog`,
   leftMenuIsOpened: state`app.leftMenuIsOpened`,
   profileMenuIsOpened: state`app.profileMenuIsOpened`,
@@ -21,9 +22,12 @@ export default connect({
   logToggled: signal`bin.logToggled`,
   leftMenuButtonClicked: signal`app.leftMenuButtonClicked`,
   avatarClicked: signal`app.avatarClicked`,
-  createBinClicked: signal `app.createBinClicked`
+  createBinClicked: signal`app.createBinClicked`,
+  githubSignInClicked: signal`app.githubSignInClicked`,
+  liveToggled: signal`bin.liveToggled`
 },
   function MainNavigation ({
+    liveStatus,
     isSaving,
     showLog,
     shouldCheckLog,
@@ -33,7 +37,9 @@ export default connect({
     logToggled,
     leftMenuButtonClicked,
     avatarClicked,
-    createBinClicked
+    createBinClicked,
+    githubSignInClicked,
+    liveToggled
   }) {
     return (
       <NavigationBar>
@@ -58,7 +64,7 @@ export default connect({
             </SideMenu>
             <div style={{width: '30px'}} />
             <IconButton
-              disabled={isSaving}
+              disabled={isSaving || liveStatus.isParticipant}
               icon='save'
               tooltip='CTRL + s / CMD + s'
               onClick={() => saveClicked()}
@@ -68,11 +74,20 @@ export default connect({
             <Configure />
             <IconButton
               active={showLog}
+              disabled={liveStatus.isParticipant}
               notify={shouldCheckLog}
               icon='log'
               onClick={() => logToggled()}
             >
               Log
+            </IconButton>
+            <IconButton
+              disabled={liveStatus.isParticipant}
+              active={liveStatus.isConnected}
+              icon='live'
+              onClick={() => liveToggled()}
+            >
+              Live
             </IconButton>
           </div>
           <div className={styles.flexWrapper}>
@@ -89,7 +104,7 @@ export default connect({
               side='right'
               show={profileMenuIsOpened}
             >
-              <MenuItem>
+              <MenuItem onClick={() => githubSignInClicked()}>
                 Profile menu content
               </MenuItem>
             </SideMenu>

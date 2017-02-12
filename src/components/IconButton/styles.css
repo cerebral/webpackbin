@@ -25,9 +25,8 @@
   display: block;
 }
 
-.button[disabled]:hover {
-  color: #cadaed;
-  background-color: transparent;
+.button[disabled] {
+  opacity: 0.5;
 }
 
 .icon {
@@ -71,7 +70,6 @@
 
 .iconTitleWrapper {
   position: relative;
-  cursor: pointer;
 }
 
 .iconTitle {

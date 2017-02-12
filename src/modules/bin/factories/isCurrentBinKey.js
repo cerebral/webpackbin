@@ -1,9 +1,9 @@
 function isCurrentBinKeyFactory (keyTag) {
   function isCurrentBinKey ({state, path, resolve}) {
     const key = resolve.value(keyTag)
-    const currentBin = state.get('bin.currentBin')
+    const currentBinKey = state.get('bin.currentBinKey')
 
-    if (currentBin && currentBin.key === key) {
+    if (currentBinKey && currentBinKey === key) {
       return path.true()
     }
 

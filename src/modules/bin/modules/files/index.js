@@ -7,13 +7,6 @@ import newFileNameChanged from './signals/newFileNameChanged'
 import newFileNameSubmitted from './signals/newFileNameSubmitted'
 
 export default {
-  state: {
-    selectedFileIndex: 0,
-    changedFiles: {},
-    showNewFileInput: false,
-    newFileName: '',
-    newFileIsEntry: false
-  },
   signals: {
     fileClicked,
     removeFileClicked,

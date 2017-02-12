@@ -1,17 +1,17 @@
-function changeLoaderConfig ({input, state}) {
-  const loaderType = typeof state.get(`bin.currentBin.loaders.${input.loaderName}`)
+function changeLoaderConfig ({props, state}) {
+  const loaderType = typeof state.get(`bin.currentBin.loaders.${props.loaderName}`)
 
-  if (loaderType === 'object' && input.configValue !== false) {
-    state.set(`bin.currentBin.loaders.${input.loaderName}.${input.configName}`, input.configValue)
-  } else if (loaderType === 'boolean' && input.configValue !== false) {
-    state.set(`bin.currentBin.loaders.${input.loaderName}`, {
-      [input.configName]: input.configValue
+  if (loaderType === 'object' && props.configValue !== false) {
+    state.set(`bin.currentBin.loaders.${props.loaderName}.${props.configName}`, props.configValue)
+  } else if (loaderType === 'boolean' && props.configValue !== false) {
+    state.set(`bin.currentBin.loaders.${props.loaderName}`, {
+      [props.configName]: props.configValue
     })
   } else {
-    state.unset(`bin.currentBin.loaders.${input.loaderName}.${input.configName}`)
+    state.unset(`bin.currentBin.loaders.${props.loaderName}.${props.configName}`)
 
-    if (Object.keys(state.get(`bin.currentBin.loaders.${input.loaderName}`)).length === 0) {
-      state.set(`bin.currentBin.loaders.${input.loaderName}`, true)
+    if (Object.keys(state.get(`bin.currentBin.loaders.${props.loaderName}`)).length === 0) {
+      state.set(`bin.currentBin.loaders.${props.loaderName}`, true)
     }
   }
 }

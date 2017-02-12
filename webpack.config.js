@@ -115,7 +115,6 @@ const common = [
   'inferno-create-element',
   'cerebral',
   'cerebral-router',
-  'cerebral-forms',
   'cerebral-provider-http',
   'cerebral-provider-firebase',
   'cerebral-module-useragent',

@@ -8,8 +8,8 @@ const templates = {
   typescriptWithCss: typescriptWithCssTemplate
 }
 
-function updateBinWithTemplate ({input, state}) {
-  const template = templates[input.template]
+function updateBinWithTemplate ({props, state}) {
+  const template = templates[props.template]
 
   state.set('bin.currentBin.files', JSON.parse(JSON.stringify(template.files)))
 

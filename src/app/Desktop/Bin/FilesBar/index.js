@@ -8,8 +8,8 @@ import NavigationSeparator from 'components/NavigationSeparator'
 
 export default connect({
   files: state`bin.currentBin.files`,
-  changedFiles: state`bin.files.changedFiles`,
-  selectedFileIndex: state`bin.files.selectedFileIndex`,
+  changedFiles: state`bin.currentBin.changedFiles`,
+  selectedFileIndex: state`bin.currentBin.selectedFileIndex`,
   fileClicked: signal`bin.files.fileClicked`,
   removeFileClicked: signal`bin.files.removeFileClicked`
 },

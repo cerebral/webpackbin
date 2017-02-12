@@ -1,5 +1,4 @@
-import defaultIndexHtml from './defaultIndexHtml'
-
+import {createNewBin} from 'utils'
 import saveClicked from './signals/saveClicked'
 import codeChanged from './signals/codeChanged'
 import codeLinted from './signals/codeLinted'
@@ -12,27 +11,22 @@ import logSizeToggled from './signals/logSizeToggled'
 import binLogged from './signals/binLogged'
 import logValueToggled from './signals/logValueToggled'
 import logToggled from './signals/logToggled'
+import liveToggled from './signals/liveToggled'
+import liveBinChanged from './signals/liveBinChanged'
+import liveCodeChanged from './signals/liveCodeChanged'
+import participantClicked from './signals/participantClicked'
+import logPathSelected from './signals/logPathSelected'
 
 import files from './modules/files'
 import configure from './modules/configure'
 
+import preventWhenLiveParticipant from './factories/preventWhenLiveParticipant'
+
 export default {
   state: {
-    currentBin: {
-      key: null,
-      owner: null,
-      title: '',
-      packages: {},
-      loaders: {},
-      files: [{
-        name: 'index.html',
-        content: defaultIndexHtml,
-        lastCursorPosition: {
-          line: 0,
-          ch: 0
-        }
-      }]
-    },
+    currentBinKey: null,
+    currentBin: createNewBin(),
+    liveBin: null,
     isLoading: true,
     isUpdatingSandbox: false,
     isLoadingSandbox: false,
@@ -40,29 +34,29 @@ export default {
     showIsLoadingSandbox: false,
     isSaving: false,
     isLinting: false,
-    lastSavedDatetime: null,
     lastForceCodeUpdate: null,
-    showConfiguration: false,
     saveWhenDoneLinting: false,
-    logs: [],
-    selectedLogPath: [],
-    showLog: false,
-    showFullLog: false,
-    shouldCheckLog: false
+    shouldCheckLog: false,
+    logs: []
   },
   signals: {
-    saveClicked,
-    codeChanged,
+    saveClicked: preventWhenLiveParticipant(saveClicked),
+    codeChanged: preventWhenLiveParticipant(codeChanged),
     codeLinted,
     linterLoading,
     linterLoaded,
-    cursorChanged,
-    configurationClicked,
+    cursorChanged: preventWhenLiveParticipant(cursorChanged),
+    configurationClicked: preventWhenLiveParticipant(configurationClicked),
     sandboxLoaded,
-    logSizeToggled,
+    logSizeToggled: preventWhenLiveParticipant(logSizeToggled),
     binLogged,
-    logValueToggled,
-    logToggled
+    logValueToggled: preventWhenLiveParticipant(logValueToggled),
+    logToggled: preventWhenLiveParticipant(logToggled),
+    liveToggled: preventWhenLiveParticipant(liveToggled),
+    liveBinChanged,
+    liveCodeChanged,
+    participantClicked: preventWhenLiveParticipant(participantClicked),
+    logPathSelected: preventWhenLiveParticipant(logPathSelected)
   },
   modules: {
     files,

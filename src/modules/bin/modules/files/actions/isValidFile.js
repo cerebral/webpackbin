@@ -15,7 +15,7 @@ const validFileNames = [
 ]
 
 function isValidFile ({state, path}) {
-  const fileName = state.get('bin.files.newFileName')
+  const fileName = state.get('bin.currentBin.newFileName')
   const ext = nodePath.extname(fileName)
 
   if (validFileNames.indexOf(ext) === -1) {

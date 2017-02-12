@@ -1,16 +1,19 @@
 import isSelectedFile from '../actions/isSelectedFile'
 import setNewSelectedFileIndex from '../actions/setNewSelectedFileIndex'
-import updateSandbox from 'modules/bin/chains/updateSandbox'
 import {splice} from 'cerebral/operators'
-import {state, input} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
+import updateFirebaseBin from 'modules/bin/factories/updateFirebaseBin'
 
 export default [
-  splice(state`bin.currentBin.files`, input`index`, 1),
+  splice(state`bin.currentBin.files`, props`index`, 1),
   isSelectedFile, {
     true: [
       setNewSelectedFileIndex
     ],
     false: []
   },
-  ...updateSandbox
+  ...updateFirebaseBin([
+    'files',
+    'selectedFileIndex'
+  ])
 ]

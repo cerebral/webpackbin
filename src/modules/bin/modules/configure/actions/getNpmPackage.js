@@ -1,6 +1,6 @@
 import config from 'config'
 
-function getNpmPackage ({input, state, http, path}) {
+function getNpmPackage ({props, state, http, path}) {
   const query = state.get('bin.configure.packageQuery')
 
   return http.get(`${config.npmPackageQueryUrl}/${query}`)

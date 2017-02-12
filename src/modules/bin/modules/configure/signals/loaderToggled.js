@@ -1,13 +1,13 @@
 import {when, set, unset} from 'cerebral/operators'
-import {state, input} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
 
 export default [
-  when(state`bin.currentBin.loaders.${input`loaderName`}`), {
+  when(state`bin.currentBin.loaders.${props`loaderName`}`), {
     true: [
-      unset(state`bin.currentBin.loaders.${input`loaderName`}`)
+      unset(state`bin.currentBin.loaders.${props`loaderName`}`)
     ],
     false: [
-      set(state`bin.currentBin.loaders.${input`loaderName`}`, true)
+      set(state`bin.currentBin.loaders.${props`loaderName`}`, true)
     ]
   }
 ]

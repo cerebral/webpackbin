@@ -1,8 +1,9 @@
 import updateSandbox from '../actions/updateSandbox'
-import setLastSavedDatetime from '../actions/setLastSavedDatetime'
 import {set, debounce, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
+import setLastSavedDatetime from '../actions/setLastSavedDatetime'
+import updateFirebaseBin from '../factories/updateFirebaseBin'
 
 export default [
   set(state`bin.isUpdatingSandbox`, true),
@@ -23,7 +24,7 @@ export default [
     },
     debounce(1500), {
       continue: [
-        when(state`bin.isUpdatingSandbox`, state`bin.isLoading`, (isUpdatingSandbox, isLoading) => isUpdatingSandbox && !isLoading), {
+        when(state`bin.isUpdatingSandbox`), {
           true: [
             set(state`bin.showIsPackaging`, true)
           ],
@@ -39,7 +40,8 @@ export default [
         setLastSavedDatetime,
         set(state`bin.isUpdatingSandbox`, false),
         set(state`bin.isLoadingSandbox`, true),
-        set(state`bin.showIsPackaging`, false)
+        set(state`bin.showIsPackaging`, false),
+        ...updateFirebaseBin('lastSavedDatetime')
       ],
       error: [
         set(state`bin.isUpdatingSandbox`, false),

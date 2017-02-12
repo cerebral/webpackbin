@@ -1,3 +1,5 @@
+import defaultIndexHtml from './defaultIndexHtml'
+
 export function transformCode (code, event) {
   const lines = code.split('\n')
 
@@ -10,4 +12,31 @@ export function transformCode (code, event) {
   lines.splice(event.from.line, event.to.line - event.from.line + 1, replaceText)
 
   return lines.join('\n')
+}
+
+export function createNewBin (owner) {
+  return {
+    owner: owner || null,
+    lastSavedDatetime: null,
+    showConfiguration: false,
+    selectedLogPath: [],
+    showLog: false,
+    showFullLog: false,
+    changedFiles: {},
+    showNewFileInput: false,
+    selectedFileIndex: 0,
+    newFileName: '',
+    newFileIsEntry: false,
+    title: '',
+    packages: {},
+    loaders: {},
+    files: [{
+      name: 'index.html',
+      content: defaultIndexHtml,
+      lastCursorPosition: {
+        line: 0,
+        ch: 0
+      }
+    }]
+  }
 }

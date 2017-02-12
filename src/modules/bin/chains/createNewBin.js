@@ -1,5 +1,5 @@
 import {set} from 'cerebral/operators'
-import {state, input} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
 import redirectToBin from '../factories/redirectToBin'
 import saveNewBin from '../actions/saveNewBin'
 import showSnackbar from 'modules/app/factories/showSnackbar'
@@ -7,8 +7,8 @@ import showSnackbar from 'modules/app/factories/showSnackbar'
 export default [
   saveNewBin, {
     success: [
-      set(state`bin.currentBin`, input`bin`),
-      redirectToBin(input`bin.key`)
+      set(state`bin.currentBinKey`, props`binKey`),
+      redirectToBin(props`binKey`)
     ],
     error: [
       ...showSnackbar('Could not create new bin', 5000, 'error')

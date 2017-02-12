@@ -29,8 +29,8 @@ function convertValue (value) {
   }
 }
 
-function addLogValue ({input, state}) {
-  state.push('bin.logs', convertValue(input.log))
+function addLogValue ({props, state}) {
+  state.push('bin.logs', convertValue(props.log))
 }
 
 export default addLogValue

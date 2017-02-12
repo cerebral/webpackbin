@@ -1,21 +1,7 @@
-import defaultIndexHtml from '../defaultIndexHtml'
+import {createNewBin} from 'utils'
 
 function resetCurrentBin ({state}) {
-  state.set('bin.currentBin', {
-    key: null,
-    owner: null,
-    title: '',
-    packages: {},
-    loaders: {},
-    files: [{
-      name: 'index.html',
-      content: defaultIndexHtml,
-      lastCursorPosition: {
-        line: 0,
-        ch: 0
-      }
-    }]
-  })
+  state.set('bin.currentBin', createNewBin(state.get('app.user.uid')))
 }
 
 export default resetCurrentBin

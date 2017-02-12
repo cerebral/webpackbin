@@ -1,6 +1,6 @@
-function toggleLogPath ({input, state}) {
-  state.set(`bin.logs.${input.path.join('.')}.isCollapsed`, !state.get(`bin.logs.${input.path.join('.')}.isCollapsed`))
-  state.set('bin.selectedLogPath', input.path)
+function toggleLogPath ({props, state}) {
+  state.set(`bin.logs.${props.path.join('.')}.isCollapsed`, !state.get(`bin.logs.${props.path.join('.')}.isCollapsed`))
+  state.set('bin.currentBin.selectedLogPath', props.path)
 }
 
 export default toggleLogPath

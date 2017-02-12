@@ -10,10 +10,12 @@ import {state, signal} from 'cerebral/tags'
 import CodeMirror from 'codemirror'
 import styles from './styles.css'
 import modes from './modes'
+import liveStatus from 'computed/liveStatus'
 
 export default connect({
+  liveStatus,
   lastForceCodeUpdate: state`bin.lastForceCodeUpdate`,
-  file: state`bin.currentBin.files.${state`bin.files.selectedFileIndex`}`,
+  file: state`bin.currentBin.files.${state`bin.currentBin.selectedFileIndex`}`,
   codeChanged: signal`bin.codeChanged`,
   codeLinted: signal`bin.codeLinted`,
   linterLoading: signal`bin.linterLoading`,
@@ -56,15 +58,16 @@ export default connect({
         })
     }
     componentDidUpdate (prevProps) {
-      if (!prevProps.isLoading && this.props.isLoading) {
+      if (this.props.liveStatus.isParticipant) {
+        this.codemirror.setOption('readOnly', 'nocursor')
+      } else if (!prevProps.isLoading && this.props.isLoading) {
         this.codemirror.setOption('readOnly', true)
-      } else if (prevProps.isLoading && !this.props.isLoading) {
+      } else {
         this.codemirror.setOption('readOnly', false)
       }
 
       if (
         prevProps.file.name !== this.props.file.name ||
-        this.props.readOnly && prevProps.file.content !== this.props.file.content ||
         prevProps.lastForceCodeUpdate !== this.props.lastForceCodeUpdate
       ) {
         this.setModeAndLinter()
@@ -78,6 +81,10 @@ export default connect({
       }
     }
     focusLastCursorPosition () {
+      if (this.props.liveStatus.isParticipant) {
+        return
+      }
+
       const component = this
       const lastCursorPosition = this.props.file.lastCursorPosition
       const currentContent = this.codemirror.getDoc().getValue()
@@ -146,20 +153,22 @@ export default connect({
     }
     onCodeChange (instance, event) {
       this.ignoreNextCursorChange = true
-      if (!this.isUpdatingCode) {
+      if (!this.isUpdatingCode && !this.props.liveStatus.isParticipant) {
         if (event.text.length === 2 && !event.text[0] && !event.text[1]) {
           event.text = ['\n']
         }
 
         this.props.codeChanged({
-          from: event.from,
-          to: event.to,
-          text: event.text
+          codeChange: {
+            from: event.from,
+            to: event.to,
+            text: event.text
+          }
         })
       }
     }
     onCursorChange (instance) {
-      if (this.ignoreNextCursorChange) {
+      if (this.ignoreNextCursorChange || this.props.liveStatus.isParticipant) {
         this.ignoreNextCursorChange = false
 
         return

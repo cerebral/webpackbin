@@ -6,7 +6,7 @@ import {state} from 'cerebral/tags'
 
 export default [
   updateBinWithTemplate,
-  set(state`bin.showConfiguration`, false),
+  set(state`bin.currentBin.showConfiguration`, false),
   forceCodeUpdate,
   ...updateSandbox
 ]

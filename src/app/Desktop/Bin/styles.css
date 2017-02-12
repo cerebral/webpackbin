@@ -3,13 +3,14 @@
 }
 
 .editorWrapper {
+  position: relative;
   display: flex;
   height: 100%;
 }
 
 .iframeLoader {
   position: absolute;
-  bottom: 5px;
+  top: 5px;
   right: 5px;
   white-space: nowrap;
   background-color: #eb1e64;

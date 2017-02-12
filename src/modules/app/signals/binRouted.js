@@ -1,23 +1,39 @@
 import updateSandbox from 'modules/bin/chains/updateSandbox'
 import showSnackbar from '../factories/showSnackbar'
+import connectLiveBin from 'modules/bin/chains/connectLiveBin'
 import setCurrentBin from 'modules/bin/actions/setCurrentBin'
 import isCurrentBinKey from 'modules/bin/factories/isCurrentBinKey'
 import forceCodeUpdate from 'modules/bin/actions/forceCodeUpdate'
-import {set} from 'cerebral/operators'
-import {state, input, string} from 'cerebral/tags'
+import stopListeningToBinUpdates from 'modules/bin/actions/stopListeningToBinUpdates'
+import {set, when} from 'cerebral/operators'
+import {state, props, string} from 'cerebral/tags'
 import {value} from 'cerebral-provider-firebase'
 
 export default [
-  isCurrentBinKey(input`binKey`), {
+  isCurrentBinKey(props`binKey`), {
     true: [],
     false: [
+      when(state`bin.currentBin.isLive`), {
+        true: [
+          stopListeningToBinUpdates
+        ],
+        false: []
+      },
       set(state`bin.isLoading`, true),
       set(state`bin.isUpdatingSandbox`, true),
-      value(string`bins.${input`binKey`}`), {
+      value(string`bins.${props`binKey`}`), {
         success: [
           setCurrentBin,
           forceCodeUpdate,
-          ...updateSandbox
+          set(state`bin.isLoading`, false),
+          when(state`bin.currentBin.isLive`), {
+            true: [
+              ...connectLiveBin
+            ],
+            false: [
+              ...updateSandbox
+            ]
+          }
         ],
         error: [
           ...showSnackbar('Unable to get BIN', 5000, 'error')

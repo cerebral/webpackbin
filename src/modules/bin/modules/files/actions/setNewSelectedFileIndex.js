@@ -1,7 +1,7 @@
 function setNewSelectedFileIndex ({state}) {
-  const selectedFileIndex = state.get('bin.files.selectedFileIndex')
+  const selectedFileIndex = state.get('bin.currentBin.selectedFileIndex')
 
-  state.set('bin.files.selectedFileIndex', selectedFileIndex - 1)
+  state.set('bin.currentBin.selectedFileIndex', selectedFileIndex - 1)
 }
 
 export default setNewSelectedFileIndex

@@ -1,6 +1,8 @@
 import {set} from 'cerebral/operators'
-import {state, input} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
+import updateFirebaseBin from 'modules/bin/factories/updateFirebaseBin'
 
 export default [
-  set(state`bin.files.selectedFileIndex`, input`index`)
+  set(state`bin.currentBin.selectedFileIndex`, props`index`),
+  ...updateFirebaseBin('selectedFileIndex')
 ]

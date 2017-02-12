@@ -13,7 +13,9 @@ import bin from './modules/bin'
 import shortcuts from './modules/shortcuts'
 
 const controller = Controller({
-  devtools: process.env.NODE_ENV === 'production' ? null : Devtools(),
+  devtools: process.env.NODE_ENV === 'production' ? null : Devtools({
+    remoteDebugger: 'localhost:8787'
+  }),
   router: Router({
     routes: {
       '/': 'app.routed',

@@ -6,14 +6,17 @@ import styles from './styles.css'
 import Quickstart from './Quickstart'
 import Packages from './Packages'
 import Loaders from './Loaders'
+import liveStatus from 'computed/liveStatus'
 
 export default connect({
-  showConfiguration: state`bin.showConfiguration`,
+  liveStatus,
+  showConfiguration: state`bin.currentBin.showConfiguration`,
   quickstarts: state`bin.configure.quickstarts`,
   configurationClicked: signal`bin.configurationClicked`,
   quickstartClicked: signal`bin.configure.quickstartClicked`
 },
   function Configure ({
+    liveStatus,
     showConfiguration,
     quickstarts,
     configurationClicked,
@@ -21,6 +24,7 @@ export default connect({
   }) {
     return (
       <PopoverIconButton
+        disabled={liveStatus.isParticipant}
         show={showConfiguration}
         icon='npm'
         label='Configure'

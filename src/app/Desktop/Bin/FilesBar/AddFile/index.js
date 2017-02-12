@@ -8,11 +8,13 @@ import Input from 'components/Input'
 import styles from './styles.css'
 
 import binHasEntry from 'computed/binHasEntry'
+import liveStatus from 'computed/liveStatus'
 
 export default connect({
-  showNewFileInput: state`bin.files.showNewFileInput`,
-  newFileName: state`bin.files.newFileName`,
-  newFileIsEntry: state`bin.files.newFileIsEntry`,
+  liveStatus,
+  showNewFileInput: state`bin.currentBin.showNewFileInput`,
+  newFileName: state`bin.currentBin.newFileName`,
+  newFileIsEntry: state`bin.currentBin.newFileIsEntry`,
   hasEntry: binHasEntry,
   newFileClicked: signal`bin.files.newFileClicked`,
   newFileNameChanged: signal`bin.files.newFileNameChanged`,
@@ -75,6 +77,7 @@ export default connect({
       return (
         <div className={styles.wrapper}>
           <IconButton
+            disabled={this.props.liveStatus.isParticipant}
             onClick={() => newFileClicked()}
             icon='addFile'
           >

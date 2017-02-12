@@ -1,24 +1,29 @@
 import {set} from 'cerebral/operators'
-import {state, string, input} from 'cerebral/tags'
+import {state, string} from 'cerebral/tags'
 import addFile from '../actions/addFile'
 import selectNewFile from '../actions/selectNewFile'
 import isValidFile from '../actions/isValidFile'
-import updateSandbox from 'modules/bin/chains/updateSandbox'
 import showSnackbar from 'modules/app/factories/showSnackbar'
+import updateFirebaseBin from 'modules/bin/factories/updateFirebaseBin'
 
 export default [
   isValidFile, {
     true: [
       addFile,
-      set(state`bin.files.newFileName`, ''),
-      set(state`bin.files.newFileIsEntry`, false),
-      set(state`bin.files.showNewFileInput`, false),
+      set(state`bin.currentBin.newFileName`, ''),
+      set(state`bin.currentBin.newFileIsEntry`, false),
+      set(state`bin.currentBin.showNewFileInput`, false),
       selectNewFile,
-      ...updateSandbox
+      ...updateFirebaseBin([
+        'files',
+        'selectedFileIndex',
+        'newFileIsEntry',
+        'showNewFileInput'
+      ])
     ],
     false: [
       ...showSnackbar(
-        string`"${state`bin.files.newFileName`}" is not a valid filename`,
+        string`"${state`bin.currentBin.newFileName`}" is not a valid filename`,
         5000,
         'error'
       )

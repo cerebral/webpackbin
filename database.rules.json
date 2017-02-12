@@ -5,7 +5,13 @@
     "bins": {
       "$bin": {
         ".read": true,
-        ".write": "auth.uid === data.child('owner').val() || auth.uid === newData.child('owner').val()"
+        ".write": "auth.uid === data.child('owner').val() || auth.uid === newData.child('owner').val() || data.child('isLive').val() == true"
+      }
+    },
+    "codeChanges": {
+      "$bin": {
+        ".read": true,
+        ".write": true
       }
     }
   }

@@ -6,18 +6,21 @@ import Loader from 'components/Loader'
 import MainNavigation from './MainNavigation'
 import FilesBar from './FilesBar'
 import Preview from './Preview'
+import LiveParticipants from './LiveParticipants'
 import styles from './styles.css'
 import {state} from 'cerebral/tags'
 
 export default connect({
   isLoading: state`bin.isLoading`,
   showIsPackaging: state`bin.showIsPackaging`,
-  showIsLoadingSandbox: state`bin.showIsLoadingSandbox`
+  showIsLoadingSandbox: state`bin.showIsLoadingSandbox`,
+  isLive: state`bin.currentBin.isLive`
 },
   function Bin ({
     showIsPackaging,
     showIsLoadingSandbox,
-    isLoading
+    isLoading,
+    isLive
   }) {
     return (
       <div className={styles.wrapper}>
@@ -34,6 +37,7 @@ export default connect({
         </div>
         {isLoading ? <Loader>Loading up the bin!</Loader> : null}
         {showIsPackaging ? <Loader>It seems that your combination of packages is new. Please hold on until the bundle is made available on the CDN</Loader> : null}
+        {isLive ? <LiveParticipants /> : null}
       </div>
     )
   }

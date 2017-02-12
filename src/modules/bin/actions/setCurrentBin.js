@@ -1,12 +1,10 @@
-function setCurrentBin ({input, state}) {
-  state.set('bin.currentBin', {
-    title: input.value.title,
-    owner: input.value.owner,
-    key: input.key,
-    files: input.value.files,
-    packages: input.value.packages || {},
-    loaders: input.value.loaders || {}
-  })
+function setCurrentBin ({props, state}) {
+  state.set('bin.currentBinKey', props.key)
+  state.set('bin.currentBin', Object.assign(props.value, {
+    packages: props.value.packages || {},
+    loaders: props.value.loaders || {},
+    changedFiles: props.value.changedFiles || {}
+  }))
 }
 
 export default setCurrentBin

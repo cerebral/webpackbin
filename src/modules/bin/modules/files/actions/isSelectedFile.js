@@ -1,5 +1,5 @@
-function isSelectedFile ({input, state, path}) {
-  if (input.index === state.get('bin.files.selectedFileIndex')) {
+function isSelectedFile ({props, state, path}) {
+  if (props.index === state.get('bin.currentBin.selectedFileIndex')) {
     return path.true()
   }
 

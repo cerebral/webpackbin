@@ -5,6 +5,7 @@ import authenticate from './factories/authenticate'
 import leftMenuButtonClicked from './signals/leftMenuButtonClicked'
 import avatarClicked from './signals/avatarClicked'
 import createBinClicked from './signals/createBinClicked'
+import githubSignInClicked from './signals/githubSignInClicked'
 
 export default {
   state: {
@@ -20,6 +21,7 @@ export default {
     avatarClicked,
     createBinClicked,
     routed: authenticate(routed),
-    binRouted: authenticate(binRouted)
+    binRouted: authenticate(binRouted),
+    githubSignInClicked
   }
 }

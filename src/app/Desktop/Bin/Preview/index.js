@@ -8,10 +8,9 @@ import Log from '../Log'
 
 export default connect({
   isLoading: state`bin.isLoading`,
-  showLog: state`bin.showLog`,
-  lastSavedDatetime: state`bin.lastSavedDatetime`,
+  showLog: state`bin.currentBin.showLog`,
+  lastSavedDatetime: state`bin.currentBin.lastSavedDatetime`,
   sandboxLoaded: signal`bin.sandboxLoaded`,
-  // onLog={(log) => {}}
   appClicked: signal`app.clicked`,
   binLogged: signal`bin.binLogged`
 },
@@ -32,6 +31,7 @@ export default connect({
       if (event.data.type === 'loaded') {
         this.props.sandboxLoaded()
       }
+
       if (event.data.type === 'log') {
         this.props.binLogged({
           log: event.data.value

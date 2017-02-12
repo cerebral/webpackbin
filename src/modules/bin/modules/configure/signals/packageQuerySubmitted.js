@@ -1,13 +1,13 @@
 import getNpmPackage from '../actions/getNpmPackage'
 import {set} from 'cerebral/operators'
-import {state, input} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
 
 export default [
   set(state`bin.configure.isQueryingPackage`, true),
   getNpmPackage, {
     success: [
-      set(state`bin.currentBin.packages.${input`result.name`}`, input`result.version`),
+      set(state`bin.currentBin.packages.${props`result.name`}`, props`result.version`),
       set(state`bin.configure.packageQuery`, '')
     ],
     error: [

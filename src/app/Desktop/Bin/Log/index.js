@@ -5,14 +5,16 @@ import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'
 import Inspector from 'components/Inspector'
 import icons from 'common/icons.css'
+import liveStatus from 'computed/liveStatus'
 
 export default connect({
+  liveStatus,
   logs: state`bin.logs`,
-  selectedPath: state`bin.selectedLogPath`,
-  // connected: 'live.connected',
-  showFullLog: state`bin.showFullLog`,
+  selectedPath: state`bin.currentBin.selectedLogPath`,
+  showFullLog: state`bin.currentBin.showFullLog`,
   logSizeToggled: signal`bin.logSizeToggled`,
-  logValueToggled: signal`bin.logValueToggled`
+  logValueToggled: signal`bin.logValueToggled`,
+  logPathSelected: signal`bin.logPathSelected`
 },
   class Log extends Component {
     render () {
@@ -25,9 +27,9 @@ export default connect({
                 <Inspector
                   value={value}
                   path={[index]}
-                  highlight={this.props.connected}
+                  highlight={this.props.liveStatus.isConnected}
                   onTogglePath={this.props.logValueToggled}
-                  onSelectPath={() => {/* this.props.signals.bin.logPathSelected*/}}
+                  onSelectPath={this.props.logPathSelected}
                   selectedPath={this.props.selectedPath}
                 />
               </div>

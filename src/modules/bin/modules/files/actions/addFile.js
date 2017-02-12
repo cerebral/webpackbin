@@ -1,7 +1,7 @@
 function addFile ({state}) {
-  const isEntry = state.get('bin.files.newFileIsEntry')
+  const isEntry = state.get('bin.currentBin.newFileIsEntry')
   const newFile = {
-    name: state.get('bin.files.newFileName'),
+    name: state.get('bin.currentBin.newFileName'),
     isEntry,
     content: '',
     lastCursorPosition: {
