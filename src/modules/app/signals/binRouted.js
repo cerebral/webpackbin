@@ -11,7 +11,9 @@ import {value} from 'cerebral-provider-firebase'
 
 export default [
   isCurrentBinKey(props`binKey`), {
-    true: [],
+    true: [
+      ...updateSandbox
+    ],
     false: [
       when(state`bin.currentBin.isLive`), {
         true: [
