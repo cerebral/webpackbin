@@ -24,7 +24,7 @@ export default connect({
   }) {
     return (
       <PopoverIconButton
-        disabled={liveStatus.isParticipant}
+        disabled={!liveStatus.isAdmin || liveStatus.isParticipant}
         show={showConfiguration}
         icon='npm'
         label='Configure'

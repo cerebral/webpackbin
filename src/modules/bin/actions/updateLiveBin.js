@@ -5,8 +5,7 @@ function updateLiveBin ({state, firebase, path}) {
   return firebase.update(`bins.${key}`, {
     files: currentBin.files,
     packages: currentBin.packages,
-    loaders: currentBin.loaders,
-    logs: []
+    loaders: currentBin.loaders
   })
     .then(path.success)
     .catch(path.error)

@@ -3,6 +3,8 @@ function participateLiveBin ({state, firebase, path}) {
   const user = state.get('app.user')
   const displayName = user.providerData.length ? user.providerData[0].displayName : 'Anonymous'
 
+  state.set(`bin.currentBin.participants.${user.uid}`, displayName)
+
   return firebase.set(`bins.${binKey}.participants.${user.uid}`, displayName)
     .then(path.success)
     .catch(path.error)

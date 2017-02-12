@@ -11,14 +11,16 @@ export default connect({
   user: state`app.user`,
   createBinClicked: signal `app.createBinClicked`,
   profileClicked: signal`app.profileClicked`,
-  githubSignInClicked: signal`app.githubSignInClicked`
+  githubSignInClicked: signal`app.githubSignInClicked`,
+  githubSignUpClicked: signal`app.githubSignUpClicked`
 },
   function ProfileMenu ({
     isProfileMenuOpen,
     user,
     createBinClicked,
     profileClicked,
-    githubSignInClicked
+    githubSignInClicked,
+    githubSignUpClicked
   }) {
     return (
       <div>
@@ -36,6 +38,16 @@ export default connect({
           show={isProfileMenuOpen}
         >
           <ProfileDisplay />
+          {
+            user && user.isAnonymous ? (
+              <MenuItem
+                icon='github'
+                onClick={() => githubSignUpClicked()}
+              >
+                Create account with Github
+              </MenuItem>
+            ) : null
+          }
           {
             user && user.isAnonymous ? (
               <MenuItem

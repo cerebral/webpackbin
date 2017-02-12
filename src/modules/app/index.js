@@ -6,6 +6,7 @@ import mainMenuButtonClicked from './signals/mainMenuButtonClicked'
 import profileClicked from './signals/profileClicked'
 import createBinClicked from './signals/createBinClicked'
 import githubSignInClicked from './signals/githubSignInClicked'
+import githubSignUpClicked from './signals/githubSignUpClicked'
 
 export default {
   state: {
@@ -22,6 +23,7 @@ export default {
     createBinClicked,
     routed: authenticate(routed),
     binRouted: authenticate(binRouted),
-    githubSignInClicked
+    githubSignInClicked,
+    githubSignUpClicked
   }
 }

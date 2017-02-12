@@ -55,7 +55,7 @@ export default {
     liveToggled: preventWhenLiveParticipant(liveToggled),
     liveBinChanged,
     liveCodeChanged,
-    participantClicked: preventWhenLiveParticipant(participantClicked),
+    participantClicked,
     logPathSelected: preventWhenLiveParticipant(logPathSelected)
   },
   modules: {

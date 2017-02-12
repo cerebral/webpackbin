@@ -1,12 +1,11 @@
 import updateSandbox from '../chains/updateSandbox'
 import updateBin from '../actions/updateBin'
-import updateLiveBin from '../actions/updateLiveBin'
+import updateLiveBin from '../chains/updateLiveBin'
 import isOwnerOfCurrentBin from '../actions/isOwnerOfCurrentBin'
 import showSnackbar from 'modules/app/factories/showSnackbar'
 import createNewBin from '../chains/createNewBin'
-import {set as firebaseSet} from 'cerebral-provider-firebase'
 import {set, when} from 'cerebral/operators'
-import {state, string} from 'cerebral/tags'
+import {state} from 'cerebral/tags'
 
 export default [
   when(state`bin.isLinting`), {
@@ -17,28 +16,15 @@ export default [
       when(state`bin.isValid`), {
         true: [
           set(state`bin.currentBin.changedFiles`, {}),
-          when(state`bin.currentBin.isLive`), {
+          when(state`bin.currentBinKey`), {
             true: [
-              [
-                updateLiveBin, {
-                  success: [
-                    ...updateSandbox
-                  ],
-                  error: [
-                    ...showSnackbar('Could not save files', 5000, 'error')
-                  ]
-                },
-                firebaseSet(string`codeChanges.${state`bin.currentBinKey`}`, null), {
-                  success: [],
-                  error: []
-                }
-              ]
-            ],
-            false: [
-              when(state`bin.currentBinKey`), {
+              isOwnerOfCurrentBin, {
                 true: [
-                  isOwnerOfCurrentBin, {
+                  when(state`bin.currentBin.isLive`), {
                     true: [
+                      ...updateLiveBin
+                    ],
+                    false: [
                       set(state`bin.isSaving`, true),
                       updateBin, {
                         success: [
@@ -49,16 +35,25 @@ export default [
                         ]
                       },
                       set(state`bin.isSaving`, false)
-                    ],
-                    false: []
+                    ]
                   }
                 ],
                 false: [
-                  set(state`bin.isSaving`, true),
-                  ...createNewBin,
-                  set(state`bin.isSaving`, false)
+                  when(state`bin.currentBin.isLive`), {
+                    true: [
+                      ...updateLiveBin
+                    ],
+                    false: [
+                      // Create a copy of the current bin
+                    ]
+                  }
                 ]
               }
+            ],
+            false: [
+              set(state`bin.isSaving`, true),
+              ...createNewBin,
+              set(state`bin.isSaving`, false)
             ]
           }
         ],

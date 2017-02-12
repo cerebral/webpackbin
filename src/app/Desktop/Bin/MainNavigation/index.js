@@ -56,7 +56,7 @@ export default connect({
               Log
             </IconButton>
             <IconButton
-              disabled={liveStatus.isParticipant}
+              disabled={!liveStatus.isAdmin}
               active={liveStatus.isConnected}
               icon='live'
               onClick={() => liveToggled()}

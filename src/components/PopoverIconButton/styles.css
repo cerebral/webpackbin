@@ -10,7 +10,7 @@
 
 .arrowBox {
   position: absolute;
-  top: 50px;
+  top: 15px;
   margin-left: -25px;
   z-index: 10;
 }

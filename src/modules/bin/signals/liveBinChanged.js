@@ -31,6 +31,12 @@ export default [
         showNewFileInput: [
           set(state`bin.currentBin.showNewFileInput`, props`value`)
         ],
+        packages: [
+          set(state`bin.currentBin.packages`, props`value`)
+        ],
+        loaders: [
+          set(state`bin.currentBin.loaders`, props`value`)
+        ],
         files: [
           set(state`bin.currentBin.changedFiles`, {}),
           set(state`bin.currentBin.files`, props`value`)
@@ -44,6 +50,9 @@ export default [
         currentParticipantKey: [
           set(state`bin.currentBin.currentParticipantKey`, props`value`)
         ],
+        participants: [
+          set(state`bin.currentBin.participants`, props`value`)
+        ],
         otherwise: []
       }
     ],
@@ -51,6 +60,9 @@ export default [
       equals(props`key`), {
         currentParticipantKey: [
           set(state`bin.currentBin.currentParticipantKey`, props`value`)
+        ],
+        participants: [
+          set(state`bin.currentBin.participants`, props`value`)
         ],
         otherwise: []
       }
