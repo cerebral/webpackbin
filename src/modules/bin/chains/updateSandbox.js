@@ -4,10 +4,11 @@ import {state} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
 import setLastSavedDatetime from '../actions/setLastSavedDatetime'
 import updateFirebaseBin from '../factories/updateFirebaseBin'
+import resetLogs from '../actions/resetLogs'
 
 export default [
   set(state`bin.isUpdatingSandbox`, true),
-  set(state`bin.logs`, []),
+  resetLogs,
   [
     debounce(500), {
       continue: [

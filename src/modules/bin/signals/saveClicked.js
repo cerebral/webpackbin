@@ -6,6 +6,7 @@ import showSnackbar from 'modules/app/factories/showSnackbar'
 import createNewBin from '../chains/createNewBin'
 import {set, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
+import resetChangedFiles from '../actions/resetChangedFiles'
 
 export default [
   when(state`bin.isLinting`), {
@@ -15,7 +16,7 @@ export default [
     false: [
       when(state`bin.isValid`), {
         true: [
-          set(state`bin.currentBin.changedFiles`, {}),
+          resetChangedFiles,
           when(state`bin.currentBinKey`), {
             true: [
               isOwnerOfCurrentBin, {
