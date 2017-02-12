@@ -27,7 +27,6 @@ export default [
         success: [
           setCurrentBin,
           forceCodeUpdate,
-          set(state`bin.isLoading`, false),
           when(state`bin.currentBin.isLive`), {
             true: [
               ...connectLiveBin
