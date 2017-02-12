@@ -5,15 +5,16 @@ import newFileAborted from './signals/newFileAborted'
 import newFileClicked from './signals/newFileClicked'
 import newFileNameChanged from './signals/newFileNameChanged'
 import newFileNameSubmitted from './signals/newFileNameSubmitted'
+import preventWhenLiveParticipant from 'modules/bin/factories/preventWhenLiveParticipant'
 
 export default {
   signals: {
-    fileClicked,
-    removeFileClicked,
-    isEntryToggled,
-    newFileAborted,
-    newFileClicked,
-    newFileNameChanged,
-    newFileNameSubmitted
+    fileClicked: preventWhenLiveParticipant(fileClicked),
+    removeFileClicked: preventWhenLiveParticipant(removeFileClicked),
+    isEntryToggled: preventWhenLiveParticipant(isEntryToggled),
+    newFileAborted: preventWhenLiveParticipant(newFileAborted),
+    newFileClicked: preventWhenLiveParticipant(newFileClicked),
+    newFileNameChanged: preventWhenLiveParticipant(newFileNameChanged),
+    newFileNameSubmitted: preventWhenLiveParticipant(newFileNameSubmitted)
   }
 }
