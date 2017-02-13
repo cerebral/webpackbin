@@ -23,9 +23,9 @@ export default [
       ],
       discard: []
     },
-    debounce(1500), {
+    debounce(2000), {
       continue: [
-        when(state`bin.isUpdatingSandbox`), {
+        when(state`bin.isLoadingSandbox`), {
           true: [
             set(state`bin.showIsPackaging`, true)
           ],
@@ -41,7 +41,6 @@ export default [
         setLastSavedDatetime,
         set(state`bin.isUpdatingSandbox`, false),
         set(state`bin.isLoadingSandbox`, true),
-        set(state`bin.showIsPackaging`, false),
         ...updateFirebaseBin('lastSavedDatetime')
       ],
       error: [

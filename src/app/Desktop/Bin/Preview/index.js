@@ -7,7 +7,6 @@ import styles from './styles.css'
 import Log from '../Log'
 
 export default connect({
-  isLoading: state`bin.isLoading`,
   showLog: state`bin.currentBin.showLog`,
   lastSavedDatetime: state`bin.currentBin.lastSavedDatetime`,
   sandboxLoaded: signal`bin.sandboxLoaded`,
@@ -44,14 +43,14 @@ export default connect({
     render () {
       return (
         <div className={styles.wrapper}>
-          {this.props.isLoading ? null : (
+          {this.props.lastSavedDatetime ? (
             <iframe
               ref={(node) => {
                 this.iframe = node
               }}
               src={config.sandboxServiceUrl}
             />
-          )}
+          ) : null}
           {this.props.showLog ? <Log /> : null}
         </div>
       )

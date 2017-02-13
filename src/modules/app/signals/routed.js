@@ -15,6 +15,5 @@ export default [
   resetCurrentBin,
   forceCodeUpdate,
   ...updateSandbox,
-  set(state`bin.currentBin.owner`, state`app.user.uid`),
-  set(state`bin.isLoading`, false)
+  set(state`bin.currentBin.owner`, state`app.user.uid`)
 ]

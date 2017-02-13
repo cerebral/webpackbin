@@ -52,17 +52,14 @@ export default [
                 error: [
                   ...showSnackbar('Unable to create live session', 5000, 'error')
                 ],
-                notAllowed: [
-                  set(state`bin.isLoading`, false)
-                ]
+                notAllowed: []
               })
             ],
             participant: [
               ...connectLiveBin
             ],
             otherwise: [
-              ...updateSandbox,
-              set(state`bin.isLoading`, false)
+              ...updateSandbox
             ]
           }
         ],

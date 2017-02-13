@@ -35,8 +35,8 @@ export default connect({
             Loading...
           </div>
         </div>
-        {isLoading ? <Loader>Loading up the bin!</Loader> : null}
-        {!isLoading && showIsPackaging ? <Loader>It seems that your combination of packages is new. Please hold on until the bundle is made available on the CDN</Loader> : null}
+        {!showIsPackaging && isLoading ? <Loader>Loading up the bin!</Loader> : null}
+        {showIsPackaging ? <Loader>It seems that your combination of packages is new. Please hold on until the bundle is made available on the CDN</Loader> : null}
         {isLive ? <LiveParticipants /> : null}
       </div>
     )
