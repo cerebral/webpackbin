@@ -44,7 +44,7 @@ export default connect({
             onSubmit={packageQuerySubmitted}
           />
           <Description>
-            You can assign specific version with "@", ex. "react@0.14.7"
+            You can assign specific version with "@", ex. "react@0.14.7" or "react@next"
           </Description>
           <ul className={styles.list}>
             {Object.keys(packages).map(function (packageName) {
