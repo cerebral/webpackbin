@@ -1,9 +1,12 @@
 import Inferno from 'inferno'
 import styles from './styles.css'
+import classnames from 'classnames'
 
 function Description (props) {
   return (
-    <div className={styles.wrapper}>
+    <div className={classnames(styles.wrapper, {
+      [styles.light]: props.light
+    })}>
       {props.children}
     </div>
   )

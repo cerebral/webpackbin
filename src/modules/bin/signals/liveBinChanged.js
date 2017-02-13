@@ -2,6 +2,8 @@ import whenLiveParticipant from '../actions/whenLiveParticipant'
 import updateSandbox from '../chains/updateSandbox'
 import {set, equals} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
+import setPackagesFromLive from '../actions/setPackagesFromLive'
+import setLoadersFromLive from '../actions/setLoadersFromLive'
 
 export default [
   whenLiveParticipant, {
@@ -32,10 +34,10 @@ export default [
           set(state`bin.currentBin.showNewFileInput`, props`value`)
         ],
         packages: [
-          set(state`bin.currentBin.packages`, props`value`)
+          setPackagesFromLive
         ],
         loaders: [
-          set(state`bin.currentBin.loaders`, props`value`)
+          setLoadersFromLive
         ],
         files: [
           set(state`bin.currentBin.changedFiles`, {}),

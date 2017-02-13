@@ -9,7 +9,11 @@ import {state} from 'cerebral/tags'
 import resetChangedFiles from '../actions/resetChangedFiles'
 
 export default [
-  when(state`bin.isLinting`), {
+  when(
+    state`bin.isLinting`,
+    state`settings.lint`,
+    (isLinting, lint) => isLinting && lint
+  ), {
     true: [
       set(state`bin.saveWhenDoneLinting`, true)
     ],

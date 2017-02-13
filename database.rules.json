@@ -13,6 +13,12 @@
         ".read": true,
         ".write": true
       }
+    },
+    "settings": {
+      "$userKey": {
+        ".read": true,
+        ".write": "auth.uid === $userKey"
+      }
     }
   }
 }

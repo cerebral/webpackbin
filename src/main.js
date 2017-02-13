@@ -10,6 +10,7 @@ import FirebaseProvider from 'cerebral-provider-firebase'
 import HttpProvider from 'cerebral-provider-http'
 import app from './modules/app'
 import bin from './modules/bin'
+import settings from './modules/settings'
 import shortcuts from './modules/shortcuts'
 
 const controller = Controller({
@@ -26,6 +27,7 @@ const controller = Controller({
   modules: {
     app,
     bin,
+    settings,
     shortcuts: shortcuts({
       'cmd+s': 'bin.saveClicked',
       'ctrl+s': 'bin.saveClicked'

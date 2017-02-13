@@ -4,26 +4,32 @@ import {state, signal} from 'cerebral/tags'
 import IconButton from 'components/IconButton'
 import SideMenu from 'components/SideMenu'
 import MenuItem from 'components/MenuItem'
+import Checkbox from 'components/Checkbox'
+import Description from 'components/Description'
 import ProfileDisplay from './ProfileDisplay'
 import GithubSignIn from './GithubSignIn'
 
 export default connect({
   isProfileMenuOpen: state`app.isProfileMenuOpen`,
   user: state`app.user`,
+  lint: state`settings.lint`,
   createBinClicked: signal `app.createBinClicked`,
   profileClicked: signal`app.profileClicked`,
   githubSignInClicked: signal`app.githubSignInClicked`,
   githubSignUpClicked: signal`app.githubSignUpClicked`,
-  signOutClicked: signal`app.signOutClicked`
+  signOutClicked: signal`app.signOutClicked`,
+  lintToggled: signal`settings.lintToggled`
 },
   function ProfileMenu ({
     isProfileMenuOpen,
+    lint,
     user,
     createBinClicked,
     profileClicked,
     githubSignInClicked,
     githubSignUpClicked,
-    signOutClicked
+    signOutClicked,
+    lintToggled
   }) {
     return (
       <div>
@@ -62,6 +68,19 @@ export default connect({
               </MenuItem>
             ) : null
           }
+          <MenuItem onClick={() => lintToggled()}>
+            <div>
+              <Checkbox
+                onChange={() => lintToggled()}
+                checked={lint}
+              >
+                Linter
+              </Checkbox>
+              <Description light>
+                Load and run supported linters
+              </Description>
+            </div>
+          </MenuItem>
         </SideMenu>
         <GithubSignIn />
       </div>

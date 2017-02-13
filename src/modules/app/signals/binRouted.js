@@ -1,9 +1,8 @@
 import updateSandbox from 'modules/bin/chains/updateSandbox'
 import showSnackbar from '../factories/showSnackbar'
-import listenToBinUpdates from 'modules/bin/actions/listenToBinUpdates'
 import whenLive from 'modules/bin/actions/whenLive'
-import updateFirebaseBin from 'modules/bin/factories/updateFirebaseBin'
 import connectLiveBin from 'modules/bin/chains/connectLiveBin'
+import connectLiveBinAsOwner from 'modules/bin/chains/connectLiveBinAsOwner'
 import setCurrentBin from 'modules/bin/actions/setCurrentBin'
 import isCurrentBinKey from 'modules/bin/factories/isCurrentBinKey'
 import forceCodeUpdate from 'modules/bin/actions/forceCodeUpdate'
@@ -38,22 +37,7 @@ export default [
           forceCodeUpdate,
           whenLive, {
             owner: [
-              listenToBinUpdates,
-              ...updateFirebaseBin([
-                'isLive',
-                'currentParticipantKey',
-                'participants'
-              ], {
-                success: [
-                  ...updateSandbox,
-                  set(state`bin.isLoading`, false),
-                  ...showSnackbar('Live session created, awaiting connections...', 5000)
-                ],
-                error: [
-                  ...showSnackbar('Unable to create live session', 5000, 'error')
-                ],
-                notAllowed: []
-              })
+              ...connectLiveBinAsOwner
             ],
             participant: [
               ...connectLiveBin

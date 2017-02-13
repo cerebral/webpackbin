@@ -16,10 +16,11 @@ export default connect({
   liveStatus,
   lastForceCodeUpdate: state`bin.lastForceCodeUpdate`,
   file: state`bin.currentBin.files.${state`bin.currentBin.selectedFileIndex`}`,
+  lint: state`settings.lint`,
   codeChanged: signal`bin.codeChanged`,
   codeLinted: signal`bin.codeLinted`,
-  linterLoading: signal`bin.linterLoading`,
-  linterLoaded: signal`bin.linterLoaded`,
+  modeLoading: signal`bin.modeLoading`,
+  modeLoaded: signal`bin.modeLoaded`,
   cursorChanged: signal`bin.cursorChanged`
 },
   class CodeEditor extends Component {
@@ -68,7 +69,8 @@ export default connect({
 
       if (
         prevProps.file.name !== this.props.file.name ||
-        prevProps.lastForceCodeUpdate !== this.props.lastForceCodeUpdate
+        prevProps.lastForceCodeUpdate !== this.props.lastForceCodeUpdate ||
+        prevProps.lint !== this.props.lint
       ) {
         this.setModeAndLinter()
         this.codemirror.getDoc().clearHistory()
@@ -126,23 +128,25 @@ export default connect({
       this.isUpdatingCode = false
     }
     setModeAndLinter () {
-      const modeAlreadyLoaded = modes.isLoaded(this.props.file)
+      const modeAlreadyLoaded = modes.isLoaded(this.props.file, this.props.lint)
 
       if (!modeAlreadyLoaded) {
-        this.props.linterLoading()
+        this.props.modeLoading()
       }
 
-      modes.set(this.props.file)
+      modes.set(this.props.file, this.props.lint)
         .then((linter) => {
-          this.codemirror.setOption('lint', linter === false ? false : {
-            getAnnotations: linter,
-            onUpdateLinting: this.onUpdateLinting
-          })
+          if (this.props.lint) {
+            this.codemirror.setOption('lint', linter === false ? false : {
+              getAnnotations: linter,
+              onUpdateLinting: this.onUpdateLinting
+            })
+          }
           this.codemirror.setOption('mode', modes.get(this.props.file))
           this.setEditorValue(this.codemirror.getValue())
 
           if (!modeAlreadyLoaded) {
-            this.props.linterLoaded()
+            this.props.modeLoaded()
           }
         })
     }

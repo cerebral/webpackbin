@@ -2,8 +2,8 @@ import {createNewBin} from 'utils'
 import saveClicked from './signals/saveClicked'
 import codeChanged from './signals/codeChanged'
 import codeLinted from './signals/codeLinted'
-import linterLoading from './signals/linterLoading'
-import linterLoaded from './signals/linterLoaded'
+import modeLoading from './signals/modeLoading'
+import modeLoaded from './signals/modeLoaded'
 import cursorChanged from './signals/cursorChanged'
 import configurationClicked from './signals/configurationClicked'
 import sandboxLoaded from './signals/sandboxLoaded'
@@ -39,14 +39,15 @@ export default {
     lastForceCodeUpdate: null,
     saveWhenDoneLinting: false,
     shouldCheckLog: false,
-    logs: []
+    logs: [],
+    isValid: true
   },
   signals: {
     saveClicked: preventWhenLiveParticipant(saveClicked),
     codeChanged: preventWhenLiveParticipant(codeChanged),
     codeLinted,
-    linterLoading,
-    linterLoaded,
+    modeLoading,
+    modeLoaded,
     cursorChanged: preventWhenLiveParticipant(cursorChanged),
     configurationClicked: preventWhenLiveParticipant(configurationClicked),
     sandboxLoaded,

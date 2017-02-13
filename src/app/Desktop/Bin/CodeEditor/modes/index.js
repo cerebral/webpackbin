@@ -40,10 +40,18 @@ export default {
   preLoadMode (mode) {
     return types[mode]()
   },
-  isLoaded (file) {
-    return loadedModes.indexOf(this.get(file)) !== -1
+  isLoaded (file, lint) {
+    const mode = this.get(file)
+
+    return loadedModes.reduce((isLoaded, loadedMode) => {
+      if (isLoaded) {
+        return isLoaded
+      }
+
+      return loadedMode.mode === mode && loadedMode.lint === lint
+    }, false)
   },
-  set (file) {
+  set (file, lint) {
     const mode = this.get(file)
 
     if (!mode) {
@@ -51,8 +59,11 @@ export default {
     }
 
     if (loadedModes.indexOf(mode) === -1) {
-      return types[mode]().then(function (linter) {
-        loadedModes.push(mode)
+      return types[mode](lint).then(function (linter) {
+        loadedModes.push({
+          mode,
+          lint
+        })
 
         return linter
       })

@@ -11,10 +11,8 @@ function MenuItem (props) {
       })}
       onClick={props.disabled ? null : props.onClick}
       >
-      <div className={icons[props.icon]} />
-      <div className={styles.content}>
-        {props.children}
-      </div>
+      {props.icon ? <div className={classnames(icons[props.icon], styles.icon)} /> : null}
+      {props.children}
     </div>
   )
 }

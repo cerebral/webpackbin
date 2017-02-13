@@ -3,6 +3,7 @@ import {state} from 'cerebral/tags'
 import saveClicked from '../signals/saveClicked'
 import addOwnerAsParticipant from '../actions/addOwnerAsParticipant'
 import showSnackbar from 'modules/app/factories/showSnackbar'
+import connectLiveBinAsOwner from '../chains/connectLiveBinAsOwner'
 
 export default [
   ...showSnackbar('Creating live session...'),
@@ -10,7 +11,9 @@ export default [
   set(state`bin.currentBin.currentParticipantKey`, state`app.user.uid`),
   addOwnerAsParticipant,
   when(state`bin.currentBinKey`), {
-    true: [],
+    true: [
+      ...connectLiveBinAsOwner
+    ],
     false: [
       ...saveClicked
     ]
