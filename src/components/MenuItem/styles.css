@@ -3,12 +3,23 @@
   padding: 16px 0 16px 24px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   border-bottom: 1px solid rgba(0,0,0,0.03);
 }
 
 .wrapper:hover {
   background-color: #EAEAEA;
   color: #333;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.disabled:hover {
+  background-color: inherit;
+  color: inherit;
 }
 
 .content {

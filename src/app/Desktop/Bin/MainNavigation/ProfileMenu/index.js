@@ -5,6 +5,7 @@ import IconButton from 'components/IconButton'
 import SideMenu from 'components/SideMenu'
 import MenuItem from 'components/MenuItem'
 import ProfileDisplay from './ProfileDisplay'
+import GithubSignIn from './GithubSignIn'
 
 export default connect({
   isProfileMenuOpen: state`app.isProfileMenuOpen`,
@@ -12,7 +13,8 @@ export default connect({
   createBinClicked: signal `app.createBinClicked`,
   profileClicked: signal`app.profileClicked`,
   githubSignInClicked: signal`app.githubSignInClicked`,
-  githubSignUpClicked: signal`app.githubSignUpClicked`
+  githubSignUpClicked: signal`app.githubSignUpClicked`,
+  signOutClicked: signal`app.signOutClicked`
 },
   function ProfileMenu ({
     isProfileMenuOpen,
@@ -20,12 +22,14 @@ export default connect({
     createBinClicked,
     profileClicked,
     githubSignInClicked,
-    githubSignUpClicked
+    githubSignUpClicked,
+    signOutClicked
   }) {
     return (
       <div>
         <IconButton
           icon='user'
+          imageUrl={!user || user.isAnonymous ? null : user.providerData[0].photoURL}
           onClick={(e) => {
             e.stopPropagation()
             profileClicked()
@@ -42,23 +46,24 @@ export default connect({
             user && user.isAnonymous ? (
               <MenuItem
                 icon='github'
-                onClick={() => githubSignUpClicked()}
-              >
-                Create account with Github
-              </MenuItem>
-            ) : null
-          }
-          {
-            user && user.isAnonymous ? (
-              <MenuItem
-                icon='github'
                 onClick={() => githubSignInClicked()}
               >
                 Sign in with Github
               </MenuItem>
             ) : null
           }
+          {
+            user && !user.isAnonymous ? (
+              <MenuItem
+                icon='signOut'
+                onClick={() => signOutClicked()}
+              >
+                Sign out
+              </MenuItem>
+            ) : null
+          }
         </SideMenu>
+        <GithubSignIn />
       </div>
     )
   }

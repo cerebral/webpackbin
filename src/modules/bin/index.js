@@ -16,6 +16,8 @@ import liveBinChanged from './signals/liveBinChanged'
 import liveCodeChanged from './signals/liveCodeChanged'
 import participantClicked from './signals/participantClicked'
 import logPathSelected from './signals/logPathSelected'
+import newBinClicked from './signals/newBinClicked'
+import copyBinClicked from './signals/copyBinClicked'
 
 import files from './modules/files'
 import configure from './modules/configure'
@@ -56,7 +58,9 @@ export default {
     liveBinChanged,
     liveCodeChanged,
     participantClicked,
-    logPathSelected: preventWhenLiveParticipant(logPathSelected)
+    logPathSelected: preventWhenLiveParticipant(logPathSelected),
+    newBinClicked,
+    copyBinClicked
   },
   modules: {
     files,

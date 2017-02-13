@@ -1,0 +1,11 @@
+.logoWrapper {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.logo {
+  background: url(/logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40px;
+}

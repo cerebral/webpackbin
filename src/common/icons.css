@@ -77,6 +77,11 @@
 	content: "\e018";
 }
 
+.signOut {composes: font;}
+.signOut:before {
+	content: "\e28d";
+}
+
 .eye {composes: font;}
 .eye:before {
 	content: "\e1a8";
@@ -117,9 +122,14 @@
 	content: "\e287";
 }
 
-.description {composes: font;}
-.description:before {
+.newBin {composes: font;}
+.newBin:before {
 	content: "\e288";
+}
+
+.copyBin {composes: font;}
+.copyBin:before {
+  content: "\e014";
 }
 
 .addFile {composes: font;}

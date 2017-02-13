@@ -1,11 +1,11 @@
-import {signInWithGithub} from 'cerebral-provider-firebase'
+import {linkWithGithub} from 'cerebral-provider-firebase'
 import {set, when} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
 
 export default [
   set(state`app.isSigningIn`, true),
-  signInWithGithub(), {
+  linkWithGithub(), {
     success: [
       set(state`app.user`, props`user`),
       set(state`app.showGithubSignIn`, false),
@@ -16,7 +16,7 @@ export default [
           set(state`bin.currentBin.owner`, state`app.user.uid`)
         ]
       },
-      ...showSnackbar('Signed in', 5000)
+      ...showSnackbar('Account converted to Github', 5000)
     ],
     error: [
       set(state`app.isSigningIn`, false),

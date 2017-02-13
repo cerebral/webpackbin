@@ -1,0 +1,52 @@
+.backdrop {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  text-align: center;
+  z-index: 99999;
+  overflow: auto;
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modalWrapper {
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.modal {
+  position: relative;
+  display: inline-block;
+  margin: 48px 0;
+  max-width: 520px;
+  width: 95%;
+  max-height: calc(100% - 96px);
+  padding: 0;
+  box-shadow: 0 19px 60px rgba(0,0,0,0.3), 0 15px 20px rgba(0,0,0,0.22);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 999999;
+  background-color: #fff;
+  text-align: left;
+  box-sizing: border-box;
+  color: #333;
+  padding: 20px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  cursor: pointer;
+  right: 5px;
+  top: 5px;
+  color: #DDD;
+  font-weight: bold;
+}
