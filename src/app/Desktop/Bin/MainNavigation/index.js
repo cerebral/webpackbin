@@ -9,6 +9,7 @@ import {state, signal} from 'cerebral/tags'
 import liveStatus from 'computed/liveStatus'
 import ProfileMenu from './ProfileMenu'
 import MainMenu from './MainMenu'
+import MyBins from './MyBins'
 
 export default connect({
   liveStatus,
@@ -63,6 +64,7 @@ export default connect({
             >
               Live
             </IconButton>
+            <MyBins />
           </div>
           <div className={styles.flexWrapper}>
             <ProfileMenu />

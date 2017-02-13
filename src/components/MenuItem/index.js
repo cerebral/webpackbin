@@ -7,7 +7,8 @@ function MenuItem (props) {
   return (
     <div
       className={classnames(styles.wrapper, {
-        [styles.disabled]: props.disabled
+        [styles.disabled]: props.disabled,
+        [styles.active]: props.active
       })}
       onClick={props.disabled ? null : props.onClick}
       >

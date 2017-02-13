@@ -4,13 +4,14 @@ import {state, signal} from 'cerebral/tags'
 import IconButton from 'components/IconButton'
 import SideMenu from 'components/SideMenu'
 import MenuItem from 'components/MenuItem'
-import Checkbox from 'components/Checkbox'
-import Description from 'components/Description'
 import ProfileDisplay from './ProfileDisplay'
 import GithubSignIn from './GithubSignIn'
+import Settings from './Settings'
+import MyBins from './MyBins'
 
 export default connect({
   isProfileMenuOpen: state`app.isProfileMenuOpen`,
+  profileMenuPage: state`app.profileMenuPage`,
   user: state`app.user`,
   lint: state`settings.lint`,
   createBinClicked: signal `app.createBinClicked`,
@@ -18,10 +19,13 @@ export default connect({
   githubSignInClicked: signal`app.githubSignInClicked`,
   githubSignUpClicked: signal`app.githubSignUpClicked`,
   signOutClicked: signal`app.signOutClicked`,
-  lintToggled: signal`settings.lintToggled`
+  lintToggled: signal`settings.lintToggled`,
+  settingsClicked: signal`settings.settingsClicked`,
+  myBinsClicked: signal`settings.myBinsClicked`
 },
   function ProfileMenu ({
     isProfileMenuOpen,
+    profileMenuPage,
     lint,
     user,
     createBinClicked,
@@ -29,7 +33,8 @@ export default connect({
     githubSignInClicked,
     githubSignUpClicked,
     signOutClicked,
-    lintToggled
+    settingsClicked,
+    myBinsClicked
   }) {
     return (
       <div>
@@ -46,6 +51,14 @@ export default connect({
         <SideMenu
           side='right'
           show={isProfileMenuOpen}
+          page={profileMenuPage}
+          pages={[{
+            name: 'myBins',
+            content: MyBins
+          }, {
+            name: 'settings',
+            content: Settings
+          }]}
         >
           <ProfileDisplay />
           {
@@ -68,18 +81,19 @@ export default connect({
               </MenuItem>
             ) : null
           }
-          <MenuItem onClick={() => lintToggled()}>
-            <div>
-              <Checkbox
-                onChange={() => lintToggled()}
-                checked={lint}
-              >
-                Linter
-              </Checkbox>
-              <Description light>
-                Load and run supported linters
-              </Description>
-            </div>
+          <MenuItem
+            active={profileMenuPage === 'myBins'}
+            icon='myBins'
+            onClick={() => myBinsClicked()}
+          >
+            My bins
+          </MenuItem>
+          <MenuItem
+            active={profileMenuPage === 'settings'}
+            icon='settings'
+            onClick={() => settingsClicked()}
+          >
+            Settings
           </MenuItem>
         </SideMenu>
         <GithubSignIn />

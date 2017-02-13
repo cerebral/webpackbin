@@ -32,18 +32,25 @@ export default [
       set(state`bin.isUpdatingSandbox`, true),
       value(string`bins.${props`binKey`}`), {
         success: [
-          set(state`bin.currentBinKey`, props`binKey`),
-          setCurrentBin,
-          forceCodeUpdate,
-          whenLive, {
-            owner: [
-              ...connectLiveBinAsOwner
+          when(props`value`), {
+            true: [
+              set(state`bin.currentBinKey`, props`binKey`),
+              setCurrentBin,
+              forceCodeUpdate,
+              whenLive, {
+                owner: [
+                  ...connectLiveBinAsOwner
+                ],
+                participant: [
+                  ...connectLiveBin
+                ],
+                otherwise: [
+                  ...updateSandbox
+                ]
+              }
             ],
-            participant: [
-              ...connectLiveBin
-            ],
-            otherwise: [
-              ...updateSandbox
+            false: [
+              ...showSnackbar('This bin does not exist anymore, sorry', 5000, 'error')
             ]
           }
         ],

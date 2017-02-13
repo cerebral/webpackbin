@@ -13,6 +13,7 @@ export default [
     false: []
   },
   resetCurrentBin,
+  set(state`bin.currentBinKey`, null),
   forceCodeUpdate,
   ...updateSandbox,
   set(state`bin.currentBin.owner`, state`app.user.uid`)

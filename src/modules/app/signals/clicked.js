@@ -4,5 +4,6 @@ import {state} from 'cerebral/tags'
 export default [
   set(state`bin.currentBin.showConfiguration`, false),
   set(state`app.isMainMenuOpen`, false),
-  set(state`app.isProfileMenuOpen`, false)
+  set(state`app.isProfileMenuOpen`, false),
+  set(state`app.profileMenuPage`, null)
 ]

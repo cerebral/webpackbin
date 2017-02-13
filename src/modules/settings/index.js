@@ -1,4 +1,6 @@
 import lintToggled from './signals/lintToggled'
+import settingsClicked from './signals/settingsClicked'
+import myBinsClicked from './signals/myBinsClicked'
 
 export default {
   state: {
@@ -6,6 +8,8 @@ export default {
     imageUrl: null
   },
   signals: {
-    lintToggled
+    lintToggled,
+    settingsClicked,
+    myBinsClicked
   }
 }

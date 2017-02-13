@@ -10,15 +10,24 @@ import githubSignUpClicked from './signals/githubSignUpClicked'
 import githubConvertClicked from './signals/githubConvertClicked'
 import githubSignInAborted from './signals/githubSignInAborted'
 import signOutClicked from './signals/signOutClicked'
+import myBinsClicked from './signals/myBinsClicked'
+import myBinsTitleAborted from './signals/myBinsTitleAborted'
+import myBinsTitleChanged from './signals/myBinsTitleChanged'
+import myBinsTitleSubmitted from './signals/myBinsTitleSubmitted'
+import myBinClicked from './signals/myBinClicked'
 
 export default {
   state: {
     isAuthenticating: true,
     snackbar: null,
     user: null,
+    myBins: {},
+    showMyBinsTitleInput: false,
+    myBinsTitle: '',
     isMainMenuOpen: false,
     isProfileMenuOpen: false,
-    showGithubSignIn: false
+    showGithubSignIn: false,
+    profileMenuPage: null
   },
   signals: {
     routed: authenticate(routed),
@@ -31,6 +40,11 @@ export default {
     githubSignUpClicked,
     githubConvertClicked,
     githubSignInAborted,
-    signOutClicked
+    signOutClicked,
+    myBinsClicked,
+    myBinsTitleAborted,
+    myBinsTitleChanged,
+    myBinsTitleSubmitted,
+    myBinClicked
   }
 }

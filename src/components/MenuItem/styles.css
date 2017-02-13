@@ -1,5 +1,6 @@
 .wrapper {
   cursor: pointer;
+  position: relative;
   padding: 16px 0 16px 24px;
   display: flex;
   flex-direction: row;
@@ -10,6 +11,15 @@
 .wrapper:hover {
   background-color: #EAEAEA;
   color: #333;
+}
+
+.active {
+  color: #eb1e64;
+}
+
+.active:hover {
+  background-color: #FFF;
+  color: #eb1e64;
 }
 
 .disabled {
