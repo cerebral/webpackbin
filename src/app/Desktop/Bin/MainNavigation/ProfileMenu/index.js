@@ -71,16 +71,6 @@ export default connect({
               </MenuItem>
             ) : null
           }
-          {
-            user && !user.isAnonymous ? (
-              <MenuItem
-                icon='signOut'
-                onClick={() => signOutClicked()}
-              >
-                Sign out
-              </MenuItem>
-            ) : null
-          }
           <MenuItem
             active={profileMenuPage === 'myBins'}
             icon='myBins'
@@ -95,6 +85,16 @@ export default connect({
           >
             Settings
           </MenuItem>
+          {
+            user && !user.isAnonymous ? (
+              <MenuItem
+                icon='signOut'
+                onClick={() => signOutClicked()}
+              >
+                Sign out
+              </MenuItem>
+            ) : null
+          }
         </SideMenu>
         <GithubSignIn />
       </div>

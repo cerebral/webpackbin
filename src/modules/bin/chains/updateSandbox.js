@@ -25,7 +25,11 @@ export default [
     },
     debounce(2000), {
       continue: [
-        when(state`bin.isLoadingSandbox`), {
+        when(
+          state`bin.isLoadingSandbox`,
+          state`bin.isUpdatingSandbox`,
+          (isLoadingSandbox, isUpdatingSandbox) => isLoadingSandbox || isUpdatingSandbox
+        ), {
           true: [
             set(state`bin.showIsPackaging`, true)
           ],
