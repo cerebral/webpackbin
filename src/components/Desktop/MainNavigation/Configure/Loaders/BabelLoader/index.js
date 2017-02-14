@@ -40,12 +40,12 @@ export default connect({
         <div className={styles.section}>
           <Checkbox
             disabled={!config}
-            checked={config && config['stage-0']}
+            checked={config && config.stage0}
             onChange={() => {
               loaderConfigChanged({
                 loaderName: 'babel',
-                configName: 'stage-0',
-                configValue: !config['stage-0']
+                configName: 'stage0',
+                configValue: !config.stage0
               })
             }}
           >
@@ -53,6 +53,42 @@ export default connect({
           </Checkbox>
           <Description>
             Latest ES features
+          </Description>
+        </div>
+        <div className={styles.section}>
+          <Checkbox
+            disabled={!config}
+            checked={config && config.decorators}
+            onChange={() => {
+              loaderConfigChanged({
+                loaderName: 'babel',
+                configName: 'decorators',
+                configValue: !config.decorators
+              })
+            }}
+          >
+            Decorators
+          </Checkbox>
+          <Description>
+            Not yet part of spec. Turn off linter when using this feature
+          </Description>
+        </div>
+        <div className={styles.section}>
+          <Checkbox
+            disabled={!config}
+            checked={config && config.classProperties}
+            onChange={() => {
+              loaderConfigChanged({
+                loaderName: 'babel',
+                configName: 'classProperties',
+                configValue: !config.classProperties
+              })
+            }}
+          >
+            Class properties
+          </Checkbox>
+          <Description>
+            Not yet part of spec. Turn off linter when using this feature
           </Description>
         </div>
         <div className={styles.section}>
