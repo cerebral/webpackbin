@@ -49,7 +49,11 @@ export default [
                       ...updateLiveBin
                     ],
                     false: [
-                      // Create a copy of the current bin
+                      set(state`app.currentBinKey`, null),
+                      set(state`app.currentBin.owner`, state`app.user.uid`),
+                      set(state`app.isSaving`, true),
+                      ...createNewBin,
+                      set(state`app.isSaving`, false)
                     ]
                   }
                 ]
