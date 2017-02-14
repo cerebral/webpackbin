@@ -1,7 +1,7 @@
-import resetCurrentBin from 'modules/bin/actions/resetCurrentBin'
-import forceCodeUpdate from 'modules/bin/actions/forceCodeUpdate'
-import createNewBin from 'modules/bin/chains/createNewBin'
-import appClicked from 'modules/app/signals/clicked'
+import resetCurrentBin from '../actions/resetCurrentBin'
+import forceCodeUpdate from 'modules/code/actions/forceCodeUpdate'
+import createNewBin from '../chains/createNewBin'
+import appClicked from './clicked'
 
 export default [
   resetCurrentBin,

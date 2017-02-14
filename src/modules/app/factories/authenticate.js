@@ -1,7 +1,7 @@
 import showSnackbar from './showSnackbar'
 import {getUser, signInAnonymously, value} from 'cerebral-provider-firebase'
 import setSettings from 'modules/settings/actions/setSettings'
-import setMyBins from '../actions/setMyBins'
+import setMyBins from 'modules/myBins/actions/setMyBins'
 import {set, when} from 'cerebral/operators'
 import {state, props, string} from 'cerebral/tags'
 

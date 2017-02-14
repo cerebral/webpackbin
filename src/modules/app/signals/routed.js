@@ -1,20 +1,20 @@
-import updateSandbox from 'modules/bin/chains/updateSandbox'
+import updateSandbox from 'modules/sandbox/chains/updateSandbox'
 import {set, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
-import stopListeningToBinUpdates from 'modules/bin/actions/stopListeningToBinUpdates'
-import resetCurrentBin from 'modules/bin/actions/resetCurrentBin'
-import forceCodeUpdate from 'modules/bin/actions/forceCodeUpdate'
+import stopListeningToBinUpdates from 'modules/live/actions/stopListeningToBinUpdates'
+import resetCurrentBin from '../actions/resetCurrentBin'
+import forceCodeUpdate from 'modules/code/actions/forceCodeUpdate'
 
 export default [
-  when(state`bin.currentBin.isLive`), {
+  when(state`app.currentBin.isLive`), {
     true: [
       stopListeningToBinUpdates
     ],
     false: []
   },
   resetCurrentBin,
-  set(state`bin.currentBinKey`, null),
+  set(state`app.currentBinKey`, null),
   forceCodeUpdate,
   ...updateSandbox,
-  set(state`bin.currentBin.owner`, state`app.user.uid`)
+  set(state`app.currentBin.owner`, state`app.user.uid`)
 ]

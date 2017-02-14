@@ -1,12 +1,12 @@
-import updateSandbox from 'modules/bin/chains/updateSandbox'
+import updateSandbox from 'modules/sandbox/chains/updateSandbox'
 import showSnackbar from '../factories/showSnackbar'
-import whenLive from 'modules/bin/actions/whenLive'
-import connectLiveBin from 'modules/bin/chains/connectLiveBin'
-import connectLiveBinAsOwner from 'modules/bin/chains/connectLiveBinAsOwner'
-import setCurrentBin from 'modules/bin/actions/setCurrentBin'
-import isCurrentBinKey from 'modules/bin/factories/isCurrentBinKey'
-import forceCodeUpdate from 'modules/bin/actions/forceCodeUpdate'
-import stopListeningToBinUpdates from 'modules/bin/actions/stopListeningToBinUpdates'
+import whenLive from '../actions/whenLive'
+import connectLiveBin from 'modules/live/chains/connectLiveBin'
+import connectLiveBinAsOwner from 'modules/live/chains/connectLiveBinAsOwner'
+import setCurrentBin from '../actions/setCurrentBin'
+import isCurrentBinKey from '../factories/isCurrentBinKey'
+import forceCodeUpdate from 'modules/code/actions/forceCodeUpdate'
+import stopListeningToBinUpdates from 'modules/live/actions/stopListeningToBinUpdates'
 import {set, when} from 'cerebral/operators'
 import {state, props, string} from 'cerebral/tags'
 import {value} from 'cerebral-provider-firebase'
@@ -15,12 +15,12 @@ export default [
   isCurrentBinKey(props`binKey`), {
     true: [
       ...updateSandbox,
-      set(state`bin.isLoading`, false)
+      set(state`app.isLoading`, false)
     ],
     false: [
       when(
-        state`bin.currentBin.isLive`,
-        state`bin.currentBinKey`,
+        state`app.currentBin.isLive`,
+        state`app.currentBinKey`,
         (isLive, currentBinKey) => isLive && currentBinKey
       ), {
         true: [
@@ -28,13 +28,13 @@ export default [
         ],
         false: []
       },
-      set(state`bin.isLoading`, true),
-      set(state`bin.isUpdatingSandbox`, true),
+      set(state`app.isLoading`, true),
+      set(state`sandbox.isUpdatingSandbox`, true),
       value(string`bins.${props`binKey`}`), {
         success: [
           when(props`value`), {
             true: [
-              set(state`bin.currentBinKey`, props`binKey`),
+              set(state`app.currentBinKey`, props`binKey`),
               setCurrentBin,
               forceCodeUpdate,
               whenLive, {

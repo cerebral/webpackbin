@@ -1,3 +1,4 @@
+import {createNewBin} from 'utils'
 import clicked from './signals/clicked'
 import routed from './signals/routed'
 import binRouted from './signals/binRouted'
@@ -10,20 +11,20 @@ import githubSignUpClicked from './signals/githubSignUpClicked'
 import githubConvertClicked from './signals/githubConvertClicked'
 import githubSignInAborted from './signals/githubSignInAborted'
 import signOutClicked from './signals/signOutClicked'
-import myBinsClicked from './signals/myBinsClicked'
-import myBinsTitleAborted from './signals/myBinsTitleAborted'
-import myBinsTitleChanged from './signals/myBinsTitleChanged'
-import myBinsTitleSubmitted from './signals/myBinsTitleSubmitted'
-import myBinClicked from './signals/myBinClicked'
+import saveClicked from './signals/saveClicked'
+import newBinClicked from './signals/newBinClicked'
+import copyBinClicked from './signals/copyBinClicked'
+import preventWhenLiveParticipant from './factories/preventWhenLiveParticipant'
 
 export default {
   state: {
     isAuthenticating: true,
     snackbar: null,
+    currentBinKey: null,
+    currentBin: createNewBin(),
+    isLoading: true,
+    isSaving: false,
     user: null,
-    myBins: {},
-    showMyBinsTitleInput: false,
-    myBinsTitle: '',
     isMainMenuOpen: false,
     isProfileMenuOpen: false,
     showGithubSignIn: false,
@@ -32,6 +33,7 @@ export default {
   signals: {
     routed: authenticate(routed),
     binRouted: authenticate(binRouted),
+    saveClicked: preventWhenLiveParticipant(saveClicked),
     clicked,
     mainMenuButtonClicked,
     profileClicked,
@@ -41,10 +43,7 @@ export default {
     githubConvertClicked,
     githubSignInAborted,
     signOutClicked,
-    myBinsClicked,
-    myBinsTitleAborted,
-    myBinsTitleChanged,
-    myBinsTitleSubmitted,
-    myBinClicked
+    newBinClicked,
+    copyBinClicked
   }
 }
