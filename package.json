@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "start": "webpack-dev-server --content-base public/",
-    "deploy": "NODE_ENV=production webpack && firebase deploy --project $WEBPACKBIN_ENV --public public --only \"hosting,database\"",
+    "deploy:test": "NODE_ENV=production WEBPACKBIN_ENV=webpackbin-test webpack && firebase deploy --project webpackbin-test --public public --only \"hosting,database\"",
+    "deploy:prod": "NODE_ENV=production WEBPACKBIN_ENV=webpackbin-prod webpack && firebase deploy --project webpackbin-prod --public public --only \"hosting,database\"",
     "rules": "firebase deploy --project webpackbin-test --public public --only \"database\""
   },
   "dependencies": {
