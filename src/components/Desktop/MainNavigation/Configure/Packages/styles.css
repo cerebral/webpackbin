@@ -4,4 +4,6 @@
   margin: 10px 0;
 }
 
-.listItem {}
+.listItem {
+  margin-bottom: 5px;
+}

@@ -28,7 +28,8 @@ export default {
     isMainMenuOpen: false,
     isProfileMenuOpen: false,
     showGithubSignIn: false,
-    profileMenuPage: null
+    profileMenuPage: null,
+    mainMenuPage: null
   },
   signals: {
     routed: authenticate(routed),

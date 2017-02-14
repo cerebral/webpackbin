@@ -14,6 +14,7 @@ import sandbox from './modules/sandbox'
 import settings from './modules/settings'
 import log from './modules/log'
 import files from './modules/files'
+import boilerplates from './modules/boilerplates'
 import configure from './modules/configure'
 import live from './modules/live'
 import myBins from './modules/myBins'
@@ -35,6 +36,7 @@ const controller = Controller({
     code,
     log,
     files,
+    boilerplates,
     live,
     configure,
     myBins,

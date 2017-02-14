@@ -112,6 +112,24 @@ export default connect({
         <div className={styles.section}>
           <Checkbox
             disabled={!config}
+            checked={config && config.inferno}
+            onChange={() => {
+              loaderConfigChanged({
+                loaderName: 'babel',
+                configName: 'inferno',
+                configValue: !config.inferno
+              })
+            }}
+          >
+            Inferno
+          </Checkbox>
+          <Description>
+            Inferno JSX support
+          </Description>
+        </div>
+        <div className={styles.section}>
+          <Checkbox
+            disabled={!config}
             checked={config && typeof config.jsx === 'string'}
             onChange={() => {
               loaderConfigChanged({

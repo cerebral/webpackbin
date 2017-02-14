@@ -21,7 +21,7 @@ export default connect({
   signOutClicked: signal`app.signOutClicked`,
   lintToggled: signal`settings.lintToggled`,
   settingsClicked: signal`settings.settingsClicked`,
-  myBinsClicked: signal`settings.myBinsClicked`
+  myBinsClicked: signal`myBins.myBinsClicked`
 },
   function ProfileMenu ({
     isProfileMenuOpen,

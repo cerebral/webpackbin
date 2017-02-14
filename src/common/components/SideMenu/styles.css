@@ -32,6 +32,15 @@
 
 .menu {
   flex: 0 0 300px;
+}
+
+.leftMenu {
+  composes: menu;
+  border-left: 1px solid #eb1e64;
+}
+
+.rightMenu {
+  composes: menu;
   border-right: 1px solid #eb1e64;
 }
 

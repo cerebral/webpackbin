@@ -1,3 +1,4 @@
+import addMyBinsClicked from './signals/addMyBinsClicked'
 import myBinsClicked from './signals/myBinsClicked'
 import myBinsTitleAborted from './signals/myBinsTitleAborted'
 import myBinsTitleChanged from './signals/myBinsTitleChanged'
@@ -11,10 +12,11 @@ export default {
     newMyBinTitle: ''
   },
   signals: {
-    myBinsClicked,
+    addMyBinsClicked,
     myBinsTitleAborted,
     myBinsTitleChanged,
     myBinsTitleSubmitted,
-    myBinClicked
+    myBinClicked,
+    myBinsClicked
   }
 }

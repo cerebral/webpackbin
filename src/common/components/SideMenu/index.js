@@ -32,12 +32,23 @@ class SideMenu extends Component {
         }}
         onClick={(e) => this.onBoxClick(e)}
       >
-        <div className={styles.menu}>
+        {
+          side === 'left' ? (
+            <div className={styles.page}>
+              {Page ? <Page /> : null}
+            </div>
+          ) : null
+        }
+        <div className={styles[side + 'Menu']}>
           {this.props.children}
         </div>
-        <div className={styles.page}>
-          {Page ? <Page /> : null}
-        </div>
+        {
+          side === 'right' ? (
+            <div className={styles.page}>
+              {Page ? <Page /> : null}
+            </div>
+          ) : null
+        }
       </div>
     )
   }

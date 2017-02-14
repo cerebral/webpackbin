@@ -57,7 +57,8 @@ export default connect({
                       packageToggled({packageName})
                     }}
                   >
-                    {packageName}@{packages[packageName]}
+                    {packageName}
+                    <Description>{packages[packageName]}</Description>
                   </Checkbox>
                 </li>
               )

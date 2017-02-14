@@ -15,7 +15,7 @@ export default connect({
   currentBinKey: state`app.currentBinKey`,
   showNewTitleInput: state`myBins.showNewTitleInput`,
   newMyBinTitle: state`myBins.newMyBinTitle`,
-  myBinsClicked: signal`myBins.myBinsClicked`,
+  addMyBinsClicked: signal`myBins.addMyBinsClicked`,
   myBinsTitleChanged: signal`myBins.myBinsTitleChanged`,
   myBinsTitleSubmitted: signal`myBins.myBinsTitleSubmitted`,
   myBinsTitleAborted: signal`myBins.myBinsTitleAborted`

@@ -25,6 +25,9 @@
         ".read": "auth.uid === $userKey",
         ".write": "auth.uid === $userKey"
       }
+    },
+    "boilerplates": {
+      ".read": true
     }
   }
 }

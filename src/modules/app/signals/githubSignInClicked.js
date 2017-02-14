@@ -1,7 +1,8 @@
 import {set} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
+import appClicked from './clicked'
 
 export default [
-  set(state`app.isProfileMenuOpen`, false),
+  ...appClicked,
   set(state`app.showGithubSignIn`, true)
 ]

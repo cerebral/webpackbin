@@ -4,21 +4,26 @@ import {state, signal} from 'cerebral/tags'
 import MenuItem from 'common/components/MenuItem'
 import SideMenu from 'common/components/SideMenu'
 import Icon from 'common/components/Icon'
+import Boilerplates from './Boilerplates'
 import styles from './styles.css'
 
 export default connect({
   currentBinKey: state`app.currentBinKey`,
   isMainMenuOpen: state`app.isMainMenuOpen`,
+  page: state`app.mainMenuPage`,
   mainMenuButtonClicked: signal`app.mainMenuButtonClicked`,
   newBinClicked: signal`app.newBinClicked`,
-  copyBinClicked: signal`app.copyBinClicked`
+  copyBinClicked: signal`app.copyBinClicked`,
+  boilerplatesClicked: signal`boilerplates.boilerplatesClicked`
 },
   function MainMenu ({
     isMainMenuOpen,
+    page,
     currentBinKey,
     newBinClicked,
     mainMenuButtonClicked,
-    copyBinClicked
+    copyBinClicked,
+    boilerplatesClicked
   }) {
     return (
       <div>
@@ -34,6 +39,11 @@ export default connect({
         <SideMenu
           side='left'
           show={isMainMenuOpen}
+          page={page}
+          pages={[{
+            name: 'boilerplates',
+            content: Boilerplates
+          }]}
         >
           <div className={styles.logoWrapper}>
             <div className={styles.logo} />
@@ -50,6 +60,13 @@ export default connect({
             onClick={() => copyBinClicked()}
             >
             Copy bin
+          </MenuItem>
+          <MenuItem
+            active={page === 'boilerplates'}
+            icon='boilerplates'
+            onClick={() => boilerplatesClicked()}
+            >
+            Boilerplates
           </MenuItem>
         </SideMenu>
       </div>

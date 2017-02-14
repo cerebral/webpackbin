@@ -1,8 +1,7 @@
 import {redirect} from 'cerebral-router'
-import {set} from 'cerebral/operators'
-import {state} from 'cerebral/tags'
+import appClicked from './clicked'
 
 export default [
-  set(state`app.isMainMenuOpen`, false),
+  ...appClicked,
   redirect('/')
 ]
