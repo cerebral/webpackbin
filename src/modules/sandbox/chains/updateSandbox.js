@@ -12,7 +12,11 @@ export default [
   [
     debounce(500), {
       continue: [
-        when(state`sandbox.isLoadingSandbox`), {
+        when(
+          state`sandbox.isLoadingSandbox`,
+          state`sandbox.isUpdatingSandbox`,
+          (isLoadingSandbox, isUpdatingSandbox) => isLoadingSandbox || isUpdatingSandbox
+        ), {
           true: [
             set(state`sandbox.showIsLoadingSandbox`, true)
           ],

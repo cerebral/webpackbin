@@ -61,7 +61,8 @@ let plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify(nodeEnv)
+      NODE_ENV: JSON.stringify(nodeEnv),
+      WEBPACKBIN_ENV: JSON.stringify(webpackbinEnv)
     }
   })
 ];
