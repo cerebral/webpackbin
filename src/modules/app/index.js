@@ -35,7 +35,7 @@ export default {
     routed: authenticate(routed),
     binRouted: authenticate(binRouted),
     saveClicked: preventWhenLiveParticipant(saveClicked),
-    clicked,
+    clicked: preventWhenLiveParticipant(clicked),
     mainMenuButtonClicked,
     profileClicked,
     createBinClicked,

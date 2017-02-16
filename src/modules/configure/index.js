@@ -22,18 +22,16 @@ export default {
       title: 'Typescript with CSS',
       description: 'Typescript entry point with CSS',
       template: 'typescriptWithCss'
-    }],
-    packageQuery: '',
-    currentLoader: 'babel'
+    }]
   },
   signals: {
     configurationClicked: preventWhenLiveParticipant(configurationClicked),
-    quickstartClicked,
-    packageQueryChanged,
-    packageQuerySubmitted,
-    packageToggled,
-    loaderSelected,
-    loaderToggled,
-    loaderConfigChanged
+    quickstartClicked: preventWhenLiveParticipant(quickstartClicked),
+    packageQueryChanged: preventWhenLiveParticipant(packageQueryChanged),
+    packageQuerySubmitted: preventWhenLiveParticipant(packageQuerySubmitted),
+    packageToggled: preventWhenLiveParticipant(packageToggled),
+    loaderSelected: preventWhenLiveParticipant(loaderSelected),
+    loaderToggled: preventWhenLiveParticipant(loaderToggled),
+    loaderConfigChanged: preventWhenLiveParticipant(loaderConfigChanged)
   }
 }

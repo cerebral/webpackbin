@@ -51,7 +51,7 @@ export default connect({
         {showIsPackaging ? (
           <Loader>
             It seems that your combination of packages is new. Please hold on until the bundle is made available on the CDN.
-            {process.env.WEBPACKBIN_ENV !== 'webpackbin-prod' ? 'You are also located on test server, meaning that they might be sleeping, it takes a few seconds to boot up!' : null}
+            {process.env.WEBPACKBIN_ENV !== 'webpackbin-prod' ? 'You are also located on test server, meaning that the services might be sleeping. It takes a few seconds to boot up!' : null}
           </Loader>
         ) : null}
         {isLive ? <LiveParticipants /> : null}

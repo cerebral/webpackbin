@@ -1,10 +1,13 @@
 import whenLiveParticipant from 'modules/app/actions/whenLiveParticipant'
 import updateSandbox from 'modules/sandbox/chains/updateSandbox'
-import {set, equals} from 'cerebral/operators'
+import {set, equals, when} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
 import setPackagesFromLive from '../actions/setPackagesFromLive'
 import setLoadersFromLive from '../actions/setLoadersFromLive'
+import forceCodeUpdate from 'modules/code/actions/forceCodeUpdate'
 import resetChangedFiles from 'modules/files/actions/resetChangedFiles'
+import stopListeningToBinUpdates from '../actions/stopListeningToBinUpdates'
+import {cancelOnDisconnect} from 'cerebral-provider-firebase'
 
 export default [
   whenLiveParticipant, {
@@ -34,6 +37,15 @@ export default [
         showNewFileInput: [
           set(state`app.currentBin.showNewFileInput`, props`value`)
         ],
+        showConfiguration: [
+          set(state`app.currentBin.showConfiguration`, props`value`)
+        ],
+        currentLoader: [
+          set(state`app.currentBin.currentLoader`, props`value`)
+        ],
+        packageQuery: [
+          set(state`app.currentBin.packageQuery`, props`value`)
+        ],
         packages: [
           setPackagesFromLive
         ],
@@ -42,7 +54,8 @@ export default [
         ],
         files: [
           resetChangedFiles,
-          set(state`app.currentBin.files`, props`value`)
+          set(state`app.currentBin.files`, props`value`),
+          forceCodeUpdate
         ],
         selectedLogPath: [
           set(state`app.currentBin.selectedLogPath`, props`value`)
@@ -52,6 +65,16 @@ export default [
         ],
         participants: [
           set(state`app.currentBin.participants`, props`value`)
+        ],
+        isLive: [
+          when(props`value`), {
+            true: [],
+            false: [
+              set(state`app.currentBin.isLive`, false),
+              stopListeningToBinUpdates,
+              cancelOnDisconnect
+            ]
+          }
         ],
         otherwise: []
       }

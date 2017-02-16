@@ -20,6 +20,8 @@ export function createNewBin (owner) {
     lastSavedDatetime: null,
     showConfiguration: false,
     selectedLogPath: [],
+    currentLoader: 'babel',
+    packageQuery: '',
     showLog: false,
     showFullLog: false,
     changedFiles: {},
@@ -39,4 +41,8 @@ export function createNewBin (owner) {
       }
     }]
   }
+}
+
+export function createAnonymousUsername () {
+  return String.fromCharCode(Math.floor(Math.random() * (90 - 65 + 1)) + 65) + '-' + String(Date.now()).substr(9, 4)
 }

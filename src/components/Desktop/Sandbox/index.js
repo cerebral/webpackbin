@@ -11,7 +11,8 @@ export default connect({
   lastSavedDatetime: state`app.currentBin.lastSavedDatetime`,
   sandboxLoaded: signal`sandbox.sandboxLoaded`,
   appClicked: signal`app.clicked`,
-  binLogged: signal`sandbox.binLogged`
+  binLogged: signal`sandbox.binLogged`,
+  saveClicked: signal`app.saveClicked`
 },
   class Sandbox extends Component {
     constructor (props) {
@@ -36,8 +37,13 @@ export default connect({
           log: event.data.value
         })
       }
+
       if (event.data.type === 'click') {
         this.props.appClicked()
+      }
+
+      if (event.data.type === 'save') {
+        this.props.saveClicked()
       }
     }
     render () {

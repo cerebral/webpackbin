@@ -28,7 +28,7 @@ const loaderComponents = {
 }
 
 export default connect({
-  currentLoader: state`configure.currentLoader`,
+  currentLoader: state`app.currentBin.currentLoader`,
   loaders: state`app.currentBin.loaders`,
   loaderSelected: signal`configure.loaderSelected`,
   loaderToggled: signal`configure.loaderToggled`

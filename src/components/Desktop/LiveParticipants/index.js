@@ -30,7 +30,9 @@ export default connect({
               key={index}
               className={classnames(styles.user, {
                 [styles.active]: isActive,
-                [styles.owner]: isOwner
+                [styles.owner]: isOwner,
+                [styles.participantIsOwner]: participantKey === ownerKey,
+                [styles.others]: !isOwner && participantKey !== ownerKey && participantKey !== userKey
               })}
               onClick={isOwner ? () => participantClicked({
                 participantKey

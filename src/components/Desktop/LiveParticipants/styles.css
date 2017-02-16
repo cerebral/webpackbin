@@ -5,6 +5,7 @@
   right: 10px;
   z-index: 99999;
   color: #FFF;
+  border: 1px solid transparent;
 }
 
 .user {
@@ -26,4 +27,13 @@
 
 .owner {
   cursor: pointer;
+}
+
+.participantIsOwner {
+  border: 1px solid #eb1e64;
+}
+
+.others {
+  cursor: pointer;
+  opacity: 0.8;
 }

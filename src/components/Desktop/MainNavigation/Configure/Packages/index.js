@@ -8,7 +8,7 @@ import Checkbox from 'common/components/Checkbox'
 import Description from 'common/components/Description'
 
 export default connect({
-  query: state`configure.packageQuery`,
+  query: state`app.currentBin.packageQuery`,
   packages: state`app.currentBin.packages`,
   isQueryingPackage: state`configure.isQueryingPackage`,
   packageQueryChanged: signal`configure.packageQueryChanged`,

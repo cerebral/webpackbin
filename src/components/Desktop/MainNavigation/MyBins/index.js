@@ -36,7 +36,7 @@ export default connect({
         currentBinKey,
         showNewTitleInput,
         newMyBinTitle,
-        myBinsClicked,
+        addMyBinsClicked,
         myBinsTitleChanged,
         myBinsTitleSubmitted,
         myBinsTitleAborted
@@ -63,7 +63,7 @@ export default connect({
           <IconButton
             active={isInMyBins}
             disabled={liveStatus.isParticipant || !currentBinKey}
-            onClick={() => myBinsClicked()}
+            onClick={() => addMyBinsClicked()}
             icon='myBins'
           >
             My bins
