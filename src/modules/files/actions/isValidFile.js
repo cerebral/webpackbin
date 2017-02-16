@@ -11,7 +11,8 @@ const validFileNames = [
   '.coffee',
   '.less',
   '.scss',
-  '.vue'
+  '.vue',
+  '.pug'
 ]
 
 function isValidFile ({state, path}) {

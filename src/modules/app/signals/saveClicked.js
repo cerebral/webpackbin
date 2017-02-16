@@ -12,7 +12,8 @@ export default [
   when(
     state`code.isLinting`,
     state`settings.lint`,
-    (isLinting, lint) => isLinting && lint
+    state`code.hasLinter`,
+    (isLinting, lint, hasLinter) => isLinting && lint && hasLinter
   ), {
     true: [
       set(state`code.saveWhenDoneLinting`, true)

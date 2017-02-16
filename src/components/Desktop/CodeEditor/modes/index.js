@@ -2,43 +2,65 @@ import path from 'path'
 import types from './types'
 const loadedModes = []
 
+const JSX = {type: 'jsx', mode: 'jsx'}
+const CSS = {type: 'css', mode: 'css'}
+const TYPESCRIPT = {type: 'typescript', mode: 'text/typescript'}
+const COFFEE = {type: 'coffeescript', mode: 'text/x-coffeescript'}
+const LESS = {type: 'less', mode: 'text/x-less'}
+const SASS = {type: 'sass', mode: 'text/x-sass'}
+const HTML = {type: 'html', mode: 'htmlmixed'}
+const _JSON = {type: 'json', mode: 'application/json'}
+const HANDLEBARS = {type: 'handlebars', mode: {name: 'handlebars', base: 'text/html'}}
+const PUG = {type: 'pug', mode: {name: 'pug', alignCDATA: true}}
+
 export default {
   get (file) {
     if (!file) {
-      return 'jsx'
+      return JSX
     }
 
     const ext = path.extname(file.name)
 
     switch (ext) {
       case '.js':
-        return 'jsx'
+        return JSX
       case '.css':
-        return 'css'
+        return CSS
       case '.ts':
-        return 'text/typescript'
+        return TYPESCRIPT
       case '.tsx':
-        return 'text/typescript'
+        return TYPESCRIPT
       case '.coffee':
-        return 'text/x-coffeescript'
+        return COFFEE
       case '.less':
-        return 'text/x-less'
+        return LESS
       case '.scss':
-        return 'text/x-sass'
+        return SASS
       case '.html':
-        return 'htmlmixed'
+        return HTML
       case '.vue':
-        return 'htmlmixed'
+        return HTML
       case '.json':
-        return 'application/json'
+        return _JSON
       case '.handlebars':
-        return {name: 'handlebars', base: 'text/html'}
+        return HANDLEBARS
+      case '.pug':
+        return PUG
       default:
         return false
     }
   },
-  preLoadMode (mode) {
-    return types[mode]()
+  preLoadMode (fileName, lint) {
+    const mode = this.get({name: fileName})
+
+    return types[mode.type](lint).then(function (linter) {
+      loadedModes.push({
+        mode: mode.mode,
+        lint
+      })
+
+      return linter
+    })
   },
   isLoaded (file, lint) {
     const mode = this.get(file)
@@ -48,7 +70,7 @@ export default {
         return isLoaded
       }
 
-      return loadedMode.mode === mode && loadedMode.lint === lint
+      return loadedMode.mode === mode.mode && loadedMode.lint === lint
     }, false)
   },
   set (file, lint) {
@@ -58,17 +80,17 @@ export default {
       return
     }
 
-    if (loadedModes.indexOf(mode) === -1) {
-      return types[mode](lint).then(function (linter) {
-        loadedModes.push({
-          mode,
-          lint
-        })
-
-        return linter
-      })
+    if (this.isLoaded(mode)) {
+      return types[mode.type]()
     }
 
-    return types[mode]()
+    return types[mode.type](lint).then(function (linter) {
+      loadedModes.push({
+        mode: mode.mode,
+        lint
+      })
+
+      return linter
+    })
   }
 }

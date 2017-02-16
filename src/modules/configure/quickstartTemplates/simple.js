@@ -1,5 +1,10 @@
 export default {
   selectedFileIndex: 1,
+  loaders: {
+    babel: {
+      es2015: true
+    }
+  },
   files: [{
     name: 'index.html',
     content: `<!doctype html>

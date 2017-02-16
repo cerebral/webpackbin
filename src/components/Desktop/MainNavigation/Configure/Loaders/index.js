@@ -11,7 +11,7 @@ import TypescriptLoader from './TypescriptLoader'
 import CoffeeScriptLoader from './CoffeeScriptLoader'
 import RawLoader from './RawLoader'
 import JsonLoader from './JsonLoader'
-import JadeLoader from './JadeLoader'
+import PugLoader from './PugLoader'
 import HandlebarsLoader from './HandlebarsLoader'
 import VueLoader from './VueLoader'
 
@@ -22,7 +22,7 @@ const loaderComponents = {
   coffeescript: CoffeeScriptLoader,
   raw: RawLoader,
   json: JsonLoader,
-  jade: JadeLoader,
+  pug: PugLoader,
   handlebars: HandlebarsLoader,
   vue: VueLoader
 }

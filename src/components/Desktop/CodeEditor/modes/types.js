@@ -44,19 +44,24 @@ export default {
         return null
       })
   },
-  'text/typescript' () {
+  typescript () {
     return import('codemirror/mode/javascript/javascript.js')
       .then(function () {
         return false
       })
   },
-  'text/x-coffeescript' (lint) {
+  coffeescript (lint) {
     if (lint) {
-      return Promise.all([
-        import('codemirror/mode/coffeescript/coffeescript.js'),
-        import('./linters/coffee'),
-        import('coffeelint')
-      ])
+      return import('./linters/coffee/coffeescript')
+        .then((module) => {
+          window.CoffeeScript = module
+
+          return Promise.all([
+            import('codemirror/mode/coffeescript/coffeescript.js'),
+            import('./linters/coffee'),
+            import('coffeelint')
+          ])
+        })
         .then(function (modules) {
           const loader = modules[1];
           const linter = modules[2]
@@ -72,19 +77,19 @@ export default {
         return null
       })
   },
-  'text/x-less' () {
+  less () {
     return import('codemirror/mode/css/css.js')
       .then(function () {
         return false
       })
   },
-  'text/x-sass' () {
+  sass () {
     return import('codemirror/mode/sass/sass.js')
       .then(function () {
         return false
       })
   },
-  htmlmixed (lint) {
+  html (lint) {
     if (lint) {
       return Promise.all([
         import('./linters/html'),
@@ -110,7 +115,7 @@ export default {
         return null
       })
   },
-  'application/json' (lint) {
+  json (lint) {
     if (lint) {
       return Promise.all([
         import('./linters/json'),
@@ -134,6 +139,12 @@ export default {
   },
   handlebars () {
     return import('codemirror/mode/handlebars/handlebars.js')
+      .then(function () {
+        return false
+      })
+  },
+  pug () {
+    return import('codemirror/mode/pug/pug.js')
       .then(function () {
         return false
       })

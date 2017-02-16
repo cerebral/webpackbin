@@ -10,7 +10,8 @@ export default {
     isLinting: false,
     lastForceCodeUpdate: null,
     saveWhenDoneLinting: false,
-    isValid: true
+    isValid: true,
+    hasLinter: false
   },
   signals: {
     codeChanged: preventWhenLiveParticipant(codeChanged),

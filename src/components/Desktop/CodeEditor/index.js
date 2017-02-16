@@ -53,7 +53,7 @@ export default connect({
       })
       this.codemirror.on('change', this.onCodeChange)
       this.codemirror.on('cursorActivity', this.onCursorChange)
-      return modes.preLoadMode('jsx')
+      return modes.preLoadMode('main.js', this.props.lint)
         .then(() => {
           this.setModeAndLinter()
         })
@@ -141,13 +141,16 @@ export default connect({
               getAnnotations: linter,
               onUpdateLinting: this.onUpdateLinting
             })
+          } else {
+            this.codemirror.setOption('lint', false)
           }
-          this.codemirror.setOption('mode', modes.get(this.props.file))
+          this.codemirror.setOption('mode', modes.get(this.props.file).mode)
           this.setEditorValue(this.codemirror.getValue())
 
-          if (!modeAlreadyLoaded) {
-            this.props.modeLoaded()
-          }
+          this.props.modeLoaded({
+            modeAlreadyLoaded,
+            hasLinter: linter !== false
+          })
         })
     }
     onUpdateLinting (errors) {
