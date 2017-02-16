@@ -1,6 +1,6 @@
 import {set} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
-import updateFirebasebin from '../factories/updateFirebasebin'
+import updateFirebaseBin from '../factories/updateFirebaseBin'
 import whenLiveCurrentUser from '../actions/whenLiveCurrentUser'
 
 export default [
@@ -11,7 +11,7 @@ export default [
   set(state`app.mainMenuPage`, null),
   whenLiveCurrentUser, {
     true: [
-      ...updateFirebasebin('showConfiguration')
+      ...updateFirebaseBin('showConfiguration')
     ],
     false: []
   }

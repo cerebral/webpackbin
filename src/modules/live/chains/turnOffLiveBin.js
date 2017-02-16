@@ -1,8 +1,8 @@
 import {set} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
-import updateFirebasebin from 'modules/app/factories/updateFirebasebin'
+import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 
 export default [
   set(state`app.currentBin.isLive`, false),
-  ...updateFirebasebin('isLive')
+  ...updateFirebaseBin('isLive')
 ]

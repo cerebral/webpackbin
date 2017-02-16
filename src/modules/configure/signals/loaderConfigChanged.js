@@ -1,12 +1,12 @@
 import changeLoaderConfig from '../actions/changeLoaderConfig'
-import updateFirebasebin from 'modules/app/factories/updateFirebasebin'
+import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 import whenLiveCurrentUser from 'modules/app/actions/whenLiveCurrentUser'
 
 export default [
   changeLoaderConfig,
   whenLiveCurrentUser, {
     true: [
-      ...updateFirebasebin('loaders')
+      ...updateFirebaseBin('loaders')
     ],
     false: []
   }

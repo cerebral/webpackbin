@@ -2,7 +2,7 @@ import getNpmPackage from '../actions/getNpmPackage'
 import {set} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
-import updateFirebasebin from 'modules/app/factories/updateFirebasebin'
+import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 import whenLiveCurrentUser from 'modules/app/actions/whenLiveCurrentUser'
 
 export default [
@@ -13,7 +13,7 @@ export default [
       set(state`app.currentBin.packageQuery`, ''),
       whenLiveCurrentUser, {
         true: [
-          ...updateFirebasebin(['packages', 'packageQuery'])
+          ...updateFirebaseBin(['packages', 'packageQuery'])
         ],
         false: []
       }
