@@ -27,6 +27,7 @@ export default connect({
         disabled={!liveStatus.isAdmin || liveStatus.isParticipant}
         show={showConfiguration}
         icon='npm'
+        right
         label='Configure'
         onClick={(event) => {
           event.stopPropagation()

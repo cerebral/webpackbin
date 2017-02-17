@@ -20,6 +20,7 @@ function addFile ({state}) {
   }
 
   state.push('app.currentBin.files', newFile)
+  state.set(`app.currentBin.changedFiles.${state.get('app.currentBin.files').length - 1}`, true)
 }
 
 export default addFile

@@ -25,7 +25,7 @@
   display: block;
 }
 
-.button[disabled] {
+.button[disabled], .disabledButton {
   opacity: 0.5;
 }
 
