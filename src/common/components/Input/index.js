@@ -17,7 +17,7 @@ function Input (props) {
           props.onCancel()
         }
       }}
-      className={classnames(styles.input, {
+      className={classnames(styles.input, props.className, {
         [styles.dark]: Boolean(props.dark)
       })}
       autoFocus={props.autoFocus}

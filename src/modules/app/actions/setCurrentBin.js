@@ -5,6 +5,7 @@ function setCurrentBin ({props, state}) {
     loaders: props.value.loaders || {},
     changedFiles: props.value.changedFiles || {}
   }))
+  state.set('sandbox.hash', null)
 }
 
 export default setCurrentBin
