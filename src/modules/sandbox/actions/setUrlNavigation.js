@@ -1,7 +1,7 @@
 function setHashNavigation ({state}) {
   state.set('sandbox.lastNavigation', {
-    type: 'hash',
-    value: state.get('sandbox.hash')
+    type: 'url',
+    value: state.get('sandbox.url')
   })
 }
 

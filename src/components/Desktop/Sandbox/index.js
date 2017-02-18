@@ -9,14 +9,14 @@ import Addressbar from './Addressbar'
 
 export default connect({
   showLog: state`app.currentBin.showLog`,
-  hash: state`sandbox.hash`,
+  url: state`sandbox.url`,
   lastSavedDatetime: state`app.currentBin.lastSavedDatetime`,
   lastNavigation: state`sandbox.lastNavigation`,
   sandboxLoaded: signal`sandbox.sandboxLoaded`,
   appClicked: signal`app.clicked`,
   binLogged: signal`sandbox.binLogged`,
   saveClicked: signal`app.saveClicked`,
-  hashUpdated: signal`sandbox.hashUpdated`
+  urlUpdated: signal`sandbox.urlUpdated`
 },
   class Sandbox extends Component {
     constructor (props) {
@@ -53,23 +53,23 @@ export default connect({
         this.props.saveClicked()
       }
 
-      if (event.data.type === 'hash') {
-        this.props.hashUpdated({
-          hash: event.data.value
+      if (event.data.type === 'url') {
+        this.props.urlUpdated({
+          url: event.data.value
         })
       }
     }
     render () {
       return (
         <div className={styles.wrapper}>
-          {this.props.hash ? <Addressbar /> : null}
+          {this.props.url ? <Addressbar /> : null}
           {this.props.lastSavedDatetime ? (
             <iframe
               ref={(node) => {
                 this.iframe = node
               }}
               src={config.sandboxServiceUrl}
-              style={{height: this.props.hash ? 'calc(100% - 30px)' : '100%'}}
+              style={{height: this.props.url ? 'calc(100% - 30px)' : '100%'}}
             />
           ) : null}
           {this.props.showLog ? <Log /> : null}

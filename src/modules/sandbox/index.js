@@ -1,8 +1,8 @@
 import sandboxLoaded from './signals/sandboxLoaded'
 import binLogged from './signals/binLogged'
-import hashUpdated from './signals/hashUpdated'
-import hashChanged from './signals/hashChanged'
-import hashSubmitted from './signals/hashSubmitted'
+import urlUpdated from './signals/urlUpdated'
+import urlChanged from './signals/urlChanged'
+import urlSubmitted from './signals/urlSubmitted'
 import historyChanged from './signals/historyChanged'
 
 export default {
@@ -11,15 +11,15 @@ export default {
     isLoadingSandbox: false,
     showIsPackaging: false,
     showIsLoadingSandbox: false,
-    hash: null,
+    url: null,
     lastNavigation: null
   },
   signals: {
     sandboxLoaded,
     binLogged,
-    hashUpdated,
-    hashChanged,
-    hashSubmitted,
+    urlUpdated,
+    urlChanged,
+    urlSubmitted,
     historyChanged
   }
 }

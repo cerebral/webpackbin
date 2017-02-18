@@ -7,9 +7,9 @@ import icons from 'common/icons.css'
 import Input from 'common/components/Input'
 
 export default connect({
-  hash: state`sandbox.hash`,
-  hashChanged: signal`sandbox.hashChanged`,
-  hashSubmitted: signal`sandbox.hashSubmitted`,
+  url: state`sandbox.url`,
+  urlChanged: signal`sandbox.urlChanged`,
+  urlSubmitted: signal`sandbox.urlSubmitted`,
   historyChanged: signal`sandbox.historyChanged`
 },
   function Addressbar (props) {
@@ -30,13 +30,13 @@ export default connect({
           </div>
         </div>
         <div className={styles.inputWrapper}>
-          <div>{`${config.sandboxServiceUrl}/${props.hash ? '#' : ''}`}</div>
+          <div>{config.sandboxServiceUrl}</div>
           {
-            props.hash ? (
+            props.url ? (
               <Input
-                value={props.hash.substr(1)}
-                onInput={(event) => props.hashChanged({value: '#' + event.target.value})}
-                onSubmit={props.hashSubmitted}
+                value={props.url}
+                onInput={(event) => props.urlChanged({value: event.target.value})}
+                onSubmit={props.urlSubmitted}
               />
             ) : null
           }
