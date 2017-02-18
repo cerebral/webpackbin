@@ -16,14 +16,12 @@ export default connect({
   user: state`app.user`,
   isLoading: state`app.isLoading`,
   showIsPackaging: state`sandbox.showIsPackaging`,
-  showIsLoadingSandbox: state`sandbox.showIsLoadingSandbox`,
   isLive: state`app.currentBin.isLive`
 },
   function Desktop ({
     clicked,
     user,
     showIsPackaging,
-    showIsLoadingSandbox,
     isLoading,
     isLive
   }) {
@@ -39,11 +37,6 @@ export default connect({
             <div className={styles.editorWrapper}>
               <CodeEditor />
               <Sandbox />
-              <div className={classnames(styles.iframeLoader, {
-                [styles.iframeLoaderVisible]: showIsLoadingSandbox
-              })}>
-                Loading...
-              </div>
             </div>
           ) : null
         }

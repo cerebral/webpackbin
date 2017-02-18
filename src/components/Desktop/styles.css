@@ -6,22 +6,5 @@
 .editorWrapper {
   position: relative;
   display: flex;
-  height: 100%;
-}
-
-.iframeLoader {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  white-space: nowrap;
-  background-color: #eb1e64;
-  padding: 5px 10px;
-  border-radius: 3px;
-  opacity: 0;
-  -webkit-transition: opacity 0.1s linear 0.1s;
-  transition: opacity 0.1s linear 0.1s;
-}
-
-.iframeLoaderVisible {
-  opacity: 1;
+  height: calc(100vh - 104px);
 }

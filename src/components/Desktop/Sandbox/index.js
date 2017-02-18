@@ -1,6 +1,7 @@
 import config from 'config'
 import Inferno from 'inferno'
 import Component from 'inferno-component'
+import classnames from 'classnames'
 import {connect} from 'cerebral/inferno'
 import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'
@@ -10,6 +11,7 @@ import Addressbar from './Addressbar'
 export default connect({
   showLog: state`app.currentBin.showLog`,
   url: state`sandbox.url`,
+  showIsLoadingSandbox: state`sandbox.showIsLoadingSandbox`,
   lastSavedDatetime: state`app.currentBin.lastSavedDatetime`,
   lastNavigation: state`sandbox.lastNavigation`,
   sandboxLoaded: signal`sandbox.sandboxLoaded`,
@@ -69,10 +71,18 @@ export default connect({
                 this.iframe = node
               }}
               src={config.sandboxServiceUrl}
-              style={{height: this.props.url ? 'calc(100% - 30px)' : '100%'}}
+              style={{height: this.props.url ? 'calc(100% - 36px)' : '100%'}}
             />
           ) : null}
           {this.props.showLog ? <Log /> : null}
+          <div
+            className={classnames(styles.iframeLoader, {
+              [styles.iframeLoaderVisible]: this.props.showIsLoadingSandbox
+            })}
+            style={{top: this.props.url ? '41px' : 0}}
+          >
+            Loading...
+          </div>
         </div>
       )
     }

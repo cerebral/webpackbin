@@ -75,7 +75,6 @@ export default connect({
         this.setModeAndLinter()
         this.codemirror.getDoc().clearHistory()
         this.focusLastCursorPosition()
-        this.setEditorValue(this.props.file.content)
       }
 
       if (prevProps.vimMode !== this.props.vimMode) {
@@ -145,7 +144,7 @@ export default connect({
             this.codemirror.setOption('lint', false)
           }
           this.codemirror.setOption('mode', modes.get(this.props.file).mode)
-          this.setEditorValue(this.codemirror.getValue())
+          this.setEditorValue(this.props.file.content)
 
           this.props.modeLoaded({
             modeAlreadyLoaded,
