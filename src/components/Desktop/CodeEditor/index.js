@@ -53,10 +53,7 @@ export default connect({
       })
       this.codemirror.on('change', this.onCodeChange)
       this.codemirror.on('cursorActivity', this.onCursorChange)
-      return modes.preLoadMode('main.js', this.props.lint)
-        .then(() => {
-          this.setModeAndLinter()
-        })
+      modes.preLoadMode('main.js', this.props.lint)
     }
     componentDidUpdate (prevProps) {
       if (this.props.liveStatus.isParticipant) {
@@ -128,6 +125,7 @@ export default connect({
     }
     setModeAndLinter () {
       const modeAlreadyLoaded = modes.isLoaded(this.props.file, this.props.lint)
+      const modeToLoad = modes.get(this.props.file)
 
       if (!modeAlreadyLoaded) {
         this.props.modeLoading()
@@ -135,6 +133,11 @@ export default connect({
 
       modes.set(this.props.file, this.props.lint)
         .then((linter) => {
+          // If changed file
+          if (modeToLoad !== modes.get(this.props.file)) {
+            return
+          }
+
           if (this.props.lint) {
             this.codemirror.setOption('lint', linter === false ? false : {
               getAnnotations: linter,
