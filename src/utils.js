@@ -46,3 +46,19 @@ export function createNewBin (owner) {
 export function createAnonymousUsername () {
   return String.fromCharCode(Math.floor(Math.random() * (90 - 65 + 1)) + 65) + '-' + String(Date.now()).substr(9, 4)
 }
+
+export function decodePackages (packages) {
+  return Object.keys(packages).reduce((decodedPackages, packageKey) => {
+    decodedPackages[packageKey.replace(/,/g, '/')] = packages[packageKey]
+
+    return decodedPackages
+  }, {})
+}
+
+export function encodePackages (packages) {
+  return Object.keys(packages).reduce((encodedPackages, packageKey) => {
+    encodedPackages[packageKey.replace(/\//g, ',')] = packages[packageKey]
+
+    return encodedPackages
+  }, {})
+}

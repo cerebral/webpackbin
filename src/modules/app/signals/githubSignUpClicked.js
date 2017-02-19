@@ -2,6 +2,7 @@ import {signInWithGithub} from 'cerebral-provider-firebase'
 import {set, when} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
 import showSnackbar from '../factories/showSnackbar'
+import setUserRelatedData from '../chains/setUserRelatedData'
 
 export default [
   set(state`app.isSigningIn`, true),
@@ -16,6 +17,7 @@ export default [
           set(state`app.currentBin.owner`, state`app.user.uid`)
         ]
       },
+      ...setUserRelatedData,
       ...showSnackbar('Signed in', 5000)
     ],
     error: [

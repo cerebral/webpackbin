@@ -136,8 +136,13 @@ export default connect({
 
       modes.set(this.props.file, this.props.lint)
         .then((linter) => {
-          // If changed file
+          // If changed file during loading
           if (modeToLoad !== modes.get(this.props.file)) {
+            this.props.modeLoaded({
+              modeAlreadyLoaded,
+              hasLinter: linter !== false
+            })
+
             return
           }
 

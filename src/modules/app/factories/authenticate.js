@@ -1,9 +1,8 @@
 import showSnackbar from './showSnackbar'
-import {getUser, signInAnonymously, value} from 'cerebral-provider-firebase'
-import setSettings from 'modules/settings/actions/setSettings'
-import setMyBins from 'modules/myBins/actions/setMyBins'
+import {getUser, signInAnonymously} from 'cerebral-provider-firebase'
 import {set, when} from 'cerebral/operators'
-import {state, props, string} from 'cerebral/tags'
+import {state, props} from 'cerebral/tags'
+import setUserRelatedData from '../chains/setUserRelatedData'
 
 export default function (continueChain) {
   return [
@@ -16,24 +15,7 @@ export default function (continueChain) {
           success: [
             when(props`user`), {
               true: [
-                [
-                  value(string`settings.${props`user.uid`}`), {
-                    success: [
-                      setSettings
-                    ],
-                    error: [
-                      ...showSnackbar('Unable to load your settings', 5000, 'error')
-                    ]
-                  },
-                  value(string`myBins.${props`user.uid`}`), {
-                    success: [
-                      setMyBins
-                    ],
-                    error: [
-                      ...showSnackbar('Unable to load your bins', 5000, 'error')
-                    ]
-                  }
-                ],
+                ...setUserRelatedData,
                 set(state`app.isAuthenticating`, false),
                 set(state`app.user`, props`user`),
                 ...continueChain
