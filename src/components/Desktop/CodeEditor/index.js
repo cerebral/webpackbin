@@ -54,6 +54,9 @@ export default connect({
       this.codemirror.on('change', this.onCodeChange)
       this.codemirror.on('cursorActivity', this.onCursorChange)
       modes.preLoadMode('main.js', this.props.lint)
+        .then(() => {
+          this.setModeAndLinter()
+        })
     }
     componentDidUpdate (prevProps) {
       if (this.props.liveStatus.isParticipant) {

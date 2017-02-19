@@ -79,7 +79,7 @@ export default connect({
             className={classnames(styles.iframeLoader, {
               [styles.iframeLoaderVisible]: this.props.showIsLoadingSandbox
             })}
-            style={{top: this.props.url ? '41px' : 0}}
+            style={{top: this.props.url ? '41px' : '5px'}}
           >
             Loading...
           </div>
