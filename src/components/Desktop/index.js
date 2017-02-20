@@ -15,7 +15,6 @@ export default connect({
   clicked: signal`app.clicked`,
   user: state`app.user`,
   isLoading: state`app.isLoading`,
-  showIsPackaging: state`sandbox.showIsPackaging`,
   isLive: state`app.currentBin.isLive`
 },
   function Desktop ({
@@ -40,13 +39,7 @@ export default connect({
             </div>
           ) : null
         }
-        {!showIsPackaging && isLoading ? <Loader>Loading up the bin!</Loader> : null}
-        {showIsPackaging ? (
-          <Loader>
-            The packages bundle has either expired or is completely new. It needs to be bundled and made available on the CDN, please hold on...
-            {process.env.WEBPACKBIN_ENV !== 'webpackbin-prod' ? 'You are also located on test server, meaning that the services might be sleeping. It takes a few seconds to boot up!' : null}
-          </Loader>
-        ) : null}
+        {isLoading ? <Loader>Loading up the bin!</Loader> : null}
         {isLive ? <LiveParticipants /> : null}
         <Snackbar />
       </div>

@@ -28,7 +28,7 @@ export default function updateSandboxFactory (additionalChain = []) {
         ],
         discard: []
       },
-      debounce(2000), {
+      debounce(2500), {
         continue: [
           when(
             state`sandbox.isLoadingSandbox`,

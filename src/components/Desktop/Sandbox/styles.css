@@ -16,15 +16,19 @@
   position: absolute;
   top: 5px;
   right: 5px;
-  white-space: nowrap;
   background-color: #eb1e64;
   padding: 5px 10px;
   border-radius: 3px;
-  opacity: 0;
-  -webkit-transition: opacity 0.1s linear 0.1s;
-  transition: opacity 0.1s linear 0.1s;
+  visibility: hidden;
+  opacity: 1;
+  max-width: 250px;
 }
 
 .iframeLoaderVisible {
-  opacity: 1;
+  visibility: visible;
+}
+
+.iframeLoaderPulse {
+  animation: "pulse" 1s infinite;
+  -webkit-animation: "pulse" 1s infinite;
 }
