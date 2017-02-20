@@ -15,6 +15,7 @@ import saveClicked from './signals/saveClicked'
 import newBinClicked from './signals/newBinClicked'
 import copyBinClicked from './signals/copyBinClicked'
 import preventWhenLiveParticipant from './factories/preventWhenLiveParticipant'
+import currentBinSeenCountUpdated from './signals/currentBinSeenCountUpdated'
 
 export default {
   state: {
@@ -29,7 +30,12 @@ export default {
     isProfileMenuOpen: false,
     showGithubSignIn: false,
     profileMenuPage: null,
-    mainMenuPage: null
+    mainMenuPage: null,
+    stats: {
+      createdCount: 0,
+      seenCount: 0,
+      currentBinSeenCount: 0
+    }
   },
   signals: {
     routed: authenticate(routed),
@@ -45,6 +51,7 @@ export default {
     githubSignInAborted,
     signOutClicked,
     newBinClicked,
-    copyBinClicked
+    copyBinClicked,
+    currentBinSeenCountUpdated
   }
 }

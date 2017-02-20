@@ -2,10 +2,34 @@
   padding: 10px 0;
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
+
 .logo {
   background: url(/logo.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   height: 40px;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 0 10px;
+  opacity: 0.5;
+}
+
+.stat {
+  font-size: 14px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.stat > * {
+  margin: 0 5px;
+}
+
+.stat button {
+  font-size: 14px;
+  color: #333;
 }

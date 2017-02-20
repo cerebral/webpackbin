@@ -10,6 +10,8 @@ import stopListeningToBinUpdates from 'modules/live/actions/stopListeningToBinUp
 import {set, when} from 'cerebral/operators'
 import {state, props, string} from 'cerebral/tags'
 import {value} from 'cerebral-provider-firebase'
+import updateOpenedStats from '../actions/updateOpenedStats'
+import listenToBinStatsUpdates from '../actions/listenToBinStatsUpdates'
 
 export default [
   isCurrentBinKey(props`binKey`), {
@@ -37,17 +39,22 @@ export default [
               set(state`app.currentBinKey`, props`binKey`),
               setCurrentBin,
               forceCodeUpdate,
-              whenLive, {
-                owner: [
-                  ...connectLiveBinAsOwner
-                ],
-                participant: [
-                  ...connectLiveBin
-                ],
-                otherwise: [
-                  ...updateSandbox()
-                ]
-              }
+              [
+                listenToBinStatsUpdates,
+                whenLive, {
+                  owner: [
+                    ...connectLiveBinAsOwner
+                  ],
+                  participant: [
+                    ...connectLiveBin
+                  ],
+                  otherwise: [
+                    ...updateSandbox([
+                      updateOpenedStats
+                    ])
+                  ]
+                }
+              ]
             ],
             false: [
               ...showSnackbar('This bin does not exist anymore, sorry', 5000, 'error')

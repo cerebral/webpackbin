@@ -12,6 +12,7 @@ import binHasEntry from 'computed/binHasEntry'
 import ProfileMenu from '../ProfileMenu'
 import MainMenu from '../MainMenu'
 import MyBins from './MyBins'
+import Stats from './Stats'
 
 export default connect({
   liveStatus,
@@ -64,6 +65,7 @@ export default connect({
               Log
             </IconButton>
             <MyBins />
+            <Stats />
           </div>
           <div className={styles.flexWrapper}>
             <IconButton

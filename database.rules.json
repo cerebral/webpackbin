@@ -28,6 +28,10 @@
     },
     "boilerplates": {
       ".read": true
+    },
+    "stats": {
+      ".write": true,
+      ".read": true
     }
   }
 }

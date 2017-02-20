@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  opacity: 0.5;
+  align-items: center;
+}
+
+.wrapper > * {
+  margin: 0 5px;
+}

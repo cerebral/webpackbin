@@ -9,6 +9,7 @@ import styles from './styles.css'
 
 export default connect({
   currentBinKey: state`app.currentBinKey`,
+  stats: state`app.stats`,
   isMainMenuOpen: state`app.isMainMenuOpen`,
   page: state`app.mainMenuPage`,
   mainMenuButtonClicked: signal`app.mainMenuButtonClicked`,
@@ -18,6 +19,7 @@ export default connect({
 },
   function MainMenu ({
     isMainMenuOpen,
+    stats,
     page,
     currentBinKey,
     newBinClicked,
@@ -47,6 +49,16 @@ export default connect({
         >
           <div className={styles.logoWrapper}>
             <div className={styles.logo} />
+            <div className={styles.stats}>
+              <div className={styles.stat}>
+                <Icon icon='eye' />
+                {stats.seenCount} {stats.seenCount === 1 ? ' bin' : ' bins'} seen
+              </div>
+              <div className={styles.stat}>
+                <Icon icon='newBin' />
+                {stats.createdCount} {stats.createdCount === 1 ? ' bin' : ' bins'} created
+              </div>
+            </div>
           </div>
           <MenuItem
             icon='newBin'
