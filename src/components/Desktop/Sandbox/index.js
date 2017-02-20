@@ -11,6 +11,7 @@ import Addressbar from './Addressbar'
 export default connect({
   showLog: state`app.currentBin.showLog`,
   url: state`sandbox.url`,
+  isUpdatingSandbox: state`sandbox.isUpdatingSandbox`,
   region: state`settings.region`,
   showIsLoadingSandbox: state`sandbox.showIsLoadingSandbox`,
   lastSavedDatetime: state`app.currentBin.lastSavedDatetime`,
@@ -66,7 +67,7 @@ export default connect({
       return (
         <div className={styles.wrapper}>
           {this.props.url ? <Addressbar /> : null}
-          {this.props.lastSavedDatetime ? (
+          {this.props.isUpdatingSandbox ? null : (
             <iframe
               ref={(node) => {
                 this.iframe = node
@@ -74,7 +75,7 @@ export default connect({
               src={config.sandboxServiceUrl[this.props.region]}
               style={{height: this.props.url ? 'calc(100% - 36px)' : '100%'}}
             />
-          ) : null}
+          )}
           {this.props.showLog ? <Log /> : null}
           <div
             className={classnames(styles.iframeLoader, {

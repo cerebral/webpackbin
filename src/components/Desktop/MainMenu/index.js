@@ -51,12 +51,12 @@ export default connect({
             <div className={styles.logo} />
             <div className={styles.stats}>
               <div className={styles.stat}>
-                <Icon icon='eye' />
-                {stats.seenCount} {stats.seenCount === 1 ? ' bin' : ' bins'} seen
+                <Icon icon='newBin' />
+                <strong>{stats.createdCount}</strong> created
               </div>
               <div className={styles.stat}>
-                <Icon icon='newBin' />
-                {stats.createdCount} {stats.createdCount === 1 ? ' bin' : ' bins'} created
+                <Icon icon='eye' />
+                <strong>{stats.seenCount}</strong> times seen
               </div>
             </div>
           </div>

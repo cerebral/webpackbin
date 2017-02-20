@@ -43,7 +43,7 @@ export default connect({
         {!showIsPackaging && isLoading ? <Loader>Loading up the bin!</Loader> : null}
         {showIsPackaging ? (
           <Loader>
-            It seems that your combination of packages is new. Please hold on until the bundle is made available on the CDN.
+            The packages bundle has either expired or is completely new. It needs to be bundled and made available on the CDN, please hold on...
             {process.env.WEBPACKBIN_ENV !== 'webpackbin-prod' ? 'You are also located on test server, meaning that the services might be sleeping. It takes a few seconds to boot up!' : null}
           </Loader>
         ) : null}
