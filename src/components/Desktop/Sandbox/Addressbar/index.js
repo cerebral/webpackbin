@@ -8,6 +8,7 @@ import Input from 'common/components/Input'
 
 export default connect({
   url: state`sandbox.url`,
+  region: state`settings.region`,
   urlChanged: signal`sandbox.urlChanged`,
   urlSubmitted: signal`sandbox.urlSubmitted`,
   historyChanged: signal`sandbox.historyChanged`
@@ -30,7 +31,7 @@ export default connect({
           </div>
         </div>
         <div className={styles.inputWrapper}>
-          <div>{config.sandboxServiceUrl}</div>
+          <div>{config.sandboxServiceUrl[props.region]}</div>
           {
             props.url ? (
               <Input

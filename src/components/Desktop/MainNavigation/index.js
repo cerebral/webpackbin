@@ -16,6 +16,7 @@ import MyBins from './MyBins'
 export default connect({
   liveStatus,
   binHasEntry,
+  region: state`settings.region`,
   changedFiles: state`app.currentBin.changedFiles`,
   isSaving: state`app.isSaving`,
   showLog: state`app.currentBin.showLog`,
@@ -28,6 +29,7 @@ export default connect({
   function MainNavigation ({
     liveStatus,
     binHasEntry,
+    region,
     changedFiles,
     isSaving,
     showLog,
@@ -68,7 +70,7 @@ export default connect({
               disabled={!binHasEntry || Object.keys(changedFiles).length || isSaving}
               active={liveStatus.isConnected}
               icon='zip'
-              href={`${config.sandboxServiceUrl}/project.zip`}
+              href={`${config.sandboxServiceUrl[region]}/project.zip`}
             >
               Download
             </IconButton>

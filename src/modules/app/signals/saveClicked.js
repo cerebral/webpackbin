@@ -1,4 +1,4 @@
-import updateSandbox from 'modules/sandbox/chains/updateSandbox'
+import updateSandbox from 'modules/sandbox/factories/updateSandbox'
 import updateBin from '../actions/updateBin'
 import updateLiveBin from 'modules/live/chains/updateLiveBin'
 import isOwnerOfCurrentBin from '../actions/isOwnerOfCurrentBin'
@@ -32,14 +32,14 @@ export default [
                     ],
                     false: [
                       set(state`app.isSaving`, true),
-                      updateBin, {
-                        success: [
-                          ...updateSandbox
-                        ],
-                        error: [
-                          ...showSnackbar('Could not save files', 5000, 'error')
-                        ]
-                      },
+                      ...updateSandbox([
+                        updateBin, {
+                          success: [],
+                          error: [
+                            ...showSnackbar('Could not save files', 5000, 'error')
+                          ]
+                        }
+                      ]),
                       set(state`app.isSaving`, false)
                     ]
                   }

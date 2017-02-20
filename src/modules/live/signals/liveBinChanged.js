@@ -1,5 +1,5 @@
 import whenLiveParticipant from 'modules/app/actions/whenLiveParticipant'
-import updateSandbox from 'modules/sandbox/chains/updateSandbox'
+import updateSandbox from 'modules/sandbox/factories/updateSandbox'
 import {set, equals, when} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
 import setPackagesFromLive from '../actions/setPackagesFromLive'
@@ -17,7 +17,7 @@ export default [
           set(state`app.currentBin.changedFiles`, props`value`)
         ],
         lastSavedDatetime: [
-          ...updateSandbox
+          ...updateSandbox()
         ],
         newFileIsEntry: [
           set(state`app.currentBin.newFileIsEntry`, props`value`)

@@ -1,4 +1,4 @@
-import updateSandbox from 'modules/sandbox/chains/updateSandbox'
+import updateSandbox from 'modules/sandbox/factories/updateSandbox'
 import showSnackbar from '../factories/showSnackbar'
 import whenLive from '../actions/whenLive'
 import connectLiveBin from 'modules/live/chains/connectLiveBin'
@@ -14,7 +14,7 @@ import {value} from 'cerebral-provider-firebase'
 export default [
   isCurrentBinKey(props`binKey`), {
     true: [
-      ...updateSandbox,
+      ...updateSandbox(),
       set(state`app.isLoading`, false)
     ],
     false: [
@@ -45,7 +45,7 @@ export default [
                   ...connectLiveBin
                 ],
                 otherwise: [
-                  ...updateSandbox
+                  ...updateSandbox()
                 ]
               }
             ],

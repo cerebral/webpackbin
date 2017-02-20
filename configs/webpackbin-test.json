@@ -1,5 +1,8 @@
 {
-  "sandboxServiceUrl": "https://webpack-sandbox.herokuapp.com",
+  "sandboxServiceUrl": {
+    "US": "https://webpack-sandbox.herokuapp.com",
+    "EU": "https://webpack-sandbox.herokuapp.com"
+  },
   "npmPackageQueryUrl": "https://webpack-dll.herokuapp.com/query",
   "firebaseConfig": {
     "apiKey": "AIzaSyCOXwpVZIdNxQi1aehiB1n7eN5e8SHh9WU",

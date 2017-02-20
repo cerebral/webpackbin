@@ -11,6 +11,7 @@ import Addressbar from './Addressbar'
 export default connect({
   showLog: state`app.currentBin.showLog`,
   url: state`sandbox.url`,
+  region: state`settings.region`,
   showIsLoadingSandbox: state`sandbox.showIsLoadingSandbox`,
   lastSavedDatetime: state`app.currentBin.lastSavedDatetime`,
   lastNavigation: state`sandbox.lastNavigation`,
@@ -30,10 +31,10 @@ export default connect({
     }
     componentDidUpdate (prevProps) {
       if (this.iframe && prevProps.lastSavedDatetime !== this.props.lastSavedDatetime) {
-        this.iframe.src = config.sandboxServiceUrl
+        this.iframe.src = config.sandboxServiceUrl[this.props.region]
       }
       if (this.iframe && prevProps.lastNavigation !== this.props.lastNavigation) {
-        this.iframe.contentWindow.postMessage(this.props.lastNavigation, config.sandboxServiceUrl)
+        this.iframe.contentWindow.postMessage(this.props.lastNavigation, config.sandboxServiceUrl[this.props.region])
       }
     }
     onIframeMessage (event) {
@@ -70,7 +71,7 @@ export default connect({
               ref={(node) => {
                 this.iframe = node
               }}
-              src={config.sandboxServiceUrl}
+              src={config.sandboxServiceUrl[this.props.region]}
               style={{height: this.props.url ? 'calc(100% - 36px)' : '100%'}}
             />
           ) : null}
