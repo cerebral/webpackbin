@@ -2,6 +2,10 @@
   "rules": "database.rules.json",
   "hosting": {
     "public": "public",
+    "rewrites": [ {
+      "source": "**",
+      "destination": "/index.html"
+    }],
     "headers": [{
       "source" : "/",
       "headers" : [{

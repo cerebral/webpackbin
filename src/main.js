@@ -28,8 +28,7 @@ const controller = Controller({
     routes: {
       '/': 'app.routed',
       '/bins/:binKey': 'app.binRouted'
-    },
-    onlyHash: true
+    }
   }),
   modules: {
     app,
