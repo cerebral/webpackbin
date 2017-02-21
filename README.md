@@ -42,6 +42,3 @@ Webpackbin is built using the upcoming [cerebral 2](https://cerebral.github.io) 
 The client is built using Webpack and it will lazy load the correct client (desktop or mobile) when it loads. The **components** folder does not have any business logic. The components are focused on only rendering the application and each component connects to any state or signals it needs. There is almost no *props* passing.
 
 The **modules** folder holds the business logic, contained in signals, actions, chains and factories. Cerebral 2 is a highly composable framework and can describe most of its side effects and state changes in a declarative manner.
-
-### Testing
-The Webpackbin client does not have any tests. My personal opinion is that component tests are worthless. If your components are so complex that you need to test them, you are not using the stateless components approach, or you are doing something wrong ;-) The client would benefit from business logic integration tests though, but currently the complexity of the code and project has not reached a level where it is necessary.
