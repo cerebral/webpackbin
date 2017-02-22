@@ -1,28 +1,17 @@
+const MODIFIER = {
+  ctrl: 'ctrlKey',
+  cmd: 'metaKey',
+  alt: 'altKey'
+}
+
 export default function (shortcuts) {
   return function (module) {
     module.controller.on('initialized', function () {
       Object.keys(shortcuts).forEach(function (shortcut) {
-        const keyCodes = shortcut.split('+')
-        const keyCode = keyCodes.pop().toUpperCase().charCodeAt(0)
-        const specialKey = keyCodes[0]
+        const [command,key] = shortcut.split('+')
 
         window.addEventListener('keydown', function (event) {
-          if (specialKey === 'ctrl' && !event.crlKey) {
-            return
-          }
-          if (specialKey === 'cmd' && !event.metaKey) {
-            return
-          }
-
-          if (specialKey === 'alt' && !event.altKey) {
-            return
-          }
-
-          if (specialKey === 'shift' && !event.shiftKey) {
-            return
-          }
-
-          if (event.keyCode === keyCode) {
+          if (event.key === key && event[MODIFIER[command]]) {
             event.preventDefault()
             event.stopPropagation()
             module.controller.getSignal(shortcuts[shortcut])()
