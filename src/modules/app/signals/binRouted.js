@@ -10,7 +10,7 @@ import stopListeningToBinUpdates from 'modules/live/actions/stopListeningToBinUp
 import {set, when} from 'cerebral/operators'
 import {state, props, string} from 'cerebral/tags'
 import {value} from 'cerebral-provider-firebase'
-import updateOpenedStats from '../actions/updateOpenedStats'
+import updateViewStats from '../actions/updateViewStats'
 import listenToBinStatsUpdates from '../actions/listenToBinStatsUpdates'
 
 export default [
@@ -50,7 +50,7 @@ export default [
                   ],
                   otherwise: [
                     ...updateSandbox([
-                      updateOpenedStats
+                      updateViewStats
                     ])
                   ]
                 }

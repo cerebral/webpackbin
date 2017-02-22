@@ -5,13 +5,18 @@ import Icon from 'common/components/Icon'
 import styles from './styles.css'
 
 export default connect({
-  currentBinSeenCount: state`app.stats.currentBinSeenCount`
+  currentBinViewCount: state`app.stats.currentBinViewCount`,
+  currentBinKey: state`app.currentBinKey`
 },
-  function Stats ({currentBinSeenCount}) {
+  function Stats ({currentBinViewCount, currentBinKey}) {
+    if (!currentBinKey) {
+      return null
+    }
+
     return (
       <div className={styles.wrapper}>
         <Icon icon='eye' />
-        Seen <strong>{currentBinSeenCount}</strong> {currentBinSeenCount === 1 ? 'time' : 'times'}
+        <strong>{currentBinViewCount}</strong> views
       </div>
     )
   }

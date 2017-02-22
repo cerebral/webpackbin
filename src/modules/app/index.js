@@ -15,7 +15,7 @@ import saveClicked from './signals/saveClicked'
 import newBinClicked from './signals/newBinClicked'
 import copyBinClicked from './signals/copyBinClicked'
 import preventWhenLiveParticipant from './factories/preventWhenLiveParticipant'
-import currentBinSeenCountUpdated from './signals/currentBinSeenCountUpdated'
+import currentBinViewCountUpdated from './signals/currentBinViewCountUpdated'
 
 export default {
   state: {
@@ -33,8 +33,8 @@ export default {
     mainMenuPage: null,
     stats: {
       createdCount: 0,
-      seenCount: 0,
-      currentBinSeenCount: 0
+      viewCount: 0,
+      currentBinViewCount: 0
     }
   },
   signals: {
@@ -52,6 +52,6 @@ export default {
     signOutClicked,
     newBinClicked,
     copyBinClicked,
-    currentBinSeenCountUpdated
+    currentBinViewCountUpdated
   }
 }

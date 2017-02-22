@@ -56,7 +56,7 @@ export default connect({
               </div>
               <div className={styles.stat}>
                 <Icon icon='eye' />
-                <strong>{stats.seenCount}</strong> times seen
+                <strong>{stats.viewCount}</strong> views
               </div>
             </div>
           </div>
