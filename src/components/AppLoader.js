@@ -2,11 +2,13 @@ import Inferno from 'inferno'
 import Component from 'inferno-component'
 import {connect} from 'cerebral/inferno'
 import {state} from 'cerebral/tags'
+import InvalidRoute from './InvalidRoute'
 
 export default connect({
-  media: state`useragent.media`
+  media: state`useragent.media`,
+  invalidRoute: state`app.invalidRoute`
 },
-  class DeviceLoader extends Component {
+  class AppLoader extends Component {
     constructor (props) {
       super(props)
 
@@ -54,6 +56,10 @@ export default connect({
     render () {
       if (this.state.isLoading) {
         return null
+      }
+
+      if (this.props.invalidRoute) {
+        return <InvalidRoute route={this.props.invalidRoute} />
       }
 
       var Device = this.state.device

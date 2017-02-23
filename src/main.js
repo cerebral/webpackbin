@@ -4,7 +4,7 @@ import {Controller} from 'cerebral'
 import {Container} from 'cerebral/inferno'
 import Devtools from 'cerebral/devtools'
 import Router from 'cerebral-router'
-import DeviceLoader from './components/DeviceLoader'
+import AppLoader from './components/AppLoader'
 import UseragentModule from 'cerebral-module-useragent'
 import FirebaseProvider from 'cerebral-provider-firebase'
 import HttpProvider from 'cerebral-provider-http'
@@ -27,7 +27,8 @@ const controller = Controller({
   router: Router({
     routes: {
       '/': 'app.routed',
-      '/bins/:binKey': 'app.binRouted'
+      '/bins/:binKey': 'app.binRouted',
+      '/*': 'app.invalidRouted'
     }
   }),
   modules: {
@@ -67,6 +68,6 @@ const controller = Controller({
 
 Inferno.render((
   <Container controller={controller}>
-    <DeviceLoader />
+    <AppLoader />
   </Container>
 ), document.querySelector('#app'))

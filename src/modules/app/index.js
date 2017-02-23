@@ -18,6 +18,7 @@ import copyBinClicked from './signals/copyBinClicked'
 import preventWhenLiveParticipant from './factories/preventWhenLiveParticipant'
 import currentBinViewCountUpdated from './signals/currentBinViewCountUpdated'
 import undoClicked from './signals/undoClicked'
+import invalidRouted from './signals/invalidRouted'
 
 export default {
   state: {
@@ -40,7 +41,8 @@ export default {
       currentBinViewCount: 0
     },
     showSandbox: true,
-    undo: null
+    undo: null,
+    invalidRoute: null
   },
   signals: {
     routed: authenticate(routed),
@@ -59,6 +61,7 @@ export default {
     newBinClicked,
     copyBinClicked,
     currentBinViewCountUpdated,
-    undoClicked
+    undoClicked,
+    invalidRouted
   }
 }
