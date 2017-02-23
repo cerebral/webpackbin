@@ -4,6 +4,7 @@ import urlUpdated from './signals/urlUpdated'
 import urlChanged from './signals/urlChanged'
 import urlSubmitted from './signals/urlSubmitted'
 import historyChanged from './signals/historyChanged'
+import showSandboxClicked from './signals/showSandboxClicked'
 
 export default {
   state: {
@@ -20,6 +21,7 @@ export default {
     urlUpdated,
     urlChanged,
     urlSubmitted,
-    historyChanged
+    historyChanged,
+    showSandboxClicked
   }
 }

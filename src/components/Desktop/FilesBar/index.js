@@ -5,6 +5,7 @@ import NavigationBar from 'common/components/NavigationBar'
 import FileTab from 'common/components/FileTab'
 import AddFile from './AddFile'
 import NavigationSeparator from 'common/components/NavigationSeparator'
+import styles from './styles.css'
 
 export default connect({
   files: state`app.currentBin.files`,
@@ -24,19 +25,21 @@ export default connect({
       <NavigationBar>
         <AddFile />
         <NavigationSeparator />
-        {files.map(function (file, index) {
-          return (
-            <FileTab
-              onClick={() => fileClicked({index})}
-              onRemoveClick={index === 0 ? null : () => removeFileClicked({index})}
-              active={index === selectedFileIndex}
-              isEntry={Boolean(file.isEntry)}
-              isChanged={changedFiles[index]}
-            >
-              {file.name}
-            </FileTab>
-          )
-        })}
+        <div className={styles.wrapper}>
+          {files.map(function (file, index) {
+            return (
+              <FileTab
+                onClick={() => fileClicked({index})}
+                onRemoveClick={index === 0 ? null : () => removeFileClicked({index})}
+                active={index === selectedFileIndex}
+                isEntry={Boolean(file.isEntry)}
+                isChanged={changedFiles[index]}
+              >
+                {file.name}
+              </FileTab>
+            )
+          })}
+        </div>
       </NavigationBar>
     )
   }

@@ -8,6 +8,10 @@ import newFileNameSubmitted from './signals/newFileNameSubmitted'
 import preventWhenLiveParticipant from 'modules/app/factories/preventWhenLiveParticipant'
 
 export default {
+  state: {
+    removedFile: null,
+    removedFileIndex: null
+  },
   signals: {
     fileClicked: preventWhenLiveParticipant(fileClicked),
     removeFileClicked: preventWhenLiveParticipant(removeFileClicked),

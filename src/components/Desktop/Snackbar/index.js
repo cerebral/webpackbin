@@ -2,10 +2,12 @@ import Inferno from 'inferno'
 import {connect} from 'cerebral/inferno'
 import styles from './styles.css'
 import classnames from 'classnames'
-import {state} from 'cerebral/tags'
+import {state, signal} from 'cerebral/tags'
 
 export default connect({
-  snackbar: state`app.snackbar`
+  snackbar: state`app.snackbar`,
+  undo: state`app.undo`,
+  undoClicked: signal`app.undoClicked`
 },
   function Snackbar (props) {
     const snackbar = props.snackbar || {text: '', type: 'noral'}
@@ -15,7 +17,15 @@ export default connect({
         [styles.visible]: Boolean(snackbar.text),
         [styles.error]: snackbar.type === 'error'
       })}>
-        {snackbar.text}
+        <div className={styles.text}>{snackbar.text}</div>
+        {props.undo ? (
+          <span
+            className={styles.undo}
+            onClick={() => props.undoClicked()}
+          >
+            undo
+          </span>
+        ) : null}
       </div>
     )
   }

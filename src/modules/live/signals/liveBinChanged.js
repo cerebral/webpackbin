@@ -17,6 +17,7 @@ export default [
           set(state`app.currentBin.changedFiles`, props`value`)
         ],
         lastSavedDatetime: [
+          set(state`app.showSandbox`, true),
           ...updateSandbox()
         ],
         newFileIsEntry: [

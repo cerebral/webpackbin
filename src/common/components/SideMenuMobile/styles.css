@@ -1,0 +1,49 @@
+.wrapper {
+  background-color: #FFF;
+  color: #333;
+  display: flex;
+  box-shadow: 0 14px 45px rgba(0,0,0,0.25), 0 10px 18px rgba(0,0,0,0.22);
+  overflow-x: hidden;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  width: 225px;
+  transition: 0.21s ease;
+  z-index: 999;
+}
+
+.left {
+  left: -265px;
+}
+
+.showLeft {
+  composes: left;
+  left: 0px;
+}
+
+.right {
+  right: -265px;
+}
+.showRight {
+  composes: right;
+  right: 0px;
+}
+
+.menu {
+  flex: 0 0 225px;
+}
+
+.leftMenu {
+  composes: menu;
+  border-left: 1px solid #eb1e64;
+}
+
+.rightMenu {
+  composes: menu;
+  border-right: 1px solid #eb1e64;
+}
+
+.page {
+  flex: 1;
+}

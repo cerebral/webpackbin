@@ -70,7 +70,6 @@ export default connect({
           <div className={styles.flexWrapper}>
             <IconButton
               disabled={!binHasEntry || Object.keys(changedFiles).length || isSaving}
-              active={liveStatus.isConnected}
               icon='zip'
               href={`${config.sandboxServiceUrl[region]}/project.zip`}
             >

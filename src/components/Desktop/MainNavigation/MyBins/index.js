@@ -64,7 +64,7 @@ export default connect({
             active={isInMyBins}
             disabled={liveStatus.isParticipant || !currentBinKey}
             onClick={() => addMyBinsClicked()}
-            icon='myBins'
+            icon='folder'
           >
             My bins
           </IconButton>

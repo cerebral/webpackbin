@@ -1,6 +1,7 @@
 .snackbar {
   position: fixed;
   opacity: 0;
+  display: flex;
   margin-left: 24px;
   bottom: 24px;
   z-index: 10;
@@ -30,4 +31,16 @@
 .error {
   color: #FFF;
   background-color: #eb1e64;
+}
+
+.undo {
+  flex: 0;
+  text-align: right;
+  color: #eb1e64;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.text {
+  flex: 1;
 }

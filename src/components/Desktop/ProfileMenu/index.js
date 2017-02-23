@@ -73,7 +73,7 @@ export default connect({
           }
           <MenuItem
             active={profileMenuPage === 'myBins'}
-            icon='myBins'
+            icon='folder'
             onClick={() => myBinsClicked()}
           >
             My bins

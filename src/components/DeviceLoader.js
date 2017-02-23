@@ -16,7 +16,7 @@ export default connect({
       }
     }
     componentDidMount () {
-      import('./Desktop')
+      this.loadDevice()
         .then((module) => {
           this.setState({
             isLoading: false,
@@ -24,9 +24,31 @@ export default connect({
           })
         })
     }
+    loadDevice () {
+      if (this.props.media.unsupported) {
+        return import('./Unsupported')
+      } else if (this.props.media.desktop) {
+        return import('./Desktop')
+      } else {
+        return import('./Mobile')
+      }
+    }
     componentDidUpdate (prevProps, prevState) {
       if (!prevState.device && this.state.device) {
         document.querySelector('#loader').style.display = 'none'
+      }
+      if (prevProps.media !== this.props.media) {
+        this.setState({
+          isLoading: true
+        })
+
+        this.loadDevice()
+          .then((module) => {
+            this.setState({
+              isLoading: false,
+              device: module.default
+            })
+          })
       }
     }
     render () {

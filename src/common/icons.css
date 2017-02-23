@@ -267,7 +267,7 @@
 	content: "\e2cb";
 }
 
-.myBins {composes: font;}
-.myBins:before {
+.folder {composes: font;}
+.folder:before {
 	content: "\e101";
 }
