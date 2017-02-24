@@ -20,7 +20,6 @@ export default connect({
     render () {
       return (
         <div className={this.props.showFullLog ? styles.wrapper : styles.halfWrapper}>
-          <div className={styles.info}>Use bin.log() in your code to log</div>
           {
             this.props.logs.map((value, index) => (
               <div className={styles.log} key={index}>
