@@ -12,7 +12,7 @@ function InvalidRoute (props) {
 
       </div>
       <br />
-      <Button onClick={() => { window.location.href = 'https://www.webpackbin.com/' + props.route} }>
+      <Button onClick={() => { window.location.href = 'https://webpackbin.herokuapp.com/' + props.route} }>
         Continue to BIN
       </Button>
     </div>

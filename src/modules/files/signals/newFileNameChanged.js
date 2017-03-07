@@ -6,9 +6,7 @@ import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 export default [
   set(state`app.currentBin.newFileName`, props`value`),
   whenLiveCurrentUser, {
-    true: [
-      ...updateFirebaseBin('newFileName')
-    ],
+    true: updateFirebaseBin('newFileName'),
     false: []
   }
 ]

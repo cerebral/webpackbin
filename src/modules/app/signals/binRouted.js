@@ -1,3 +1,4 @@
+import {parallel} from 'cerebral'
 import updateSandbox from 'modules/sandbox/factories/updateSandbox'
 import showSnackbar from '../factories/showSnackbar'
 import whenLive from '../actions/whenLive'
@@ -9,14 +10,14 @@ import forceCodeUpdate from 'modules/code/actions/forceCodeUpdate'
 import stopListeningToBinUpdates from 'modules/live/actions/stopListeningToBinUpdates'
 import {set, when} from 'cerebral/operators'
 import {state, props, string} from 'cerebral/tags'
-import {value} from 'cerebral-provider-firebase'
+import {value} from 'cerebral-provider-firebase/operators'
 import updateViewStats from '../actions/updateViewStats'
 import listenToBinStatsUpdates from '../actions/listenToBinStatsUpdates'
 
 export default [
   isCurrentBinKey(props`binKey`), {
     true: [
-      ...updateSandbox(),
+      updateSandbox(),
       set(state`app.isLoading`, false)
     ],
     false: [
@@ -25,9 +26,7 @@ export default [
         state`app.currentBinKey`,
         (isLive, currentBinKey) => isLive && currentBinKey
       ), {
-        true: [
-          stopListeningToBinUpdates
-        ],
+        true: stopListeningToBinUpdates,
         false: []
       },
       set(state`app.isLoading`, true),
@@ -39,31 +38,21 @@ export default [
               set(state`app.currentBinKey`, props`binKey`),
               setCurrentBin,
               forceCodeUpdate,
-              [
+              parallel([
                 listenToBinStatsUpdates,
                 whenLive, {
-                  owner: [
-                    ...connectLiveBinAsOwner
-                  ],
-                  participant: [
-                    ...connectLiveBin
-                  ],
-                  otherwise: [
-                    ...updateSandbox([
-                      updateViewStats
-                    ])
-                  ]
+                  owner: connectLiveBinAsOwner,
+                  participant: connectLiveBin,
+                  otherwise: updateSandbox([
+                    updateViewStats
+                  ])
                 }
-              ]
+              ])
             ],
-            false: [
-              ...showSnackbar('This bin does not exist anymore, sorry', 5000, 'error')
-            ]
+            false: showSnackbar('This bin does not exist anymore, sorry', 5000, 'error')
           }
         ],
-        error: [
-          ...showSnackbar('Unable to get BIN', 5000, 'error')
-        ]
+        error: showSnackbar('Unable to get BIN', 5000, 'error')
       }
     ]
   }

@@ -1,6 +1,6 @@
 import {set, merge} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
-import {value} from 'cerebral-provider-firebase'
+import {value} from 'cerebral-provider-firebase/operators'
 
 export default [
   set(state`app.isMainMenuOpen`, true),

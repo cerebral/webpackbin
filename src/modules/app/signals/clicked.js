@@ -11,9 +11,7 @@ export default [
   set(state`app.profileMenuPage`, null),
   set(state`app.mainMenuPage`, null),
   whenLiveCurrentUser, {
-    true: [
-      ...updateFirebaseBin('showConfiguration')
-    ],
+    true: updateFirebaseBin('showConfiguration'),
     false: []
   }
 ]

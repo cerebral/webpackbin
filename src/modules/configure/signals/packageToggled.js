@@ -6,9 +6,7 @@ import whenLiveCurrentUser from 'modules/app/actions/whenLiveCurrentUser'
 export default [
   unset(state`app.currentBin.packages.${props`packageName`}`),
   whenLiveCurrentUser, {
-    true: [
-      ...updateFirebaseBin('packages')
-    ],
+    true: updateFirebaseBin('packages'),
     false: []
   }
 ]

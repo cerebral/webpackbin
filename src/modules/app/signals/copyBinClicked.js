@@ -6,6 +6,6 @@ import appClicked from './clicked'
 export default [
   set(state`app.currentBinKey`, null),
   set(state`app.currentBin.owner`, state`app.user.uid`),
-  ...appClicked,
-  ...saveClicked
+  appClicked,
+  saveClicked
 ]

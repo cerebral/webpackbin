@@ -3,6 +3,6 @@ import {state} from 'cerebral/tags'
 import appClicked from './clicked'
 
 export default [
-  ...appClicked,
+  appClicked,
   set(state`app.showGithubSignIn`, true)
 ]

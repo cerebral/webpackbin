@@ -1,7 +1,7 @@
 import updateLiveBin from '../actions/updateLiveBin'
 import updateSandbox from 'modules/sandbox/factories/updateSandbox'
 import showSnackbar from 'modules/app/factories/showSnackbar'
-import {set as firebaseSet} from 'cerebral-provider-firebase'
+import {set as firebaseSet} from 'cerebral-provider-firebase/operators'
 import {state, string} from 'cerebral/tags'
 
 export default [

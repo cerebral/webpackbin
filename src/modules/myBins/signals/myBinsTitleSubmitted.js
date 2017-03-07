@@ -9,10 +9,8 @@ export default [
     success: [
       set(state`myBins.list.${props`key`}`, props`myBin`),
       set(state`myBins.newMyBinTitle`, ''),
-      ...showSnackbar('Bin added to my bins', 5000)
+      showSnackbar('Bin added to my bins', 5000)
     ],
-    error: [
-      ...showSnackbar('Could not add bin, sorry', 5000, 'error')
-    ]
+    error: showSnackbar('Could not add bin, sorry', 5000, 'error')
   }
 ]

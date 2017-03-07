@@ -5,11 +5,7 @@ import turnOffLiveBin from '../chains/turnOffLiveBin'
 
 export default [
   when(state`app.currentBin.isLive`), {
-    true: [
-      ...turnOffLiveBin
-    ],
-    false: [
-      ...turnOnLiveBin
-    ]
+    true: turnOffLiveBin,
+    false: turnOnLiveBin
   }
 ]

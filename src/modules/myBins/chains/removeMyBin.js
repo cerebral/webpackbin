@@ -7,10 +7,8 @@ export default [
   removeMyBin, {
     success: [
       unset(state`myBins.list.${props`myBinKey`}`),
-      ...showSnackbar('Bin removed from my bins', 5000)
+      showSnackbar('Bin removed from my bins', 5000)
     ],
-    error: [
-      ...showSnackbar('Could not remove bin from my bins', 5000, 'error')
-    ]
+    error: showSnackbar('Could not remove bin from my bins', 5000, 'error')
   }
 ]

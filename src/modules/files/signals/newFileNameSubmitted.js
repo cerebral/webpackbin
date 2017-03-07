@@ -19,7 +19,7 @@ export default [
       requiresLoader, {
         true: [
           setLoader,
-          ...updateFirebaseBin([
+          updateFirebaseBin([
             'files',
             'selectedFileIndex',
             'newFileIsEntry',
@@ -27,22 +27,18 @@ export default [
             'loaders'
           ])
         ],
-        false: [
-          ...updateFirebaseBin([
-            'files',
-            'selectedFileIndex',
-            'newFileIsEntry',
-            'showNewFileInput'
-          ])
-        ]
+        false: updateFirebaseBin([
+          'files',
+          'selectedFileIndex',
+          'newFileIsEntry',
+          'showNewFileInput'
+        ])
       }
     ],
-    false: [
-      ...showSnackbar(
-        string`"${state`app.currentBin.newFileName`}" is not a valid filename`,
-        5000,
-        'error'
-      )
-    ]
+    false: showSnackbar(
+      string`"${state`app.currentBin.newFileName`}" is not a valid filename`,
+      5000,
+      'error'
+    )
   }
 ]

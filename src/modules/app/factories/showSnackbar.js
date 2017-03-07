@@ -1,3 +1,4 @@
+import {sequence} from 'cerebral'
 import {set, merge, debounce} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 
@@ -5,12 +6,12 @@ const snackbarDebounce = debounce.shared()
 
 function showSnackbar (text, ms, type = 'normal') {
   if (!ms) {
-    return [
+    return sequence('showSnackbar', [
       merge(state`app.snackbar`, {text, type})
-    ]
+    ])
   }
 
-  return [
+  return sequence('showSnackbar', [
     merge(state`app.snackbar`, {text, type}),
     snackbarDebounce(ms), {
       continue: [
@@ -18,7 +19,7 @@ function showSnackbar (text, ms, type = 'normal') {
       ],
       discard: []
     }
-  ]
+  ])
 }
 
 export default showSnackbar

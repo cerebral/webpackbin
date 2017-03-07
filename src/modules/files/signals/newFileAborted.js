@@ -6,7 +6,7 @@ export default [
   set(state`app.currentBin.newFileName`, ''),
   set(state`app.currentBin.newFileIsEntry`, false),
   set(state`app.currentBin.showNewFileInput`, false),
-  ...updateFirebaseBin([
+  updateFirebaseBin([
     'showNewFileInput',
     'newFileIsEntry',
     'newFileName'

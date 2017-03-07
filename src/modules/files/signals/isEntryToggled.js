@@ -4,5 +4,5 @@ import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 
 export default [
   toggle(state`app.currentBin.newFileIsEntry`),
-  ...updateFirebaseBin('newFileIsEntry')
+  updateFirebaseBin('newFileIsEntry')
 ]

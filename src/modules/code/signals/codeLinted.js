@@ -8,7 +8,7 @@ export default [
   when(state`code.saveWhenDoneLinting`), {
     true: [
       set(state`code.saveWhenDoneLinting`, false),
-      ...saveClicked
+      saveClicked
     ],
     false: []
   }

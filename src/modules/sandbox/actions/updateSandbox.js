@@ -1,10 +1,11 @@
 import config from 'config'
+import {decodeKey} from 'utils'
 
 function updateSandbox ({http, state, path, resolve}) {
   const currentBin = state.get('app.currentBin')
   const region = state.get('settings.region')
   const sortedPackages = Object.keys(currentBin.packages || {}).sort().reduce((currentSortedPackages, packageKey) => {
-    currentSortedPackages[packageKey] = currentBin.packages[packageKey]
+    currentSortedPackages[decodeKey(packageKey)] = currentBin.packages[packageKey]
 
     return currentSortedPackages
   }, {})

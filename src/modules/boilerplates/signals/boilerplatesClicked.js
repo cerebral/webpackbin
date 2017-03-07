@@ -1,7 +1,7 @@
 import {set, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
-import {value} from 'cerebral-provider-firebase'
+import {value} from 'cerebral-provider-firebase/operators'
 import setBoilerplates from '../actions/setBoilerplates'
 
 export default [
@@ -11,12 +11,8 @@ export default [
     false: [
       set(state`boilerplates.isLoadingBoilerplates`, true),
       value('boilerplates'), {
-        success: [
-          setBoilerplates
-        ],
-        false: [
-          ...showSnackbar('Could not load boilerplates')
-        ]
+        success: setBoilerplates,
+        false: showSnackbar('Could not load boilerplates')
       },
       set(state`boilerplates.isLoadingBoilerplates`, false)
     ]

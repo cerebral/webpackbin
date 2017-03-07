@@ -5,7 +5,7 @@ import updateSandbox from 'modules/sandbox/factories/updateSandbox'
 
 export default [
   set(state`settings.region`, props`region`),
-  ...updateSandbox([
-    ...updateFirebaseSettings('region')
+  updateSandbox([
+    updateFirebaseSettings('region')
   ])
 ]

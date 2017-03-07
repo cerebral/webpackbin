@@ -5,9 +5,7 @@ import whenLiveCurrentUser from 'modules/app/actions/whenLiveCurrentUser'
 export default [
   changeLoaderConfig,
   whenLiveCurrentUser, {
-    true: [
-      ...updateFirebaseBin('loaders')
-    ],
+    true: updateFirebaseBin('loaders'),
     false: []
   }
 ]

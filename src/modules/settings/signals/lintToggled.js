@@ -4,5 +4,5 @@ import updateFirebaseSettings from '../factories/updateFirebaseSettings'
 
 export default [
   toggle(state`settings.lint`),
-  ...updateFirebaseSettings('lint')
+  updateFirebaseSettings('lint')
 ]

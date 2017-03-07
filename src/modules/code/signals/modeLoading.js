@@ -4,11 +4,7 @@ import showSnackbar from 'modules/app/factories/showSnackbar'
 
 export default [
   when(state`settings.lint`), {
-    true: [
-      ...showSnackbar('Loading mode and linter...')
-    ],
-    false: [
-      ...showSnackbar('Loading mode...')
-    ]
+    true: showSnackbar('Loading mode and linter...'),
+    false: showSnackbar('Loading mode...')
   }
 ]

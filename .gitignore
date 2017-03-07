@@ -1,5 +1,7 @@
 node_modules
 public/*.js
 public/*.html
+public/*.css
+public/*.txt
 !Icon
 configs/webpackbin-prod.json

@@ -12,12 +12,8 @@ export default [
         props`hasLinter`,
         (lint, hasLinter) => lint && hasLinter
       ), {
-        true: [
-          ...showSnackbar('Mode and linter loaded', 4000)
-        ],
-        false: [
-          ...showSnackbar('Mode loaded', 4000)
-        ]
+        true: showSnackbar('Mode and linter loaded', 4000),
+        false: showSnackbar('Mode loaded', 4000)
       }
     ]
   }

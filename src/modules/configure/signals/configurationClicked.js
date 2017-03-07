@@ -6,9 +6,7 @@ import whenLiveCurrentUser from 'modules/app/actions/whenLiveCurrentUser'
 export default [
   set(state`app.currentBin.showConfiguration`, true),
   whenLiveCurrentUser, {
-    true: [
-      ...updateFirebaseBin('showConfiguration')
-    ],
+    true: updateFirebaseBin('showConfiguration'),
     false: []
   }
 ]

@@ -6,9 +6,7 @@ import whenLiveCurrentUser from 'modules/app/actions/whenLiveCurrentUser'
 export default [
   set(state`app.currentBin.currentLoader`, props`loaderName`),
   whenLiveCurrentUser, {
-    true: [
-      ...updateFirebaseBin('currentLoader')
-    ],
+    true: updateFirebaseBin('currentLoader'),
     false: []
   }
 ]

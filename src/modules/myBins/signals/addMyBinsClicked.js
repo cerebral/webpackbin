@@ -5,11 +5,7 @@ import removeMyBin from '../chains/removeMyBin'
 
 export default [
   when(isInMyBins), {
-    true: [
-      ...removeMyBin
-    ],
-    false: [
-      set(state`myBins.showNewTitleInput`, true)
-    ]
+    true: removeMyBin,
+    false: set(state`myBins.showNewTitleInput`, true)
   }
 ]

@@ -1,5 +1,7 @@
 function saveNewBin ({state, firebase, path}) {
-  return firebase.push('bins', state.get('app.currentBin'))
+  const currentBin = state.get('app.currentBin')
+
+  return firebase.push('bins', currentBin)
     .then(function ({key}) {
       return path.success({
         binKey: key

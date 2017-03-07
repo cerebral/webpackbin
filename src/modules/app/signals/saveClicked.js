@@ -15,29 +15,29 @@ export default [
     state`code.hasLinter`,
     (isLinting, lint, hasLinter) => isLinting && lint && hasLinter
   ), {
-    true: [
-      set(state`code.saveWhenDoneLinting`, true)
-    ],
+    true: set(state`code.saveWhenDoneLinting`, true),
     false: [
       when(state`code.isValid`), {
+        false: showSnackbar('Code is not valid, check lint messages', 5000, 'error'),
         true: [
           resetChangedFiles,
           when(state`app.currentBinKey`), {
+            false: [
+              set(state`app.isSaving`, true),
+              createNewBin,
+              set(state`app.isSaving`, false)
+            ],
             true: [
               isOwnerOfCurrentBin, {
                 true: [
                   when(state`app.currentBin.isLive`), {
-                    true: [
-                      ...updateLiveBin
-                    ],
+                    true: updateLiveBin,
                     false: [
                       set(state`app.isSaving`, true),
-                      ...updateSandbox([
+                      updateSandbox([
                         updateBin, {
                           success: [],
-                          error: [
-                            ...showSnackbar('Could not save files', 5000, 'error')
-                          ]
+                          error: showSnackbar('Could not save files', 5000, 'error')
                         }
                       ]),
                       set(state`app.isSaving`, false)
@@ -46,29 +46,19 @@ export default [
                 ],
                 false: [
                   when(state`app.currentBin.isLive`), {
-                    true: [
-                      ...updateLiveBin
-                    ],
+                    true: updateLiveBin,
                     false: [
                       set(state`app.currentBinKey`, null),
                       set(state`app.currentBin.owner`, state`app.user.uid`),
                       set(state`app.isSaving`, true),
-                      ...createNewBin,
+                      createNewBin,
                       set(state`app.isSaving`, false)
                     ]
                   }
                 ]
               }
-            ],
-            false: [
-              set(state`app.isSaving`, true),
-              ...createNewBin,
-              set(state`app.isSaving`, false)
             ]
           }
-        ],
-        false: [
-          ...showSnackbar('Code is not valid, check lint messages', 5000, 'error')
         ]
       }
     ]

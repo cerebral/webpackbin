@@ -4,7 +4,7 @@ import participateLiveBin from '../actions/participateLiveBin'
 import listenToBinUpdates from '../actions/listenToBinUpdates'
 import {set} from 'cerebral/operators'
 import {state, string} from 'cerebral/tags'
-import {setOnDisconnect} from 'cerebral-provider-firebase'
+import {setOnDisconnect} from 'cerebral-provider-firebase/operators'
 
 export default [
   [

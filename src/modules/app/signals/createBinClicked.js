@@ -6,7 +6,7 @@ import appClicked from './clicked'
 export default [
   resetCurrentBin,
   forceCodeUpdate,
-  ...createNewBin,
-  ...appClicked
+  createNewBin,
+  appClicked
 
 ]

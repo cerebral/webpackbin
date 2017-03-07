@@ -16,7 +16,7 @@ export default [
     ],
     false: []
   },
-  ...updateFirebaseBin([
+  updateFirebaseBin([
     'files',
     'selectedFileIndex'
   ])

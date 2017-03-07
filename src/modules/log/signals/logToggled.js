@@ -5,11 +5,9 @@ import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 export default [
   toggle(state`app.currentBin.showLog`),
   when(state`app.currentBin.showLog`), {
-    true: [
-      set(state`app.showSandbox`, true)
-    ],
+    true: set(state`app.showSandbox`, true),
     false: []
   },
   set(state`log.shouldCheckLog`, false),
-  ...updateFirebaseBin('showLog')
+  updateFirebaseBin('showLog')
 ]

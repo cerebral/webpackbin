@@ -8,5 +8,5 @@ export default [
   updateBinWithTemplate,
   set(state`app.currentBin.showConfiguration`, false),
   forceCodeUpdate,
-  ...saveClicked
+  saveClicked
 ]

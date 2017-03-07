@@ -1,5 +1,6 @@
 import Inferno from 'inferno'
 import Component from 'inferno-component'
+import {decodeKey} from 'utils'
 import {connect} from 'cerebral/inferno'
 import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'
@@ -37,7 +38,7 @@ export default connect({
             id='packageQuery'
             autoFocus
             dark
-            disabled={isQueryingPackage}
+            disabled={isQueryingPackage || Object.keys(packages).length >= 5}
             placeholder='Submit name of package...'
             value={query}
             onInput={(event) => packageQueryChanged({query: event.target.value})}
@@ -57,13 +58,20 @@ export default connect({
                       packageToggled({packageName})
                     }}
                   >
-                    {packageName}
+                    {decodeKey(packageName)}
                     <Description>{packages[packageName]}</Description>
                   </Checkbox>
                 </li>
               )
             })}
           </ul>
+          {
+            Object.keys(packages).length >= 5 ? (
+              <Description>
+                You have added the maximum number of packages allowed
+              </Description>
+            ) : null
+          }
         </div>
       )
     }
