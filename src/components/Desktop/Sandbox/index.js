@@ -14,6 +14,7 @@ export default connect({
   isUpdatingSandbox: state`sandbox.isUpdatingSandbox`,
   region: state`settings.region`,
   showIsLoadingSandbox: state`sandbox.showIsLoadingSandbox`,
+  hasSandboxTimeout: state`sandbox.hasSandboxTimeout`,
   showIsPackaging: state`sandbox.showIsPackaging`,
   lastSavedDatetime: state`app.currentBin.lastSavedDatetime`,
   lastNavigation: state`sandbox.lastNavigation`,
@@ -64,6 +65,15 @@ export default connect({
         })
       }
     }
+    renderLoaderText () {
+      if (this.props.hasSandboxTimeout) {
+        return 'Wow, this is taking a long time, did you put many packages together? Please hold on a bit more...'
+      } else if (this.props.showIsPackaging) {
+        return 'It seems that the packages of this bin is new or has expired, please hold on for a few extra seconds...'
+      }
+
+      return 'Loading...'
+    }
     render () {
       return (
         <div className={styles.wrapper}>
@@ -85,7 +95,7 @@ export default connect({
             })}
             style={{top: this.props.url ? '41px' : '5px'}}
           >
-            {this.props.showIsPackaging ? 'It seems that the packages of this bin is new or has expired, please hold on for a few extra seconds...' : 'Loading...'}
+            {this.renderLoaderText()}
           </div>
         </div>
       )

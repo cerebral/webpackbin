@@ -3,5 +3,6 @@ public/*.js
 public/*.html
 public/*.css
 public/*.txt
+public/*.map
 !Icon
 configs/webpackbin-prod.json

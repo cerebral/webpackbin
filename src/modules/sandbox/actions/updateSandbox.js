@@ -18,7 +18,9 @@ function updateSandbox ({http, state, path, resolve}) {
     withCredentials: true
   })
     .then(path.success)
-    .catch(path.error)
+    .catch((response) => {
+      return path[response.status] ? path[response.status]() : path.error({error: response.result})
+    })
 }
 
 export default updateSandbox

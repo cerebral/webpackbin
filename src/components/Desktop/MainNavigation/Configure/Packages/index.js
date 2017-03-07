@@ -38,7 +38,7 @@ export default connect({
             id='packageQuery'
             autoFocus
             dark
-            disabled={isQueryingPackage || Object.keys(packages).length >= 5}
+            disabled={isQueryingPackage}
             placeholder='Submit name of package...'
             value={query}
             onInput={(event) => packageQueryChanged({query: event.target.value})}
@@ -65,13 +65,6 @@ export default connect({
               )
             })}
           </ul>
-          {
-            Object.keys(packages).length >= 5 ? (
-              <Description>
-                You have added the maximum number of packages allowed
-              </Description>
-            ) : null
-          }
         </div>
       )
     }

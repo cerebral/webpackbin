@@ -37,6 +37,22 @@ export default function updateSandboxFactory (additionalChain = []) {
         discard: []
       },
       updateSandbox, {
+        524: [
+          set(state`sandbox.hasSandboxTimeout`, true),
+          updateSandbox, {
+            success: [
+              setLastSavedDatetime,
+              set(state`sandbox.isUpdatingSandbox`, false),
+              set(state`sandbox.isLoadingSandbox`, true),
+              updateFirebaseBin('lastSavedDatetime')
+            ],
+            error: [
+              set(state`sandbox.isUpdatingSandbox`, false),
+              showSnackbar('It seems your combination of packages is just too big', 5000, 'error')
+            ]
+          },
+          set(state`sandbox.hasSandboxTimeout`, false)
+        ],
         success: [
           setLastSavedDatetime,
           set(state`sandbox.isUpdatingSandbox`, false),
