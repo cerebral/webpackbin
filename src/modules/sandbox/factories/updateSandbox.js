@@ -37,7 +37,7 @@ export default function updateSandboxFactory (additionalChain = []) {
         discard: []
       },
       updateSandbox, {
-        524: [
+        503: [
           set(state`sandbox.hasSandboxTimeout`, true),
           updateSandbox, {
             success: [
