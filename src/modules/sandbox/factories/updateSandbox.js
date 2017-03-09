@@ -48,6 +48,10 @@ export default function updateSandboxFactory (additionalChain = []) {
             ],
             error: [
               set(state`sandbox.isUpdatingSandbox`, false),
+              set(state`sandbox.isLoadingSandbox`, false),
+              set(state`sandbox.showIsLoadingSandbox`, false),
+              set(state`sandbox.showIsPackaging`, false),
+              set(state`app.isLoading`, false),
               showSnackbar('It seems your combination of packages is just too big', 5000, 'error')
             ]
           },
@@ -61,6 +65,10 @@ export default function updateSandboxFactory (additionalChain = []) {
         ],
         error: [
           set(state`sandbox.isUpdatingSandbox`, false),
+          set(state`sandbox.isLoadingSandbox`, false),
+          set(state`sandbox.showIsLoadingSandbox`, false),
+          set(state`sandbox.showIsPackaging`, false),
+          set(state`app.isLoading`, false),
           showSnackbar('Unable to update sandbox', 5000, 'error')
         ]
       },
