@@ -44,11 +44,7 @@ const controller = Controller({
     settings,
     shortcuts: shortcuts({
       'cmd+s': 'app.saveClicked',
-      'ctrl+s': 'app.saveClicked',
-      'ctrl+]': 'files.nextFileTabActivated',
-      'ctrl+[': 'files.previousFileTabActivated',
-      'cmd+[': 'files.previousFileTabActivated',
-      'cmd+]': 'files.nextFileTabActivated'
+      'ctrl+s': 'app.saveClicked'
     }),
     useragent: UseragentModule({
       media: {

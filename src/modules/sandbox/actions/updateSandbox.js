@@ -19,7 +19,7 @@ function updateSandbox ({http, state, path, resolve}) {
   })
     .then(path.success)
     .catch((response) => {
-      return path[response.status] ? path[response.status]() : path.error({error: response.result})
+      return path[response.status] ? path[response.status]() : path.error({status: response.status, error: response.result})
     })
 }
 

@@ -13,6 +13,27 @@ const isLoadingOrUpdating = when(
   (isLoadingSandbox, isUpdatingSandbox) => isLoadingSandbox || isUpdatingSandbox
 )
 
+const sandboxTimeout = [
+  set(state`sandbox.hasSandboxTimeout`, true),
+  updateSandbox, {
+    success: [
+      setLastSavedDatetime,
+      set(state`sandbox.isUpdatingSandbox`, false),
+      set(state`sandbox.isLoadingSandbox`, true),
+      updateFirebaseBin('lastSavedDatetime')
+    ],
+    error: [
+      set(state`sandbox.isUpdatingSandbox`, false),
+      set(state`sandbox.isLoadingSandbox`, false),
+      set(state`sandbox.showIsLoadingSandbox`, false),
+      set(state`sandbox.showIsPackaging`, false),
+      set(state`app.isLoading`, false),
+      showSnackbar('It seems your combination of packages is just too big', 5000, 'error')
+    ]
+  },
+  set(state`sandbox.hasSandboxTimeout`, false)
+]
+
 export default function updateSandboxFactory (additionalChain = []) {
   return [
     set(state`sandbox.isUpdatingSandbox`, true),
@@ -37,26 +58,8 @@ export default function updateSandboxFactory (additionalChain = []) {
         discard: []
       },
       updateSandbox, {
-        503: [
-          set(state`sandbox.hasSandboxTimeout`, true),
-          updateSandbox, {
-            success: [
-              setLastSavedDatetime,
-              set(state`sandbox.isUpdatingSandbox`, false),
-              set(state`sandbox.isLoadingSandbox`, true),
-              updateFirebaseBin('lastSavedDatetime')
-            ],
-            error: [
-              set(state`sandbox.isUpdatingSandbox`, false),
-              set(state`sandbox.isLoadingSandbox`, false),
-              set(state`sandbox.showIsLoadingSandbox`, false),
-              set(state`sandbox.showIsPackaging`, false),
-              set(state`app.isLoading`, false),
-              showSnackbar('It seems your combination of packages is just too big', 5000, 'error')
-            ]
-          },
-          set(state`sandbox.hasSandboxTimeout`, false)
-        ],
+        503: sandboxTimeout,
+        0: sandboxTimeout,
         success: [
           setLastSavedDatetime,
           set(state`sandbox.isUpdatingSandbox`, false),
