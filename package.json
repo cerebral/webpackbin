@@ -50,7 +50,7 @@
     "eslint": "^2.11.0",
     "eslint-plugin-react": "^5.2.2",
     "standard": "^8.6.0",
-    "webpack-dev-server": "1.14.1"
+    "webpack-dev-server": "2.4.1"
   },
   "standard": {
     "parser": "babel-eslint",
