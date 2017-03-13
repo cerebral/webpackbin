@@ -2,6 +2,7 @@ import nodePath from 'path'
 
 const validFileNames = [
   '.js',
+  '.jsx',
   '.css',
   '.html',
   '.json',
