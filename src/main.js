@@ -22,7 +22,7 @@ import shortcuts from './modules/shortcuts'
 
 const controller = Controller({
   devtools: process.env.NODE_ENV === 'production' ? null : Devtools({
-    remoteDebugger: 'localhost:8787'
+    remoteDebugger: 'localhost:8484'
   }),
   router: Router({
     routes: {
