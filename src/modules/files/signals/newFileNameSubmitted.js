@@ -1,4 +1,4 @@
-import {set, when} from 'cerebral/operators'
+import {set} from 'cerebral/operators'
 import {state, string} from 'cerebral/tags'
 import addFile from '../actions/addFile'
 import selectNewFile from '../actions/selectNewFile'
@@ -35,19 +35,10 @@ export default [
         ])
       }
     ],
-    false: [
-      when(state`app.currentBin.newFileIsEntry`), {
-        true: showSnackbar(
-          string`"${state`app.currentBin.newFileName`}" is not a valid entry filename, has to be .js`,
-          5000,
-          'error'
-        ),
-        false: showSnackbar(
-          string`"${state`app.currentBin.newFileName`}" is not a valid filename`,
-          5000,
-          'error'
-        )
-      }
-    ]
+    false: showSnackbar(
+      string`"${state`app.currentBin.newFileName`}" is not a valid filename`,
+      5000,
+      'error'
+    )
   }
 ]

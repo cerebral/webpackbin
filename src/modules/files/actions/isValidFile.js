@@ -17,10 +17,9 @@ const validFileNames = [
 
 function isValidFile ({state, path}) {
   const fileName = state.get('app.currentBin.newFileName')
-  const isEntry = state.get('app.currentBin.newFileIsEntry')
   const ext = nodePath.extname(fileName)
 
-  if (fileName === 'bundle.js' || validFileNames.indexOf(ext) === -1 || isEntry && ext !== '.js') {
+  if (fileName === 'bundle.js' || validFileNames.indexOf(ext) === -1) {
     return path.false()
   }
 
