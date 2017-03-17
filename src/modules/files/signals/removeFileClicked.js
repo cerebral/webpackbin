@@ -11,11 +11,11 @@ export default [
   splice(state`app.currentBin.files`, props`index`, 1),
   isSelectedFile, {
     true: [
-      setNewSelectedFileIndex,
-      showSnackbar('Removed file', 5000)
+      setNewSelectedFileIndex
     ],
     false: []
   },
+  showSnackbar('Removed file', 5000),
   updateFirebaseBin([
     'files',
     'selectedFileIndex'

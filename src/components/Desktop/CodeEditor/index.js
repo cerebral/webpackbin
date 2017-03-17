@@ -17,6 +17,7 @@ export default connect({
   lastForceCodeUpdate: state`code.lastForceCodeUpdate`,
   file: state`app.currentBin.files.${state`app.currentBin.selectedFileIndex`}`,
   lint: state`settings.lint`,
+  forceNoLint: state`app.currentBin.forceNoLint`,
   codeChanged: signal`code.codeChanged`,
   codeLinted: signal`code.codeLinted`,
   modeLoading: signal`code.modeLoading`,
@@ -53,7 +54,7 @@ export default connect({
       })
       this.codemirror.on('change', this.onCodeChange)
       this.codemirror.on('cursorActivity', this.onCursorChange)
-      modes.preLoadMode('main.js', this.props.lint)
+      modes.preLoadMode('main.js', this.props.lint && !this.props.forceNoLint)
         .then(() => {
           this.setModeAndLinter()
         })
@@ -70,7 +71,8 @@ export default connect({
       if (
         prevProps.file.name !== this.props.file.name ||
         prevProps.lastForceCodeUpdate !== this.props.lastForceCodeUpdate ||
-        prevProps.lint !== this.props.lint
+        prevProps.lint !== this.props.lint ||
+        prevProps.forceNoLint !== this.props.forceNoLint
       ) {
         this.setModeAndLinter()
         this.codemirror.getDoc().clearHistory()
@@ -127,14 +129,14 @@ export default connect({
       this.isUpdatingCode = false
     }
     setModeAndLinter () {
-      const modeAlreadyLoaded = modes.isLoaded(this.props.file, this.props.lint)
+      const modeAlreadyLoaded = modes.isLoaded(this.props.file, this.props.lint && !this.props.forceNoLint)
       const modeToLoad = modes.get(this.props.file)
 
       if (!modeAlreadyLoaded) {
         this.props.modeLoading()
       }
 
-      modes.set(this.props.file, this.props.lint)
+      modes.set(this.props.file, this.props.lint && !this.props.forceNoLint)
         .then((linter) => {
           // If changed file during loading
           if (modeToLoad !== modes.get(this.props.file)) {
@@ -146,7 +148,7 @@ export default connect({
             return
           }
 
-          if (this.props.lint) {
+          if (this.props.lint && !this.props.forceNoLint) {
             this.codemirror.setOption('lint', linter === false ? false : {
               getAnnotations: linter,
               onUpdateLinting: this.onUpdateLinting

@@ -7,20 +7,25 @@ import Quickstart from './Quickstart'
 import Packages from './Packages'
 import Loaders from './Loaders'
 import liveStatus from 'computed/liveStatus'
+import Checkbox from 'common/components/Checkbox'
 
 export default connect({
   liveStatus,
+  forceNoLint: state`app.currentBin.forceNoLint`,
   showConfiguration: state`app.currentBin.showConfiguration`,
   quickstarts: state`configure.quickstarts`,
   configurationClicked: signal`configure.configurationClicked`,
-  quickstartClicked: signal`configure.quickstartClicked`
+  quickstartClicked: signal`configure.quickstartClicked`,
+  forceNoLintToggled: signal`configure.forceNoLintToggled`
 },
   function Configure ({
     liveStatus,
+    forceNoLint,
     showConfiguration,
     quickstarts,
     configurationClicked,
-    quickstartClicked
+    quickstartClicked,
+    forceNoLintToggled
   }) {
     return (
       <PopoverIconButton
@@ -40,6 +45,15 @@ export default connect({
               Quick start
             </div>
             <Quickstart />
+            <div className={styles.header}>
+              Settings
+            </div>
+            <Checkbox
+              checked={forceNoLint}
+              onChange={() => forceNoLintToggled()}
+            >
+              Force no linting
+            </Checkbox>
           </div>
           <div className={styles.column}>
             <div className={styles.header}>

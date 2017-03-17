@@ -6,6 +6,7 @@ import loaderSelected from './signals/loaderSelected'
 import loaderToggled from './signals/loaderToggled'
 import loaderConfigChanged from './signals/loaderConfigChanged'
 import configurationClicked from './signals/configurationClicked'
+import forceNoLintToggled from './signals/forceNoLintToggled'
 import preventWhenLiveParticipant from 'modules/app/factories/preventWhenLiveParticipant'
 
 export default {
@@ -32,6 +33,7 @@ export default {
     packageToggled: preventWhenLiveParticipant(packageToggled),
     loaderSelected: preventWhenLiveParticipant(loaderSelected),
     loaderToggled: preventWhenLiveParticipant(loaderToggled),
-    loaderConfigChanged: preventWhenLiveParticipant(loaderConfigChanged)
+    loaderConfigChanged: preventWhenLiveParticipant(loaderConfigChanged),
+    forceNoLintToggled: preventWhenLiveParticipant(forceNoLintToggled)
   }
 }

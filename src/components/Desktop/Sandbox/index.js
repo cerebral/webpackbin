@@ -84,7 +84,11 @@ export default connect({
                 this.iframe = node
               }}
               src={config.sandboxServiceUrl[this.props.region]}
-              style={{height: this.props.url ? 'calc(100% - 36px)' : '100%'}}
+              className={classnames(styles.iframe, {
+                [styles.addressbar]: this.props.url,
+                [styles.log]: this.props.showLog,
+                [styles.addressbarAndLog]: this.props.url && this.props.showLog
+              })}
             />
           )}
           {this.props.showLog ? <Log /> : null}

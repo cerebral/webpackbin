@@ -32,6 +32,7 @@ export function createNewBin (owner) {
     title: '',
     packages: {},
     loaders: {},
+    forceNoLint: false,
     files: [{
       name: 'index.html',
       content: defaultIndexHtml,
