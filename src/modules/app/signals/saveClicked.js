@@ -13,7 +13,8 @@ export default [
     state`code.isLinting`,
     state`settings.lint`,
     state`code.hasLinter`,
-    (isLinting, lint, hasLinter) => isLinting && lint && hasLinter
+    state`app.currentBin.forceNoLint`,
+    (isLinting, lint, hasLinter, forceNoLint) => isLinting && lint && hasLinter && !forceNoLint
   ), {
     true: set(state`code.saveWhenDoneLinting`, true),
     false: [
@@ -21,6 +22,7 @@ export default [
         false: showSnackbar('Code is not valid, check lint messages', 5000, 'error'),
         true: [
           resetChangedFiles,
+          set(state`log.shouldCheckLog`, false),
           when(state`app.currentBinKey`), {
             false: [
               set(state`app.isSaving`, true),
