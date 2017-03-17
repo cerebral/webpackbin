@@ -23,6 +23,7 @@ export default {
 
     switch (ext) {
       case '.js':
+      case '.jsx':
         return JSX
       case '.css':
         return CSS
