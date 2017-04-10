@@ -35,5 +35,5 @@ export function isError (value) {
 }
 
 export function isUndefined (value) {
-  return value === undefined
+  return value && value.__webpackbin_type_undefined
 }

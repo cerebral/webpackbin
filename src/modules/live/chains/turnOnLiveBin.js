@@ -1,4 +1,4 @@
-import {set, when} from 'cerebral/operators'
+import {set} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 import saveClicked from 'modules/app/signals/saveClicked'
 import addOwnerAsParticipant from '../actions/addOwnerAsParticipant'
@@ -10,12 +10,8 @@ export default [
   set(state`app.currentBin.isLive`, true),
   set(state`app.currentBin.currentParticipantKey`, state`app.user.uid`),
   addOwnerAsParticipant,
-  when(state`app.currentBinKey`), {
-    true: [
-      ...connectLiveBinAsOwner
-    ],
-    false: [
-      ...saveClicked
-    ]
-  }
+  set(state`app.currentBinKey`, null),
+  set(state`app.currentBin.owner`, state`app.user.uid`),
+  saveClicked,
+  ...connectLiveBinAsOwner
 ]

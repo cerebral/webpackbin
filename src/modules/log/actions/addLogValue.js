@@ -1,7 +1,8 @@
 const specialObjects = [
   '__webpackbin_type_circular',
   '__webpackbin_type_function',
-  '__webpackbin_type_error'
+  '__webpackbin_type_error',
+  '__webpackbin_type_undefined'
 ]
 
 function isSpecial (value) {

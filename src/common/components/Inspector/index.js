@@ -155,16 +155,20 @@ function ErrorValue (props) {
 
 function Value (props) {
   let className = styles.string
+  let value = props.value
   const isSelected = String(props.selectedPath) === String(props.path)
-  if (isNumber(props.value)) className = styles.number
-  if (isBoolean(props.value)) className = styles.boolean
-  if (isNull(props.value)) className = styles.null
-  if (isUndefined(props.value)) className = styles.undefined
+  if (isNumber(value)) className = styles.number
+  if (isBoolean(value)) className = styles.boolean
+  if (isNull(value)) className = styles.null
+  if (isUndefined(value)) {
+    className = styles.undefined
+    value = undefined
+  }
   return (
     <div className={className}>
       <div onClick={() => props.onSelectPath({path: props.path})} className={props.highlight && isSelected ? styles.highlightValue : null}>
         {props.propertyKey ? props.propertyKey + ': ' : <span />}
-        <span>{isString(props.value) ? '"' + props.value + '"' : String(props.value)}</span>
+        <span>{isString(value) ? '"' + value + '"' : String(value)}</span>
         {props.hasNext ? ',' : null}
       </div>
     </div>

@@ -15,8 +15,7 @@ export default connect({
   showSandbox: state`app.showSandbox`,
   region: state`settings.region`,
   windowWidth: state`useragent.window.width`,
-  showIsLoadingSandbox: state`sandbox.showIsLoadingSandbox`,
-  showIsPackaging: state`sandbox.showIsPackaging`,
+  sandboxMessage: state`sandbox.sandboxMessage`,
   lastSavedDatetime: state`app.currentBin.lastSavedDatetime`,
   lastNavigation: state`sandbox.lastNavigation`,
   sandboxLoaded: signal`sandbox.sandboxLoaded`,
@@ -88,12 +87,11 @@ export default connect({
           {this.props.showLog ? <Log /> : null}
           <div
             className={classnames(styles.iframeLoader, {
-              [styles.iframeLoaderVisible]: this.props.showIsLoadingSandbox || this.props.showIsPackaging,
-              [styles.iframeLoaderPulse]: this.props.showIsLoadingSandbox && !this.props.showIsPackaging
+              [styles.iframeLoaderVisible]: this.props.sandboxMessage
             })}
             style={{top: this.props.url ? '41px' : '5px'}}
           >
-            {this.props.showIsPackaging ? 'It seems that the packages of this bin is new or has expired, please hold on for a few extra seconds...' : 'Loading...'}
+            {this.props.sandboxMessage}
           </div>
         </div>
       )

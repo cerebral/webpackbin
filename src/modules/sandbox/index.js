@@ -10,8 +10,7 @@ export default {
   state: {
     isUpdatingSandbox: false,
     isLoadingSandbox: false,
-    showIsPackaging: false,
-    showIsLoadingSandbox: false,
+    sandboxMessage: null,
     url: null,
     lastNavigation: null
   },

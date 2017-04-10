@@ -1,76 +1,54 @@
 import {parallel} from 'cerebral'
 import updateSandbox from '../actions/updateSandbox'
-import {set, debounce, when} from 'cerebral/operators'
+import {set, when} from 'cerebral/operators'
+import sandboxDebounce from '../sandboxDebounce'
 import {state} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
 import setLastSavedDatetime from 'modules/app/actions/setLastSavedDatetime'
 import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 import resetLogs from 'modules/log/actions/resetLogs'
-
-const isLoadingOrUpdating = when(
-  state`sandbox.isLoadingSandbox`,
-  state`sandbox.isUpdatingSandbox`,
-  (isLoadingSandbox, isUpdatingSandbox) => isLoadingSandbox || isUpdatingSandbox
-)
-
-const sandboxTimeout = [
-  set(state`sandbox.hasSandboxTimeout`, true),
-  updateSandbox, {
-    success: [
-      setLastSavedDatetime,
-      set(state`sandbox.isUpdatingSandbox`, false),
-      set(state`sandbox.isLoadingSandbox`, true),
-      updateFirebaseBin('lastSavedDatetime')
-    ],
-    error: [
-      set(state`sandbox.isUpdatingSandbox`, false),
-      set(state`sandbox.isLoadingSandbox`, false),
-      set(state`sandbox.showIsLoadingSandbox`, false),
-      set(state`sandbox.showIsPackaging`, false),
-      set(state`app.isLoading`, false),
-      showSnackbar('It seems your combination of packages is just too big', 5000, 'error')
-    ]
-  },
-  set(state`sandbox.hasSandboxTimeout`, false)
-]
+import sandboxTimeout from '../chains/sandboxTimeout'
+import sandboxAborted from '../chains/sandboxAborted'
+import abortSandboxUpdate from '../actions/abortSandboxUpdate'
 
 export default function updateSandboxFactory (additionalChain = []) {
   return [
     set(state`sandbox.isUpdatingSandbox`, true),
     resetLogs,
     parallel([
-      debounce(500), {
+      sandboxDebounce(500), {
         continue: [
-          isLoadingOrUpdating, {
-            true: set(state`sandbox.showIsLoadingSandbox`, true),
-            false: set(state`sandbox.showIsLoadingSandbox`, false)
-          }
-        ],
-        discard: []
-      },
-      debounce(2500), {
-        continue: [
-          isLoadingOrUpdating, {
-            true: set(state`sandbox.showIsPackaging`, true),
-            false: set(state`sandbox.showIsPackaging`, false)
+          set(state`sandbox.sandboxMessage`, 'Sending update...'),
+          sandboxDebounce(2000), {
+            continue: [
+              set(state`sandbox.sandboxMessage`, 'Waiting for packager, hold on...'),
+              sandboxDebounce(22500), {
+                continue: abortSandboxUpdate,
+                discard: []
+              }
+            ],
+            discard: []
           }
         ],
         discard: []
       },
       updateSandbox, {
         503: sandboxTimeout,
-        0: sandboxTimeout,
+        0: sandboxAborted,
         success: [
           setLastSavedDatetime,
           set(state`sandbox.isUpdatingSandbox`, false),
           set(state`sandbox.isLoadingSandbox`, true),
+          sandboxDebounce(0), {
+            continue: set(state`sandbox.sandboxMessage`, 'Loading sandbox...'),
+            discard: []
+          },
           updateFirebaseBin('lastSavedDatetime')
         ],
         error: [
           set(state`sandbox.isUpdatingSandbox`, false),
           set(state`sandbox.isLoadingSandbox`, false),
-          set(state`sandbox.showIsLoadingSandbox`, false),
-          set(state`sandbox.showIsPackaging`, false),
+          set(state`sandbox.sandboxMessage`, null),
           set(state`app.isLoading`, false),
           showSnackbar('Unable to update sandbox', 5000, 'error')
         ]

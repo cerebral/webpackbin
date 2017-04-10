@@ -11,13 +11,16 @@ export default [
   getNpmPackage, {
     success: [
       setPackage,
+      set(state`configure.isQueryingPackage`, false),
       set(state`app.currentBin.packageQuery`, ''),
       whenLiveCurrentUser, {
         true: updateFirebaseBin(['packages', 'packageQuery']),
         false: []
       }
     ],
-    error: showSnackbar('Could not grab package, is it valid?', 5000, 'error')
-  },
-  set(state`configure.isQueryingPackage`, false)
+    error: [
+      set(state`configure.isQueryingPackage`, false),
+      showSnackbar('Could not grab package, is it valid?', 5000, 'error')
+    ]
+  }
 ]
