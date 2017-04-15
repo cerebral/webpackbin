@@ -17,7 +17,7 @@ import files from './modules/files'
 import boilerplates from './modules/boilerplates'
 import configure from './modules/configure'
 import live from './modules/live'
-import myBins from './modules/myBins'
+import favorites from './modules/favorites'
 import shortcuts from './modules/shortcuts'
 
 const controller = Controller({
@@ -39,7 +39,7 @@ const controller = Controller({
     boilerplates,
     live,
     configure,
-    myBins,
+    favorites,
     sandbox,
     settings,
     shortcuts: shortcuts({

@@ -31,9 +31,10 @@ export default connect({
       <PopoverIconButton
         disabled={!liveStatus.isAdmin || liveStatus.isParticipant}
         show={showConfiguration}
-        icon='npm'
+        icon='settings'
         right
-        label='Configure'
+        tooltip='Configure'
+        label=''
         onClick={(event) => {
           event.stopPropagation()
           configurationClicked()

@@ -15,6 +15,7 @@ export default [
       set(state`app.currentBin.newFileName`, ''),
       set(state`app.currentBin.newFileIsEntry`, false),
       set(state`app.currentBin.showNewFileInput`, false),
+      set(state`app.currentBin.showFolder`, false),
       selectNewFile,
       requiresLoader, {
         true: [
@@ -23,6 +24,7 @@ export default [
             'files',
             'selectedFileIndex',
             'newFileIsEntry',
+            'showFolder',
             'showNewFileInput',
             'loaders'
           ])
@@ -31,6 +33,7 @@ export default [
           'files',
           'selectedFileIndex',
           'newFileIsEntry',
+          'showFolder',
           'showNewFileInput'
         ])
       }

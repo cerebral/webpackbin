@@ -7,18 +7,20 @@ import AddFile from './AddFile'
 import NavigationSeparator from 'common/components/NavigationSeparator'
 import styles from './styles.css'
 
+import filesShown from 'computed/filesShown'
+
 export default connect({
-  files: state`app.currentBin.files`,
+  files: filesShown,
   changedFiles: state`app.currentBin.changedFiles`,
   selectedFileIndex: state`app.currentBin.selectedFileIndex`,
   fileClicked: signal`files.fileClicked`,
-  removeFileClicked: signal`files.removeFileClicked`
+  hideFileClicked: signal`files.hideFileClicked`
 },
   function FilesBar ({
     files,
     selectedFileIndex,
     fileClicked,
-    removeFileClicked,
+    hideFileClicked,
     changedFiles
   }) {
     return (
@@ -29,11 +31,11 @@ export default connect({
           {files.map(function (file, index) {
             return (
               <FileTab
-                onClick={() => fileClicked({index})}
-                onRemoveClick={index === 0 ? null : () => removeFileClicked({index})}
-                active={index === selectedFileIndex}
+                onClick={() => fileClicked({index: file.index})}
+                onRemoveClick={() => hideFileClicked({index: file.index})}
+                active={file.index === selectedFileIndex}
                 isEntry={Boolean(file.isEntry)}
-                isChanged={changedFiles[index]}
+                isChanged={changedFiles[file.index]}
               >
                 {file.name}
               </FileTab>

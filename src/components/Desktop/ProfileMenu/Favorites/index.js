@@ -5,12 +5,12 @@ import Description from 'common/components/Description'
 import {state, signal} from 'cerebral/tags'
 
 export default connect({
-  bins: state`myBins.list`,
-  myBinClicked: signal`myBins.myBinClicked`
+  bins: state`favorites.list`,
+  favoriteClicked: signal`favorites.favoriteClicked`
 },
   function Settings ({
     bins,
-    myBinClicked
+    favoriteClicked
   }) {
     return (
       <div>
@@ -18,7 +18,7 @@ export default connect({
           return (
             <MenuItem
               icon='newBin'
-              onClick={() => myBinClicked({binKey: bins[binKey].binKey})}
+              onClick={() => favoriteClicked({binKey: bins[binKey].binKey})}
             >
               <div>
                 {bins[binKey].name}

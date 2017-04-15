@@ -80,7 +80,7 @@
 }
 
 
-.cm-s-webpackbin span.cm-string {
+.cm-s-webpackbin span.cm-string, .cm-s-webpackbin span.cm-string-2 {
     color: #f0b937;
 }
 

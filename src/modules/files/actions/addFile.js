@@ -7,7 +7,8 @@ function addFile ({state}) {
     lastCursorPosition: {
       line: 0,
       ch: 0
-    }
+    },
+    show: Date.now()
   }
 
   if (isEntry) {

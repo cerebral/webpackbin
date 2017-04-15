@@ -23,6 +23,7 @@ export function createNewBin (owner) {
     currentLoader: 'babel',
     packageQuery: '',
     showLog: false,
+    showFolder: false,
     showFullLog: false,
     changedFiles: {},
     showNewFileInput: false,

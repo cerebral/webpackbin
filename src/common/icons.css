@@ -271,3 +271,8 @@
 .folder:before {
 	content: "\e101";
 }
+
+.favorite {composes: font;}
+.favorite:before {
+	content: "\e260";
+}

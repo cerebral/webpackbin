@@ -33,6 +33,7 @@ class PopoverIconButton extends Component {
           disabled={this.props.disabled}
           active={this.props.show}
           icon={this.props.icon}
+          tooltip={!this.props.show && this.props.tooltip}
           onClick={this.props.onClick}
         >
           {this.props.label}

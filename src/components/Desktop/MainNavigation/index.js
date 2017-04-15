@@ -5,13 +5,14 @@ import classNames from 'classnames'
 import styles from './styles.css'
 import NavigationBar from 'common/components/NavigationBar'
 import IconButton from 'common/components/IconButton'
+import Separator from 'common/components/Separator'
 import Configure from './Configure'
 import {state, signal} from 'cerebral/tags'
 import liveStatus from 'computed/liveStatus'
 import binHasEntry from 'computed/binHasEntry'
 import ProfileMenu from '../ProfileMenu'
 import MainMenu from '../MainMenu'
-import MyBins from './MyBins'
+import Favorite from './Favorite'
 import Stats from './Stats'
 
 export default connect({
@@ -21,9 +22,11 @@ export default connect({
   changedFiles: state`app.currentBin.changedFiles`,
   isSaving: state`app.isSaving`,
   showLog: state`app.currentBin.showLog`,
+  showFolder: state`app.currentBin.showFolder`,
   shouldCheckLog: state`log.shouldCheckLog`,
   saveClicked: signal`app.saveClicked`,
   logToggled: signal`log.logToggled`,
+  folderToggled: signal`files.folderToggled`,
   createBinClicked: signal`app.createBinClicked`,
   liveToggled: signal`live.liveToggled`
 },
@@ -34,9 +37,11 @@ export default connect({
     changedFiles,
     isSaving,
     showLog,
+    showFolder,
     shouldCheckLog,
     saveClicked,
     logToggled,
+    folderToggled,
     leftMenuButtonClicked,
     createBinClicked,
     liveToggled
@@ -46,44 +51,51 @@ export default connect({
         <div className={styles.wrapper}>
           <div className={classNames(styles.flexWrapper, styles.flex)}>
             <MainMenu />
-            <div style={{width: '30px'}} />
+            <Separator />
             <IconButton
               disabled={isSaving || liveStatus.isParticipant}
               icon='save'
-              tooltip='CTRL + s / CMD + s'
+              tooltip='Save'
               onClick={() => saveClicked()}
-            >
-              Save
-            </IconButton>
+            />
+            <IconButton
+              active={showFolder}
+              disabled={liveStatus.isParticipant}
+              icon='folder'
+              tooltip={showFolder ? 'Hide folder' : 'Show folder'}
+              onClick={(event) => {
+                event.stopPropagation()
+                folderToggled()
+              }}
+            />
             <IconButton
               active={showLog}
               disabled={liveStatus.isParticipant}
               notify={shouldCheckLog}
               icon='log'
+              tooltip={showLog ? 'Hide log' : 'Show log'}
               onClick={() => logToggled()}
-            >
-              Log
-            </IconButton>
-            <MyBins />
+            />
+            <Separator />
+            <Favorite />
             <Stats />
           </div>
           <div className={styles.flexWrapper}>
             <IconButton
               disabled={!binHasEntry || Object.keys(changedFiles).length || isSaving}
               icon='zip'
+              tooltip='Download'
               href={`${config.sandboxServiceUrl[region]}/project.zip`}
-            >
-              Download
-            </IconButton>
+            />
             <IconButton
               disabled={!liveStatus.isAdmin}
               active={liveStatus.isConnected}
               icon='live'
+              tooltip={liveStatus.isConnected ? 'Turn off LIVE' : 'Turn on LIVE'}
               onClick={() => liveToggled()}
-            >
-              Live
-            </IconButton>
+            />
             <Configure />
+            <Separator />
             <ProfileMenu />
           </div>
         </div>

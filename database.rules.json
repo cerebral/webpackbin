@@ -20,7 +20,7 @@
         ".write": "auth.uid === $userKey"
       }
     },
-    "myBins": {
+    "favorites": {
       "$userKey": {
         ".read": "auth.uid === $userKey",
         ".write": "auth.uid === $userKey"

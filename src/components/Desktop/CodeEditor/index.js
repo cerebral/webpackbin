@@ -68,14 +68,20 @@ export default connect({
         this.codemirror.setOption('readOnly', false)
       }
 
+      if (!this.props.file) {
+        this.setEditorValue('')
+
+        return
+      }
+
       if (
+        !prevProps.file ||
         prevProps.file.name !== this.props.file.name ||
         prevProps.lastForceCodeUpdate !== this.props.lastForceCodeUpdate ||
         prevProps.lint !== this.props.lint ||
         prevProps.forceNoLint !== this.props.forceNoLint
       ) {
         this.setModeAndLinter()
-        this.codemirror.getDoc().clearHistory()
         this.focusLastCursorPosition()
       }
 
@@ -126,6 +132,7 @@ export default connect({
     setEditorValue (value) {
       this.isUpdatingCode = true
       this.codemirror.setValue(value)
+      this.codemirror.getDoc().clearHistory()
       this.isUpdatingCode = false
     }
     setModeAndLinter () {

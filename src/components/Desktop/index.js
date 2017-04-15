@@ -7,6 +7,7 @@ import Loader from 'common/components/Loader'
 import MainNavigation from './MainNavigation'
 import FilesBar from './FilesBar'
 import Sandbox from './Sandbox'
+import Folder from './Folder'
 import LiveParticipants from './LiveParticipants'
 import Snackbar from './Snackbar'
 import styles from './styles.css'
@@ -36,6 +37,7 @@ export default connect({
             <div className={styles.editorWrapper}>
               <CodeEditor />
               <Sandbox />
+              <Folder />
             </div>
           ) : null
         }

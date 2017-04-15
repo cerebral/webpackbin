@@ -7,39 +7,39 @@ import Input from 'common/components/Input'
 import styles from './styles.css'
 
 import liveStatus from 'computed/liveStatus'
-import isInMyBins from 'computed/isInMyBins'
+import isInFavorites from 'computed/isInFavorites'
 
 export default connect({
   liveStatus,
-  isInMyBins,
+  isInFavorites,
   currentBinKey: state`app.currentBinKey`,
-  showNewTitleInput: state`myBins.showNewTitleInput`,
-  newMyBinTitle: state`myBins.newMyBinTitle`,
-  addMyBinsClicked: signal`myBins.addMyBinsClicked`,
-  myBinsTitleChanged: signal`myBins.myBinsTitleChanged`,
-  myBinsTitleSubmitted: signal`myBins.myBinsTitleSubmitted`,
-  myBinsTitleAborted: signal`myBins.myBinsTitleAborted`
+  showNewTitleInput: state`favorites.showNewTitleInput`,
+  newMyBinTitle: state`favorites.newMyBinTitle`,
+  addFavoriteClicked: signal`favorites.addFavoriteClicked`,
+  favoriteTitleChanged: signal`favorites.favoriteTitleChanged`,
+  favoriteTitleSubmitted: signal`favorites.favoriteTitleSubmitted`,
+  favoriteTitleAborted: signal`favorites.favoriteTitleAborted`
 },
-  class MyBins extends Component {
+  class Favorite extends Component {
     componentDidUpdate (prevProps) {
       if (!prevProps.showNewFileInput && this.props.showNewFileInput) {
         this.focusInput()
       }
     }
     focusInput () {
-      document.querySelector('#myBinsTitle').focus()
+      document.querySelector('#favoritesTitle').focus()
     }
     render () {
       const {
         liveStatus,
-        isInMyBins,
+        isInFavorites,
         currentBinKey,
         showNewTitleInput,
         newMyBinTitle,
-        addMyBinsClicked,
-        myBinsTitleChanged,
-        myBinsTitleSubmitted,
-        myBinsTitleAborted
+        addFavoriteClicked,
+        favoriteTitleChanged,
+        favoriteTitleSubmitted,
+        favoriteTitleAborted
       } = this.props
 
       if (showNewTitleInput) {
@@ -49,9 +49,9 @@ export default connect({
               id='newFileName'
               autoFocus
               value={newMyBinTitle}
-              onInput={(event) => myBinsTitleChanged({value: event.target.value})}
-              onSubmit={myBinsTitleSubmitted}
-              onCancel={myBinsTitleAborted}
+              onInput={(event) => favoriteTitleChanged({value: event.target.value})}
+              onSubmit={favoriteTitleSubmitted}
+              onCancel={favoriteTitleAborted}
               placeholder='Name the bin...'
             />
           </div>
@@ -61,13 +61,12 @@ export default connect({
       return (
         <div className={styles.wrapper}>
           <IconButton
-            active={isInMyBins}
+            active={isInFavorites}
             disabled={liveStatus.isParticipant || !currentBinKey}
-            onClick={() => addMyBinsClicked()}
-            icon='folder'
-          >
-            My bins
-          </IconButton>
+            onClick={() => addFavoriteClicked()}
+            tooltip={isInFavorites ? 'Remove favorite' : 'Add favorite'}
+            icon='favorite'
+          />
         </div>
       )
     }

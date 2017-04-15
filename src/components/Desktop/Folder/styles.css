@@ -1,0 +1,54 @@
+.wrapper {
+  position: absolute;
+  display: flex;
+  background-color: #28374c;
+  z-index: 9;
+  height: calc(100vh - 104px);
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+.header {
+  margin: 0;
+  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.file {
+  position: relative;
+  display: flex;
+  padding: 10px 40px 10px 10px;
+  opacity: 0.5;
+}
+
+.notShown {
+  opacity: 1;
+}
+
+.file:hover {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.icon {
+  padding-right: 10px;
+}
+
+.deleteIcon {
+  position: absolute;
+  color: #FFF;
+  right: 10px;
+  top: 10px;
+  opacity: 0.5;
+}
+
+.deleteIcon:hover {
+  opacity: 1;
+}

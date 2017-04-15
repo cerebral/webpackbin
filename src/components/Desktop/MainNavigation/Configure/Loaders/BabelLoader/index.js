@@ -124,7 +124,7 @@ export default connect({
             Inferno
           </Checkbox>
           <Description>
-            Inferno JSX support
+            Inferno JSX support (v3.2.0)
           </Description>
         </div>
         <div className={styles.section}>

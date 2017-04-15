@@ -8,13 +8,13 @@ import showSnackbar from 'modules/app/factories/showSnackbar'
 
 export default [
   setRemoveFileUndo,
-  splice(state`app.currentBin.files`, props`index`, 1),
   isSelectedFile, {
     true: [
       setNewSelectedFileIndex
     ],
     false: []
   },
+  splice(state`app.currentBin.files`, props`index`, 1),
   showSnackbar('Removed file', 5000),
   updateFirebaseBin([
     'files',

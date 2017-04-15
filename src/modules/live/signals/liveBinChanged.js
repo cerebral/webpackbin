@@ -23,6 +23,7 @@ export default [
         selectedFileIndex: set(state`app.currentBin.selectedFileIndex`, props`value`),
         showFullLog: set(state`app.currentBin.showFullLog`, props`value`),
         showLog: set(state`app.currentBin.showLog`, props`value`),
+        showFolder: set(state`app.currentBin.showFolder`, props`value`),
         showNewFileInput: set(state`app.currentBin.showNewFileInput`, props`value`),
         showConfiguration: set(state`app.currentBin.showConfiguration`, props`value`),
         currentLoader: set(state`app.currentBin.currentLoader`, props`value`),

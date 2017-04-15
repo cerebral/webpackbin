@@ -7,7 +7,7 @@ import MenuItem from 'common/components/MenuItem'
 import ProfileDisplay from './ProfileDisplay'
 import GithubSignIn from './GithubSignIn'
 import Settings from './Settings'
-import MyBins from './MyBins'
+import Favorites from './Favorites'
 
 export default connect({
   isProfileMenuOpen: state`app.isProfileMenuOpen`,
@@ -21,7 +21,7 @@ export default connect({
   signOutClicked: signal`app.signOutClicked`,
   lintToggled: signal`settings.lintToggled`,
   settingsClicked: signal`settings.settingsClicked`,
-  myBinsClicked: signal`myBins.myBinsClicked`
+  favoritesClicked: signal`favorites.favoritesClicked`
 },
   function ProfileMenu ({
     isProfileMenuOpen,
@@ -34,7 +34,7 @@ export default connect({
     githubSignUpClicked,
     signOutClicked,
     settingsClicked,
-    myBinsClicked
+    favoritesClicked
   }) {
     return (
       <div>
@@ -45,16 +45,14 @@ export default connect({
             e.stopPropagation()
             profileClicked()
           }}
-        >
-          Profile
-        </IconButton>
+        />
         <SideMenu
           side='right'
           show={isProfileMenuOpen}
           page={profileMenuPage}
           pages={[{
-            name: 'myBins',
-            content: MyBins
+            name: 'favorites',
+            content: Favorites
           }, {
             name: 'settings',
             content: Settings
@@ -72,11 +70,11 @@ export default connect({
             ) : null
           }
           <MenuItem
-            active={profileMenuPage === 'myBins'}
-            icon='folder'
-            onClick={() => myBinsClicked()}
+            active={profileMenuPage === 'favorites'}
+            icon='favorite'
+            onClick={() => favoritesClicked()}
           >
-            My bins
+            Favorites
           </MenuItem>
           <MenuItem
             active={profileMenuPage === 'settings'}
