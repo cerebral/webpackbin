@@ -1,6 +1,6 @@
 {
   "name": "webpackbin",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "start": "webpack-dev-server --content-base public/",
     "deploy:test": "NODE_ENV=production WEBPACKBIN_ENV=webpackbin-test webpack && firebase deploy --project webpackbin-test --public public --only \"hosting,database\"",
