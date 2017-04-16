@@ -39,7 +39,15 @@ function IconButton (props) {
         [styles.disabledIcon]: props.disabled,
         [styles.icon]: !props.active && !props.notify && !props.disabled
       })}>
-        <div className={icons[props.icon]} />
+        {
+          props.imageUrl ? (
+            <div className={icons[props.icon]}>
+              <div className={styles.image} style={{backgroundImage: `url(${props.imageUrl})`}} />
+            </div>
+          ) : (
+            <div className={icons[props.icon]} />
+          )
+        }
         {props.tooltip ? <i>{props.tooltip}</i> : null}
       </div>
     )

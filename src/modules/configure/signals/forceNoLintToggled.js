@@ -5,7 +5,11 @@ import {set as setFirebase} from 'cerebral-provider-firebase/operators'
 export default [
   when(state`app.currentBin.forceNoLint`), {
     true: set(state`app.currentBin.forceNoLint`, false),
-    false: set(state`app.currentBin.forceNoLint`, true)
+    false: [
+      set(state`app.currentBin.forceNoLint`, true),
+      set(state`code.isLinting`, false),
+      set(state`code.isValid`, true)
+    ]
   },
   setFirebase(
     string`bins.${state`app.currentBinKey`}.forceNoLint`,
