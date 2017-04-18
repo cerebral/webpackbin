@@ -1,15 +1,12 @@
 import {parallel} from 'cerebral'
 import updateSandbox from '../actions/updateSandbox'
-import {set, when} from 'cerebral/operators'
+import {set} from 'cerebral/operators'
 import sandboxDebounce from '../sandboxDebounce'
 import {state} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
 import setLastSavedDatetime from 'modules/app/actions/setLastSavedDatetime'
 import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 import resetLogs from 'modules/log/actions/resetLogs'
-import sandboxTimeout from '../chains/sandboxTimeout'
-import sandboxAborted from '../chains/sandboxAborted'
-import abortSandboxUpdate from '../actions/abortSandboxUpdate'
 
 export default function updateSandboxFactory (additionalChain = []) {
   return [
@@ -22,8 +19,14 @@ export default function updateSandboxFactory (additionalChain = []) {
           sandboxDebounce(2000), {
             continue: [
               set(state`sandbox.sandboxMessage`, 'Waiting for packager, hold on...'),
-              sandboxDebounce(22500), {
-                continue: abortSandboxUpdate,
+              sandboxDebounce(15000), {
+                continue: [
+                  set(state`sandbox.sandboxMessage`, 'Still waiting, you probably added a rather large package...'),
+                  sandboxDebounce(15000), {
+                    continue: set(state`sandbox.sandboxMessage`, 'It can actually take up to a minute to package up, please hold on some more...'),
+                    discard: []
+                  }
+                ],
                 discard: []
               }
             ],
@@ -33,8 +36,6 @@ export default function updateSandboxFactory (additionalChain = []) {
         discard: []
       },
       updateSandbox, {
-        503: sandboxTimeout,
-        0: sandboxAborted,
         success: [
           setLastSavedDatetime,
           set(state`sandbox.isUpdatingSandbox`, false),
@@ -46,11 +47,15 @@ export default function updateSandboxFactory (additionalChain = []) {
           updateFirebaseBin('lastSavedDatetime')
         ],
         error: [
+          sandboxDebounce(0), {
+            continue: set(state`sandbox.sandboxMessage`, 'Loading sandbox...'),
+            discard: []
+          },
           set(state`sandbox.isUpdatingSandbox`, false),
           set(state`sandbox.isLoadingSandbox`, false),
           set(state`sandbox.sandboxMessage`, null),
           set(state`app.isLoading`, false),
-          showSnackbar('Unable to update sandbox', 5000, 'error')
+          showSnackbar('Sorry, something went wrong, please report or refresh', 5000, 'error')
         ]
       },
       additionalChain
