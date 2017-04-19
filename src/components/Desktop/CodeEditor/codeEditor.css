@@ -130,3 +130,8 @@
 .cm-s-webpackbin .CodeMirror-matchingtag {
   background-color: #171c26;
 }
+
+.cm-s-webpackbin.cm-fat-cursor .CodeMirror-cursors .CodeMirror-cursor {
+  background-color: #FFF;
+  opacity: 0.8;
+}

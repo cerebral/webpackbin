@@ -2,7 +2,6 @@ import '!style-loader!css-loader!./lint.css'
 import '!style-loader!css-loader!./../../../../node_modules/codemirror/lib/codemirror.css'
 import '!style-loader!css-loader!./codeEditor.css'
 import 'codemirror/addon/lint/lint.js'
-import 'codemirror/keymap/vim.js'
 import Inferno from 'inferno'
 import Component from 'inferno-component'
 import {connect} from 'cerebral/inferno'
@@ -17,6 +16,7 @@ export default connect({
   lastForceCodeUpdate: state`code.lastForceCodeUpdate`,
   file: state`app.currentBin.files.${state`app.currentBin.selectedFileIndex`}`,
   lint: state`settings.lint`,
+  vimMode: state`settings.vimMode`,
   forceNoLint: state`app.currentBin.forceNoLint`,
   codeChanged: signal`code.codeChanged`,
   codeLinted: signal`code.codeLinted`,
@@ -32,6 +32,7 @@ export default connect({
       this.onCursorChange = this.onCursorChange.bind(this)
     }
     componentDidMount () {
+      this.codeElement.style.opacity = '0'
       this.codemirror = CodeMirror(this.codeElement, {
         value: this.props.file.content,
         mode: modes.get(),
@@ -56,7 +57,15 @@ export default connect({
       this.codemirror.on('cursorActivity', this.onCursorChange)
       modes.preLoadMode('main.js', this.props.lint && !this.props.forceNoLint)
         .then(() => {
-          this.setModeAndLinter()
+          return Promise.all([
+            this.setModeAndLinter(),
+            this.setVimMode()
+          ])
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.codeElement.style.opacity = '1'
+          }, 500)
         })
     }
     componentDidUpdate (prevProps) {
@@ -86,7 +95,7 @@ export default connect({
       }
 
       if (prevProps.vimMode !== this.props.vimMode) {
-        this.codemirror.setOption('keyMap', this.props.vimMode ? 'vim' : 'default')
+        this.setVimMode()
       }
     }
     focusLastCursorPosition () {
@@ -134,6 +143,16 @@ export default connect({
       this.codemirror.setValue(value)
       this.codemirror.getDoc().clearHistory()
       this.isUpdatingCode = false
+    }
+    setVimMode () {
+      if (this.props.vimMode) {
+        import('codemirror/keymap/vim')
+          .then(() => {
+            this.codemirror.setOption('keyMap', 'vim')
+          })
+      } else {
+        this.codemirror.setOption('keyMap', 'default')
+      }
     }
     setModeAndLinter () {
       const modeAlreadyLoaded = modes.isLoaded(this.props.file, this.props.lint && !this.props.forceNoLint)

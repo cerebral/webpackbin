@@ -8,15 +8,19 @@ import styles from './styles.css'
 
 export default connect({
   lint: state`settings.lint`,
+  vimMode: state`settings.vimMode`,
   region: state`settings.region`,
   lintToggled: signal`settings.lintToggled`,
+  vimModeToggled: signal`settings.vimModeToggled`,
   regionToggled: signal`settings.regionToggled`
 },
   function Settings ({
     lint,
+    vimMode,
     region,
     page,
     lintToggled,
+    vimModeToggled,
     regionToggled
   }) {
     return (
@@ -36,6 +40,21 @@ export default connect({
             </Checkbox>
             <Description light>
               Load and run supported linters
+            </Description>
+          </div>
+        </MenuItem>
+        <MenuItem
+          onClick={() => vimModeToggled()}
+        >
+          <div>
+            <Checkbox
+              onChange={() => vimModeToggled()}
+              checked={vimMode}
+            >
+              VIM Mode
+            </Checkbox>
+            <Description light>
+              VIM like code interaction
             </Description>
           </div>
         </MenuItem>

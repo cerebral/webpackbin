@@ -49,8 +49,8 @@ const controller = Controller({
     useragent: UseragentModule({
       media: {
         unsupported: '(max-width: 550px)',
-        mobile: '(max-width: 1000px)',
-        desktop: '(min-width: 1001px)'
+        mobile: '(max-width: 700px)',
+        desktop: '(min-width: 701px)'
       }
     })
   },

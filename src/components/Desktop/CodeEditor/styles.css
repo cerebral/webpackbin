@@ -11,4 +11,5 @@
 .codeWrapper {
   flex: 1;
   height: 100%;
+  transition: opacity 0.5s ease-in;
 }
