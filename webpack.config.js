@@ -51,6 +51,7 @@ const rules = [
  PLUGINS
  */
 let plugins = [
+  new webpack.IgnorePlugin(/typescript-eslint-parser/),
   new HtmlWebpackPlugin({
     title: 'Ducky',
     language: 'no',

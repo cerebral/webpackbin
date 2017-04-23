@@ -39,6 +39,7 @@
     "inferno-create-element": "^1.2.2",
     "inline-manifest-webpack-plugin": "^3.0.1",
     "parserlib": "^1.1.1",
+    "prettier": "^1.2.2",
     "path-to-regexp": "^1.7.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
