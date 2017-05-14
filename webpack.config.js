@@ -128,7 +128,7 @@ const common = [
  */
 module.exports = {
   target: 'web',
-  devtool: isProduction ? 'source-map' : 'eval-source-map',
+  devtool: isProduction ? 'source-map' : 'inline-source-map',
   performance: {
     hints: isProduction ? 'warning' : false
   },
