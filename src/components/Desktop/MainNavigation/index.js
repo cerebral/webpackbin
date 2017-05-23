@@ -82,17 +82,18 @@ export default connect({
           </div>
           <div className={styles.flexWrapper}>
             <IconButton
-              disabled={!binHasEntry || Object.keys(changedFiles).length || isSaving}
-              icon='zip'
-              tooltip='Download'
-              href={`${config.sandboxServiceUrl[region]}/project.zip`}
-            />
-            <IconButton
               disabled={!liveStatus.isAdmin}
               active={liveStatus.isConnected}
               icon='live'
               tooltip={liveStatus.isConnected ? 'Turn off LIVE' : 'Turn on LIVE'}
               onClick={() => liveToggled()}
+            />
+            <Separator />
+            <IconButton
+              disabled={!binHasEntry || Object.keys(changedFiles).length || isSaving}
+              icon='zip'
+              tooltip='Download'
+              href={`${config.sandboxServiceUrl[region]}/project.zip`}
             />
             <Configure />
             <Separator />

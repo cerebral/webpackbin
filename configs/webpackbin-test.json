@@ -10,5 +10,6 @@
     "databaseURL": "https://webpackbin-test.firebaseio.com",
     "storageBucket": "webpackbin-test.appspot.com",
     "messagingSenderId": "989762970293"
-  }
+  },
+  "sandboxTotalTimeout": 180000
 }

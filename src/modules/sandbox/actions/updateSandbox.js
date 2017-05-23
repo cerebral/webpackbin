@@ -10,14 +10,9 @@ function updateSandbox ({http, state, path, resolve}) {
     return currentSortedPackages
   }, {})
   const started = Date.now()
-  let timeout = null
 
   return new Promise((resolve, reject) => {
     function makeRequest () {
-      timeout = setTimeout(() => {
-        http.abort(config.sandboxServiceUrl[region])
-      }, 25000)
-
       http.post(config.sandboxServiceUrl[region], {
         files: currentBin.files,
         packages: sortedPackages,
@@ -26,13 +21,10 @@ function updateSandbox ({http, state, path, resolve}) {
         withCredentials: true
       })
         .then(() => {
-          clearTimeout(timeout)
-
           resolve()
         })
         .catch((response) => {
-          clearTimeout(timeout)
-          if (response.isAborted && Date.now() - started < 90000) {
+          if (response.status === 504 && Date.now() - started < config.sandboxTotalTimeout) {
             makeRequest()
           } else {
             reject(response)
