@@ -1,10 +1,7 @@
 export default {
   selectedFileIndex: 1,
   loaders: {
-    babel: {
-      es2015: true
-    },
-    css: true
+    typescript: true
   },
   files: [{
     name: 'index.html',
@@ -14,12 +11,12 @@ export default {
       <meta charset="utf-8"/>
     </head>
     <body>
-      <script src="main.js"></script>
+      <script src="main.ts"></script>
     </body>
   </html>
   `
   }, {
-    name: 'main.js',
+    name: 'main.ts',
     isEntry: true,
     content: ''
   }]

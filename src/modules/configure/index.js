@@ -8,21 +8,19 @@ import loaderConfigChanged from './signals/loaderConfigChanged'
 import configurationClicked from './signals/configurationClicked'
 import forceNoLintToggled from './signals/forceNoLintToggled'
 import preventWhenLiveParticipant from 'modules/app/factories/preventWhenLiveParticipant'
+import hideQuickstartClicked from './signals/hideQuickstartClicked';
 
 export default {
   state: {
+    showQuickstart: false,
     quickstarts: [{
-      title: 'Simple',
-      description: 'ES2015 entry point',
-      template: 'simple'
+      title: 'ES2015',
+      description: 'Creates an entrypoint with ES2016 transpiling, ready for you to add any NPM packages',
+      template: 'es2015'
     }, {
-      title: 'Simple with CSS',
-      description: 'ES2015 entry point with CSS',
-      template: 'simpleWithCss'
-    }, {
-      title: 'Typescript with CSS',
-      description: 'Typescript entry point with CSS',
-      template: 'typescriptWithCss'
+      title: 'Typescript',
+      description: 'Creates an entrypoint with Typescript transpiling, ready for you to add any NPM packages',
+      template: 'typescript'
     }]
   },
   signals: {
@@ -34,6 +32,7 @@ export default {
     loaderSelected: preventWhenLiveParticipant(loaderSelected),
     loaderToggled: preventWhenLiveParticipant(loaderToggled),
     loaderConfigChanged: preventWhenLiveParticipant(loaderConfigChanged),
-    forceNoLintToggled: preventWhenLiveParticipant(forceNoLintToggled)
+    forceNoLintToggled: preventWhenLiveParticipant(forceNoLintToggled),
+    hideQuickstartClicked
   }
 }

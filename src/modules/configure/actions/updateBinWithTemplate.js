@@ -1,11 +1,9 @@
-import simpleTemplate from '../quickstartTemplates/simple'
-import simpleWithCssTemplate from '../quickstartTemplates/simpleWithCss'
-import typescriptWithCssTemplate from '../quickstartTemplates/typescriptWithCss'
+import es2015Template from '../quickstartTemplates/es2015'
+import typescriptTemplate from '../quickstartTemplates/typescript'
 
 const templates = {
-  simple: simpleTemplate,
-  simpleWithCss: simpleWithCssTemplate,
-  typescriptWithCss: typescriptWithCssTemplate
+  es2015: es2015Template,
+  typescript: typescriptTemplate
 }
 
 function updateBinWithTemplate ({props, state}) {

@@ -14,5 +14,6 @@ export default [
   set(state`app.currentBinKey`, null),
   forceCodeUpdate,
   updateSandbox(),
-  set(state`app.currentBin.owner`, state`app.user.uid`)
+  set(state`app.currentBin.owner`, state`app.user.uid`),
+  set(state`configure.showQuickstart`, true)
 ]

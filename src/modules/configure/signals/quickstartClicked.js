@@ -7,6 +7,7 @@ import {state} from 'cerebral/tags'
 export default [
   updateBinWithTemplate,
   set(state`app.currentBin.showConfiguration`, false),
+  set(state`configure.showQuickstart`, false),
   forceCodeUpdate,
-  saveClicked
+  saveClicked,
 ]

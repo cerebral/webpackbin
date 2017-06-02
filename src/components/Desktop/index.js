@@ -10,6 +10,7 @@ import Sandbox from './Sandbox'
 import Folder from './Folder'
 import LiveParticipants from './LiveParticipants'
 import Snackbar from './Snackbar'
+import Quickstart from './Quickstart'
 import styles from './styles.css'
 
 export default connect({
@@ -44,6 +45,7 @@ export default connect({
         {isLoading ? <Loader>Loading up the bin!</Loader> : null}
         {isLive ? <LiveParticipants /> : null}
         <Snackbar />
+        <Quickstart />
       </div>
     )
   }
