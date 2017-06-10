@@ -52,8 +52,7 @@ const rules = [
  */
 let plugins = [
   new HtmlWebpackPlugin({
-    title: 'Ducky',
-    language: 'no',
+    title: 'Webpackbin',
     isProduction: isProduction,
     template: path.resolve('index.template.html'),
     inject: true,
