@@ -9,5 +9,6 @@ export default [
   set(state`app.currentBin.showConfiguration`, false),
   set(state`configure.showQuickstart`, false),
   forceCodeUpdate,
+  set(state`app.isLoading`, true),
   saveClicked,
 ]
