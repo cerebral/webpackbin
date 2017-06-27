@@ -5,7 +5,7 @@
     "bins": {
       "$bin": {
         ".read": true,
-        ".write": "auth.uid === data.child('owner').val() || auth.uid === newData.child('owner').val() || data.child('isLive').val() == true"
+        ".write": "auth.uid !== null && (auth.uid === data.child('owner').val() || (!data.exists() && auth.uid === newData.child('owner').val()) || data.child('isLive').val() == true)"
       }
     },
     "codeChanges": {
