@@ -9,7 +9,7 @@ If you are interested in checking out the new architecture you can [take a look 
 - The DLL bundles will now sit behind a CDN (not in test), making them faster to load
 - The sandbox feature is now its own standalone service that can be scaled to multiple instances, meaning that memory issues should be gone. There are thousands of memory warnings a day in current solution
 - Now running on Firebase, meaning that the LIVE feature is a lot more stable
-- Github login, though you can use the service anonymously. Later you can convert all interaction to a github account
+- GitHub login, though you can use the service anonymously. Later you can convert all interaction to a GitHub account
 - "My bins", add any bin with a custom name to your own personal list
 - "Boilerplates" can now be managed by library authors, making sure it runs on latest version etc.
 - All projects (webpackbin, webpack-sandbox and webpack-dll) are refactored and cleaned up
