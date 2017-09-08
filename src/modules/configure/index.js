@@ -15,7 +15,7 @@ export default {
     showQuickstart: false,
     quickstarts: [{
       title: 'ES2015',
-      description: 'Creates an entrypoint with ES2016 transpiling, ready for you to add any NPM packages',
+      description: 'Creates an entrypoint with ES2015 transpiling, ready for you to add any NPM packages',
       template: 'es2015'
     }, {
       title: 'Typescript',
