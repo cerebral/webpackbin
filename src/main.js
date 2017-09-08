@@ -44,7 +44,8 @@ const controller = Controller({
     settings,
     shortcuts: shortcuts({
       'cmd+s': 'app.saveClicked',
-      'ctrl+s': 'app.saveClicked'
+      'ctrl+s': 'app.saveClicked',
+      'alt+t': 'app.formatInvoked'
     }),
     useragent: UseragentModule({
       media: {

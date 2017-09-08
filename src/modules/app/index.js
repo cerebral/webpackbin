@@ -19,6 +19,8 @@ import preventWhenLiveParticipant from './factories/preventWhenLiveParticipant'
 import currentBinViewCountUpdated from './signals/currentBinViewCountUpdated'
 import undoClicked from './signals/undoClicked'
 import invalidRouted from './signals/invalidRouted'
+import formatInvoked from './signals/formatInvoked'
+import codeChanged from '../code/signals/codeChanged'
 
 export default {
   state: {
@@ -50,6 +52,7 @@ export default {
     saveClicked: preventWhenLiveParticipant(saveClicked),
     clicked: preventWhenLiveParticipant(clicked),
     filesMenuButtonClicked: preventWhenLiveParticipant(filesMenuButtonClicked),
+    formatInvoked: preventWhenLiveParticipant([formatInvoked, codeChanged]),
     mainMenuButtonClicked,
     profileClicked,
     createBinClicked,
