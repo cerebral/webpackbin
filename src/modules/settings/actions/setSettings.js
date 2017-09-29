@@ -1,6 +1,6 @@
 function setSettings ({props, state}) {
-  if (props.value) {
-    state.merge('settings', props.value)
+  if (props.response.value) {
+    state.merge('settings', props.response.value)
   }
 }
 

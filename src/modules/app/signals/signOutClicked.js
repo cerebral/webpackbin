@@ -1,7 +1,7 @@
 import {set} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
-import {signOut} from 'cerebral-provider-firebase/operators'
-import {redirect} from 'cerebral-router'
+import {signOut} from '@cerebral/firebase/operators'
+import {redirect} from '@cerebral/router/operators'
 import authenticate from '../factories/authenticate'
 import showSnackbar from '../factories/showSnackbar'
 

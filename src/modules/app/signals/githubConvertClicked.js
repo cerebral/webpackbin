@@ -1,4 +1,4 @@
-import {linkWithGithub} from 'cerebral-provider-firebase/operators'
+import {linkWithGithub} from '@cerebral/firebase/operators'
 import {set, when} from 'cerebral/operators'
 import {state, props} from 'cerebral/tags'
 import showSnackbar from '../factories/showSnackbar'

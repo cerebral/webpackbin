@@ -1,8 +1,8 @@
 import config from 'config'
-import Inferno from 'inferno'
-import Component from 'inferno-component'
+import React from 'react'
+
 import classnames from 'classnames'
-import {connect} from 'cerebral/inferno'
+import {connect} from '@cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'
 import Log from '../Log'
@@ -22,7 +22,7 @@ export default connect({
   saveClicked: signal`app.saveClicked`,
   urlUpdated: signal`sandbox.urlUpdated`
 },
-  class Sandbox extends Component {
+  class Sandbox extends React.Component {
     constructor (props) {
       super(props)
       this.onIframeMessage = this.onIframeMessage.bind(this)

@@ -1,7 +1,7 @@
 import {set, when} from 'cerebral/operators'
 import {state} from 'cerebral/tags'
 import showSnackbar from 'modules/app/factories/showSnackbar'
-import {value} from 'cerebral-provider-firebase/operators'
+import {value} from '@cerebral/firebase/operators'
 import setBoilerplates from '../actions/setBoilerplates'
 
 export default [

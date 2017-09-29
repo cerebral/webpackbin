@@ -1,6 +1,6 @@
 import {set, when} from 'cerebral/operators'
 import {state, string} from 'cerebral/tags'
-import {set as setFirebase} from 'cerebral-provider-firebase/operators'
+import {set as setFirebase} from '@cerebral/firebase/operators'
 
 export default [
   when(state`app.currentBin.forceNoLint`), {

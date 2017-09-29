@@ -10,7 +10,7 @@ import forceCodeUpdate from 'modules/code/actions/forceCodeUpdate'
 import stopListeningToBinUpdates from 'modules/live/actions/stopListeningToBinUpdates'
 import {set, when} from 'cerebral/operators'
 import {state, props, string} from 'cerebral/tags'
-import {value} from 'cerebral-provider-firebase/operators'
+import {value} from '@cerebral/firebase/operators'
 import updateViewStats from '../actions/updateViewStats'
 import listenToBinStatsUpdates from '../actions/listenToBinStatsUpdates'
 
@@ -33,7 +33,7 @@ export default [
       set(state`sandbox.isUpdatingSandbox`, true),
       value(string`bins.${props`binKey`}`), {
         success: [
-          when(props`value`), {
+          when(props`response.value`), {
             true: [
               set(state`app.currentBinKey`, props`binKey`),
               setCurrentBin,

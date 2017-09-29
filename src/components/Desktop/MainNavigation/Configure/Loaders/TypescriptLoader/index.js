@@ -1,4 +1,4 @@
-import Inferno from 'inferno'
+import React from 'react'
 import styles from '../common.css'
 
 function RawLoader () {

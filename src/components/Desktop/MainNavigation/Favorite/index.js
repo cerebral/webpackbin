@@ -1,6 +1,6 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
-import {connect} from 'cerebral/inferno'
+import React from 'react'
+
+import {connect} from '@cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import IconButton from 'common/components/IconButton'
 import Input from 'common/components/Input'
@@ -20,7 +20,7 @@ export default connect({
   favoriteTitleSubmitted: signal`favorites.favoriteTitleSubmitted`,
   favoriteTitleAborted: signal`favorites.favoriteTitleAborted`
 },
-  class Favorite extends Component {
+  class Favorite extends React.Component {
     componentDidUpdate (prevProps) {
       if (!prevProps.showNewFileInput && this.props.showNewFileInput) {
         this.focusInput()

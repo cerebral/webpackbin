@@ -1,5 +1,7 @@
+import {sequence} from 'cerebral'
+
 function updateFirebaseBinFactory (keysOrKey, paths) {
-  return [
+  return sequence('updateFirebaseBin', [
     function updateFirebaseBin ({firebase, path, state}) {
       const binKey = state.get('app.currentBinKey')
       const currentParticipantKey = state.get('app.currentBin.currentParticipantKey')
@@ -31,7 +33,7 @@ function updateFirebaseBinFactory (keysOrKey, paths) {
       error: [],
       notAllowed: []
     }
-  ]
+  ])
 }
 
 export default updateFirebaseBinFactory

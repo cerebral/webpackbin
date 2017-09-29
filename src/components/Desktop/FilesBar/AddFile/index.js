@@ -1,6 +1,6 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
-import {connect} from 'cerebral/inferno'
+import React from 'react'
+
+import {connect} from '@cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import IconButton from 'common/components/IconButton'
 import Checkbox from 'common/components/Checkbox'
@@ -22,7 +22,7 @@ export default connect({
   isEntryToggled: signal`files.isEntryToggled`,
   newFileAborted: signal`files.newFileAborted`
 },
-  class AddFile extends Component {
+  class AddFile extends React.Component {
     constructor (props) {
       super(props)
       this.onEntryToggle = this.onEntryToggle.bind(this)

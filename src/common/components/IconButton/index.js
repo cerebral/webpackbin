@@ -1,4 +1,4 @@
-import Inferno from 'inferno'
+import React from 'react'
 import styles from './styles.css'
 import classNames from 'classnames'
 import icons from 'common/icons.css'

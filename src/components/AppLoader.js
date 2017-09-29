@@ -1,6 +1,6 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
-import {connect} from 'cerebral/inferno'
+import React from 'react'
+
+import {connect} from '@cerebral/react'
 import {state} from 'cerebral/tags'
 import InvalidRoute from './InvalidRoute'
 
@@ -8,7 +8,7 @@ export default connect({
   media: state`useragent.media`,
   invalidRoute: state`app.invalidRoute`
 },
-  class AppLoader extends Component {
+  class AppLoader extends React.Component {
     constructor (props) {
       super(props)
 

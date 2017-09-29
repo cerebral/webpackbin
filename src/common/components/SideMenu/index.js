@@ -1,9 +1,9 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
+import React from 'react'
+
 import classNames from 'classnames'
 import styles from './styles.css'
 
-class SideMenu extends Component {
+class SideMenu extends React.Component {
   onBoxClick (e) {
     e.stopPropagation()
   }

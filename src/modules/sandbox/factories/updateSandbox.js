@@ -1,4 +1,4 @@
-import {parallel} from 'cerebral'
+import {sequence, parallel} from 'cerebral'
 import updateSandbox from '../actions/updateSandbox'
 import {set} from 'cerebral/operators'
 import sandboxDebounce from '../sandboxDebounce'
@@ -10,7 +10,7 @@ import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
 import resetLogs from 'modules/log/actions/resetLogs'
 
 export default function updateSandboxFactory (additionalChain = []) {
-  return [
+  return sequence('updateSandbox', [
     set(state`sandbox.isUpdatingSandbox`, true),
     resetLogs,
     parallel([
@@ -55,5 +55,5 @@ export default function updateSandboxFactory (additionalChain = []) {
       },
       additionalChain
     ])
-  ]
+  ])
 }

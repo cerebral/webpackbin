@@ -1,7 +1,7 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
+import React from 'react'
+
 import {decodeKey} from 'utils'
-import {connect} from 'cerebral/inferno'
+import {connect} from '@cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'
 import Input from 'common/components/Input'
@@ -16,7 +16,7 @@ export default connect({
   packageQuerySubmitted: signal`configure.packageQuerySubmitted`,
   packageToggled: signal`configure.packageToggled`
 },
-  class Packages extends Component {
+  class Packages extends React.Component {
     componentDidUpdate (prevProps) {
       if (prevProps.isQueryingPackage && !this.props.isQueryingPackage) {
         document.querySelector('#packageQuery').focus()

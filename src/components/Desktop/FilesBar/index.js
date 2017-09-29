@@ -1,5 +1,5 @@
-import Inferno from 'inferno'
-import {connect} from 'cerebral/inferno'
+import React from 'react'
+import {connect} from '@cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import NavigationBar from 'common/components/NavigationBar'
 import FileTab from 'common/components/FileTab'
@@ -31,6 +31,7 @@ export default connect({
           {files.map(function (file, index) {
             return (
               <FileTab
+                key={file.name}
                 onClick={() => fileClicked({index: file.index})}
                 onRemoveClick={() => hideFileClicked({index: file.index})}
                 active={file.index === selectedFileIndex}

@@ -7,7 +7,7 @@ import setLoadersFromLive from '../actions/setLoadersFromLive'
 import forceCodeUpdate from 'modules/code/actions/forceCodeUpdate'
 import resetChangedFiles from 'modules/files/actions/resetChangedFiles'
 import stopListeningToBinUpdates from '../actions/stopListeningToBinUpdates'
-import {cancelOnDisconnect} from 'cerebral-provider-firebase/operators'
+import {cancelOnDisconnect} from '@cerebral/firebase/operators'
 
 export default [
   whenLiveParticipant, {

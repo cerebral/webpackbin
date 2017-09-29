@@ -1,10 +1,10 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
+import React from 'react'
+
 import IconButton from '../IconButton'
 import classNames from 'classnames'
 import styles from './styles.css'
 
-class PopoverIconButton extends Component {
+class PopoverIconButton extends React.Component {
   onArrowBoxClick (e) {
     e.stopPropagation()
   }

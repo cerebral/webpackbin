@@ -1,5 +1,7 @@
+import {sequence} from 'cerebral'
+
 function updateFirebaseSettingsFactory (keysOrKey, paths) {
-  return [
+  return sequence('updateFirebaseSettings', [
     function updateFirebaseSettings ({firebase, path, state}) {
       const userUid = state.get('app.user.uid')
 
@@ -23,7 +25,7 @@ function updateFirebaseSettingsFactory (keysOrKey, paths) {
       success: [],
       error: []
     }
-  ]
+  ])
 }
 
 export default updateFirebaseSettingsFactory

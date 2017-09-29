@@ -1,5 +1,5 @@
-import Inferno from 'inferno'
-import {connect} from 'cerebral/inferno'
+import React from 'react'
+import {connect} from '@cerebral/react'
 import MenuItem from 'common/components/MenuItem'
 import Description from 'common/components/Description'
 import {state, signal} from 'cerebral/tags'

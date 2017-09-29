@@ -1,6 +1,6 @@
-import Inferno from 'inferno'
-import Component from 'inferno-component'
-import {connect} from 'cerebral/inferno'
+import React from 'react'
+
+import {connect} from '@cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'
 import Inspector from 'common/components/Inspector'
@@ -16,7 +16,7 @@ export default connect({
   logValueToggled: signal`log.logValueToggled`,
   logPathSelected: signal`log.logPathSelected`
 },
-  class Log extends Component {
+  class Log extends React.Component {
     render () {
       return (
         <div className={this.props.showFullLog ? styles.wrapper : styles.halfWrapper}>
