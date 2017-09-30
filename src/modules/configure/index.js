@@ -17,7 +17,7 @@ export default {
       {
         title: 'ES2015',
         description:
-          'Creates an entrypoint with ES2016 transpiling, ready for you to add any NPM packages',
+          'Creates an entrypoint with ES2015 transpiling, ready for you to add any NPM packages',
         template: 'es2015',
       },
       {
