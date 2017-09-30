@@ -1,5 +1,5 @@
-function forceCodeUpdate ({state}) {
-  state.set('code.lastForceCodeUpdate', Date.now())
+function forceCodeUpdate({ state }) {
+  state.set('code.lastForceCodeUpdate', Date.now());
 }
 
-export default forceCodeUpdate
+export default forceCodeUpdate;

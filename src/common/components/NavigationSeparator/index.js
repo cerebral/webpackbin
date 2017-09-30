@@ -1,10 +1,8 @@
-import React from 'react'
-import styles from './styles.css'
+import React from 'react';
+import styles from './styles.css';
 
-function NavigationSeparator () {
-  return (
-    <div className={styles.separator} />
-  )
+function NavigationSeparator() {
+  return <div className={styles.separator} />;
 }
 
-export default NavigationSeparator
+export default NavigationSeparator;

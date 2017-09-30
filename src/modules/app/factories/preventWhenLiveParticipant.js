@@ -1,12 +1,13 @@
-import whenLiveParticipant from '../actions/whenLiveParticipant'
+import whenLiveParticipant from '../actions/whenLiveParticipant';
 
-function preventWhenLiveParticipant (continueChain) {
+function preventWhenLiveParticipant(continueChain) {
   return [
-    whenLiveParticipant, {
+    whenLiveParticipant,
+    {
       true: [],
-      false: continueChain
-    }
-  ]
+      false: continueChain,
+    },
+  ];
 }
 
-export default preventWhenLiveParticipant
+export default preventWhenLiveParticipant;

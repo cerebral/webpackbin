@@ -1,7 +1,7 @@
-function selectNewFile ({state}) {
-  const filesCount = state.get('app.currentBin.files').length
+function selectNewFile({ state }) {
+  const filesCount = state.get('app.currentBin.files').length;
 
-  state.set('app.currentBin.selectedFileIndex', filesCount - 1)
+  state.set('app.currentBin.selectedFileIndex', filesCount - 1);
 }
 
-export default selectNewFile
+export default selectNewFile;

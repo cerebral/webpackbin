@@ -1,5 +1,5 @@
-function setLoadersFromLive ({input, state}) {
-  state.set('app.currentBin.loaders', input.value || {})
+function setLoadersFromLive({ input, state }) {
+  state.set('app.currentBin.loaders', input.value || {});
 }
 
-export default setLoadersFromLive
+export default setLoadersFromLive;

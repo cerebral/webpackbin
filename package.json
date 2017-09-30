@@ -5,10 +5,11 @@
     "start": "webpack-dev-server --content-base public/",
     "deploy:test": "NODE_ENV=production WEBPACKBIN_ENV=webpackbin-test webpack && firebase deploy --project webpackbin-test --public public --only \"hosting,database\"",
     "deploy:prod": "NODE_ENV=production WEBPACKBIN_ENV=webpackbin-prod webpack && firebase deploy --project webpackbin-prod --public public --only \"hosting,database\"",
-    "rules": "firebase deploy --project webpackbin-test --public public --only \"database\""
+    "rules": "firebase deploy --project webpackbin-test --public public --only \"database\"",
+    "lint": "eslint \"src/**/*\""
   },
   "dependencies": {
-    "@cerebral/firebase": "^3.1.0",
+    "@cerebral/firebase": "^3.2.1",
     "@cerebral/http": "^3.1.0",
     "@cerebral/react": "^2.2.0",
     "@cerebral/router": "^2.1.0",
@@ -27,6 +28,8 @@
     "coffeelint": "^1.16.0",
     "css-loader": "^0.23.1",
     "eslint-browser": "^3.8.1",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-prettier": "^2.3.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "firebase": "^3.6.2",
@@ -37,6 +40,7 @@
     "inline-manifest-webpack-plugin": "^3.0.1",
     "parserlib": "^1.1.1",
     "path-to-regexp": "^1.7.0",
+    "prettier": "^1.7.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -46,8 +50,8 @@
     "webpack-bundle-analyzer": "^2.2.0"
   },
   "devDependencies": {
-    "babel-eslint": "^6.0.4",
-    "eslint": "^2.11.0",
+    "babel-eslint": "^6.1.2",
+    "eslint": "^2.13.1",
     "eslint-plugin-react": "^5.2.2",
     "standard": "^8.6.0",
     "webpack-dev-server": "2.4.1"

@@ -1,12 +1,12 @@
-import React from 'react'
-import styles from './styles.css'
+import React from 'react';
+import styles from './styles.css';
 
-function Unsupported () {
+function Unsupported() {
   return (
     <div className={styles.wrapper}>
       This size is not supported, please flip phone or make browser wider
     </div>
-  )
+  );
 }
 
-export default Unsupported
+export default Unsupported;

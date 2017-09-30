@@ -1,7 +1,7 @@
-function runUndo ({state}) {
-  const undo = state.get('app.undo')
+function runUndo({ state }) {
+  const undo = state.get('app.undo');
 
-  state[undo.method](undo.path, ...undo.args)
+  state[undo.method](undo.path, ...undo.args);
 }
 
-export default runUndo
+export default runUndo;

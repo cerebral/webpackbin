@@ -1,14 +1,15 @@
-import React from 'react'
-import styles from '../common.css'
+import React from 'react';
+import styles from '../common.css';
 
-function PugLoader () {
+function PugLoader() {
   return (
     <div className={styles.loaderWrapper}>
       <div className={styles.info}>
-        Import pug script files with the .pug extension, transpiled to normal JavaScript
+        Import pug script files with the .pug extension, transpiled to normal
+        JavaScript
       </div>
     </div>
-  )
+  );
 }
 
-export default PugLoader
+export default PugLoader;

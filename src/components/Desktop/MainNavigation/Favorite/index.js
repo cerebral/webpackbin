@@ -1,35 +1,36 @@
-import React from 'react'
+import React from 'react';
 
-import {connect} from '@cerebral/react'
-import {state, signal} from 'cerebral/tags'
-import IconButton from 'common/components/IconButton'
-import Input from 'common/components/Input'
-import styles from './styles.css'
+import { connect } from '@cerebral/react';
+import { state, signal } from 'cerebral/tags';
+import IconButton from 'common/components/IconButton';
+import Input from 'common/components/Input';
+import styles from './styles.css';
 
-import liveStatus from 'computed/liveStatus'
-import isInFavorites from 'computed/isInFavorites'
+import liveStatus from 'computed/liveStatus';
+import isInFavorites from 'computed/isInFavorites';
 
-export default connect({
-  liveStatus,
-  isInFavorites,
-  currentBinKey: state`app.currentBinKey`,
-  showNewTitleInput: state`favorites.showNewTitleInput`,
-  newMyBinTitle: state`favorites.newMyBinTitle`,
-  addFavoriteClicked: signal`favorites.addFavoriteClicked`,
-  favoriteTitleChanged: signal`favorites.favoriteTitleChanged`,
-  favoriteTitleSubmitted: signal`favorites.favoriteTitleSubmitted`,
-  favoriteTitleAborted: signal`favorites.favoriteTitleAborted`
-},
+export default connect(
+  {
+    liveStatus,
+    isInFavorites,
+    currentBinKey: state`app.currentBinKey`,
+    showNewTitleInput: state`favorites.showNewTitleInput`,
+    newMyBinTitle: state`favorites.newMyBinTitle`,
+    addFavoriteClicked: signal`favorites.addFavoriteClicked`,
+    favoriteTitleChanged: signal`favorites.favoriteTitleChanged`,
+    favoriteTitleSubmitted: signal`favorites.favoriteTitleSubmitted`,
+    favoriteTitleAborted: signal`favorites.favoriteTitleAborted`,
+  },
   class Favorite extends React.Component {
-    componentDidUpdate (prevProps) {
+    componentDidUpdate(prevProps) {
       if (!prevProps.showNewFileInput && this.props.showNewFileInput) {
-        this.focusInput()
+        this.focusInput();
       }
     }
-    focusInput () {
-      document.querySelector('#favoritesTitle').focus()
+    focusInput() {
+      document.querySelector('#favoritesTitle').focus();
     }
-    render () {
+    render() {
       const {
         liveStatus,
         isInFavorites,
@@ -39,23 +40,24 @@ export default connect({
         addFavoriteClicked,
         favoriteTitleChanged,
         favoriteTitleSubmitted,
-        favoriteTitleAborted
-      } = this.props
+        favoriteTitleAborted,
+      } = this.props;
 
       if (showNewTitleInput) {
         return (
           <div className={styles.wrapper}>
             <Input
-              id='newFileName'
+              id="newFileName"
               autoFocus
               value={newMyBinTitle}
-              onInput={(event) => favoriteTitleChanged({value: event.target.value})}
+              onInput={event =>
+                favoriteTitleChanged({ value: event.target.value })}
               onSubmit={favoriteTitleSubmitted}
               onCancel={favoriteTitleAborted}
-              placeholder='Name the bin...'
+              placeholder="Name the bin..."
             />
           </div>
-        )
+        );
       }
 
       return (
@@ -65,10 +67,10 @@ export default connect({
             disabled={liveStatus.isParticipant || !currentBinKey}
             onClick={() => addFavoriteClicked()}
             tooltip={isInFavorites ? 'Remove favorite' : 'Add favorite'}
-            icon='favorite'
+            icon="favorite"
           />
         </div>
-      )
+      );
     }
   }
-)
+);

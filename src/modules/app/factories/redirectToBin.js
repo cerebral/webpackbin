@@ -1,11 +1,11 @@
-function redirectToBinFactory (keyTag) {
-  function redirectToBin ({router, resolve}) {
-    const key = resolve.value(keyTag)
+function redirectToBinFactory(keyTag) {
+  function redirectToBin({ router, resolve }) {
+    const key = resolve.value(keyTag);
 
-    router.redirect(`/bins/${key}`)
+    router.redirect(`/bins/${key}`);
   }
 
-  return redirectToBin
+  return redirectToBin;
 }
 
-export default redirectToBinFactory
+export default redirectToBinFactory;

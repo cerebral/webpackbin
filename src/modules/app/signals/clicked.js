@@ -1,3 +1,3 @@
-import closeAllMenues from '../chains/closeAllMenues'
+import closeAllMenues from '../chains/closeAllMenues';
 
-export default closeAllMenues
+export default closeAllMenues;

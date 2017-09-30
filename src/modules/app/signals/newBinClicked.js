@@ -1,7 +1,4 @@
-import {goTo} from '@cerebral/router/operators'
-import appClicked from './clicked'
+import { goTo } from '@cerebral/router/operators';
+import appClicked from './clicked';
 
-export default [
-  appClicked,
-  goTo('/')
-]
+export default [appClicked, goTo('/')];

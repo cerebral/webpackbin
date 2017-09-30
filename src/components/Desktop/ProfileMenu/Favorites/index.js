@@ -1,24 +1,22 @@
-import React from 'react'
-import {connect} from '@cerebral/react'
-import MenuItem from 'common/components/MenuItem'
-import Description from 'common/components/Description'
-import {state, signal} from 'cerebral/tags'
+import React from 'react';
+import { connect } from '@cerebral/react';
+import MenuItem from 'common/components/MenuItem';
+import Description from 'common/components/Description';
+import { state, signal } from 'cerebral/tags';
 
-export default connect({
-  bins: state`favorites.list`,
-  favoriteClicked: signal`favorites.favoriteClicked`
-},
-  function Settings ({
-    bins,
-    favoriteClicked
-  }) {
+export default connect(
+  {
+    bins: state`favorites.list`,
+    favoriteClicked: signal`favorites.favoriteClicked`,
+  },
+  function Settings({ bins, favoriteClicked }) {
     return (
       <div>
-        {Object.keys(bins).map((binKey) => {
+        {Object.keys(bins).map(binKey => {
           return (
             <MenuItem
-              icon='newBin'
-              onClick={() => favoriteClicked({binKey: bins[binKey].binKey})}
+              icon="newBin"
+              onClick={() => favoriteClicked({ binKey: bins[binKey].binKey })}
             >
               <div>
                 {bins[binKey].name}
@@ -27,9 +25,9 @@ export default connect({
                 </Description>
               </div>
             </MenuItem>
-          )
+          );
         })}
       </div>
-    )
+    );
   }
-)
+);

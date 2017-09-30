@@ -1,14 +1,15 @@
-import React from 'react'
-import styles from '../common.css'
+import React from 'react';
+import styles from '../common.css';
 
-function JsonLoader () {
+function JsonLoader() {
   return (
     <div className={styles.loaderWrapper}>
       <div className={styles.info}>
-        Import json files with the .json extension, transpiled to normal JavaScript
+        Import json files with the .json extension, transpiled to normal
+        JavaScript
       </div>
     </div>
-  )
+  );
 }
 
-export default JsonLoader
+export default JsonLoader;

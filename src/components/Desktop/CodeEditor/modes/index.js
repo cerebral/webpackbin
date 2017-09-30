@@ -1,97 +1,100 @@
-import path from 'path'
-import types from './types'
-const loadedModes = []
+import path from 'path';
+import types from './types';
+const loadedModes = [];
 
-const JSX = {type: 'jsx', mode: 'jsx'}
-const CSS = {type: 'css', mode: 'css'}
-const TYPESCRIPT = {type: 'typescript', mode: 'text/typescript'}
-const COFFEE = {type: 'coffeescript', mode: 'text/x-coffeescript'}
-const LESS = {type: 'less', mode: 'text/x-less'}
-const SASS = {type: 'sass', mode: 'text/x-sass'}
-const HTML = {type: 'html', mode: 'htmlmixed'}
-const _JSON = {type: 'json', mode: 'application/json'}
-const HANDLEBARS = {type: 'handlebars', mode: {name: 'handlebars', base: 'text/html'}}
-const PUG = {type: 'pug', mode: {name: 'pug', alignCDATA: true}}
+const JSX = { type: 'jsx', mode: 'jsx' };
+const CSS = { type: 'css', mode: 'css' };
+const TYPESCRIPT = { type: 'typescript', mode: 'text/typescript' };
+const COFFEE = { type: 'coffeescript', mode: 'text/x-coffeescript' };
+const LESS = { type: 'less', mode: 'text/x-less' };
+const SASS = { type: 'sass', mode: 'text/x-sass' };
+const HTML = { type: 'html', mode: 'htmlmixed' };
+const _JSON = { type: 'json', mode: 'application/json' };
+const HANDLEBARS = {
+  type: 'handlebars',
+  mode: { name: 'handlebars', base: 'text/html' },
+};
+const PUG = { type: 'pug', mode: { name: 'pug', alignCDATA: true } };
 
 export default {
-  get (file) {
+  get(file) {
     if (!file) {
-      return JSX
+      return JSX;
     }
 
-    const ext = path.extname(file.name)
+    const ext = path.extname(file.name);
 
     switch (ext) {
       case '.js':
       case '.jsx':
-        return JSX
+        return JSX;
       case '.css':
-        return CSS
+        return CSS;
       case '.ts':
-        return TYPESCRIPT
+        return TYPESCRIPT;
       case '.tsx':
-        return TYPESCRIPT
+        return TYPESCRIPT;
       case '.coffee':
-        return COFFEE
+        return COFFEE;
       case '.less':
-        return LESS
+        return LESS;
       case '.scss':
-        return SASS
+        return SASS;
       case '.html':
-        return HTML
+        return HTML;
       case '.vue':
-        return HTML
+        return HTML;
       case '.json':
-        return _JSON
+        return _JSON;
       case '.handlebars':
-        return HANDLEBARS
+        return HANDLEBARS;
       case '.pug':
-        return PUG
+        return PUG;
       default:
-        return false
+        return false;
     }
   },
-  preLoadMode (fileName, lint) {
-    const mode = this.get({name: fileName})
+  preLoadMode(fileName, lint) {
+    const mode = this.get({ name: fileName });
 
-    return types[mode.type](lint).then(function (linter) {
+    return types[mode.type](lint).then(function(linter) {
       loadedModes.push({
         mode: mode.mode,
-        lint
-      })
+        lint,
+      });
 
-      return linter
-    })
+      return linter;
+    });
   },
-  isLoaded (file, lint) {
-    const mode = this.get(file)
+  isLoaded(file, lint) {
+    const mode = this.get(file);
 
     return loadedModes.reduce((isLoaded, loadedMode) => {
       if (isLoaded) {
-        return isLoaded
+        return isLoaded;
       }
 
-      return loadedMode.mode === mode.mode && loadedMode.lint === lint
-    }, false)
+      return loadedMode.mode === mode.mode && loadedMode.lint === lint;
+    }, false);
   },
-  set (file, lint) {
-    const mode = this.get(file)
+  set(file, lint) {
+    const mode = this.get(file);
 
     if (!mode) {
-      return
+      return;
     }
 
     if (this.isLoaded(mode)) {
-      return types[mode.type]()
+      return types[mode.type]();
     }
 
-    return types[mode.type](lint).then(function (linter) {
+    return types[mode.type](lint).then(function(linter) {
       loadedModes.push({
         mode: mode.mode,
-        lint
-      })
+        lint,
+      });
 
-      return linter
-    })
-  }
-}
+      return linter;
+    });
+  },
+};

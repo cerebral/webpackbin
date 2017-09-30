@@ -1,5 +1,3 @@
-import setHistoryNavigation from '../actions/setHistoryNavigation'
+import setHistoryNavigation from '../actions/setHistoryNavigation';
 
-export default [
-  setHistoryNavigation
-]
+export default setHistoryNavigation;

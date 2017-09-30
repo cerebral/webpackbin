@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './styles.css'
+import React from 'react';
+import styles from './styles.css';
 import {
   isObject,
   isArray,
@@ -10,195 +10,282 @@ import {
   isError,
   isFunction,
   isCircular,
-  isUndefined
-} from './utils'
+  isUndefined,
+} from './utils';
 
-function renderType (props) {
+function renderType(props) {
   if (isError(props.value)) {
-    return <ErrorValue {...props} />
+    return <ErrorValue {...props} />;
   }
 
   if (isFunction(props.value)) {
-    return <FunctionValue {...props} />
+    return <FunctionValue {...props} />;
   }
 
   if (isCircular(props.value)) {
-    return <CircularValue {...props} />
+    return <CircularValue {...props} />;
   }
 
   if (props.value && isArray(props.value.value)) {
-    return (
-      <ArrayValue {...props} />
-    )
+    return <ArrayValue {...props} />;
   }
 
   if (props.value && isObject(props.value.value)) {
-    return (
-      <ObjectValue {...props} />
-    )
+    return <ObjectValue {...props} />;
   }
 
-  return (
-    <Value {...props} />
-  )
+  return <Value {...props} />;
 }
 
-function ObjectValue (props) {
+function ObjectValue(props) {
   const renderProperty = (key, value, index, hasNext) => {
     return (
       <div className={styles.objectProperty} key={index}>
-        <div className={styles.objectPropertyValue}>{renderType({
-          ...props,
-          path: props.path.concat('value', key),
-          value: value,
-          hasNext: hasNext,
-          propertyKey: key
-        })}</div>
+        <div className={styles.objectPropertyValue}>
+          {renderType(
+            Object.assign(props, {
+              path: props.path.concat('value', key),
+              value: value,
+              hasNext: hasNext,
+              propertyKey: key,
+            })
+          )}
+        </div>
       </div>
-    )
-  }
+    );
+  };
 
-  const renderKeys = (keys) => {
+  const renderKeys = keys => {
     if (keys.length > 3) {
-      return keys.slice(0, 3).join(', ') + '...'
+      return keys.slice(0, 3).join(', ') + '...';
     }
-    return keys.join(', ')
-  }
+    return keys.join(', ');
+  };
 
-  const {value, hasNext, path, highlight} = props
-  const isSelected = String(props.selectedPath) === String(path)
+  const { value, hasNext, path, highlight } = props;
+  const isSelected = String(props.selectedPath) === String(path);
 
   if (value.isCollapsed) {
     return (
       <div
-        className={highlight && isSelected ? styles.highlightObject : styles.object}
-        onClick={() => !highlight || isSelected ? props.onTogglePath({path}) : props.onSelectPath({path})}>
+        className={
+          highlight && isSelected ? styles.highlightObject : styles.object
+        }
+        onClick={() =>
+          !highlight || isSelected
+            ? props.onTogglePath({ path })
+            : props.onSelectPath({ path })}
+      >
         {props.propertyKey ? props.propertyKey + ': ' : null}
-        <strong>{'{ '}</strong>{renderKeys(Object.keys(value.value))}<strong>{' }'}</strong>
+        <strong>{'{ '}</strong>
+        {renderKeys(Object.keys(value.value))}
+        <strong>{' }'}</strong>
         {hasNext ? ',' : null}
       </div>
-    )
+    );
   } else if (props.propertyKey) {
-    const keys = Object.keys(value.value)
+    const keys = Object.keys(value.value);
     return (
-      <div className={highlight && isSelected ? styles.highlightObject : styles.object}>
-        <div onClick={() => !highlight || isSelected ? props.onTogglePath({path}) : props.onSelectPath({path})}>{props.propertyKey}: <strong>{'{ '}</strong></div>
-        {keys.map((key, index) => renderProperty(key, value.value[key], index, index < keys.length - 1))}
-        <div><strong>{' }'}</strong>{hasNext ? ',' : null}</div>
+      <div
+        className={
+          highlight && isSelected ? styles.highlightObject : styles.object
+        }
+      >
+        <div
+          onClick={() =>
+            !highlight || isSelected
+              ? props.onTogglePath({ path })
+              : props.onSelectPath({ path })}
+        >
+          {props.propertyKey}: <strong>{'{ '}</strong>
+        </div>
+        {keys.map((key, index) =>
+          renderProperty(key, value.value[key], index, index < keys.length - 1)
+        )}
+        <div>
+          <strong>{' }'}</strong>
+          {hasNext ? ',' : null}
+        </div>
       </div>
-    )
+    );
   } else {
-    const keys = Object.keys(value.value)
+    const keys = Object.keys(value.value);
     return (
-      <div className={highlight && isSelected ? styles.highlightObject : styles.object}>
-        <div onClick={() => !highlight || isSelected ? props.onTogglePath({path}) : props.onSelectPath({path})}><strong>{'{ '}</strong></div>
-        {keys.map((key, index) => renderProperty(key, value.value[key], index, index < keys.length - 1))}
-        <div><strong>{' }'}</strong>{hasNext ? ',' : null}</div>
+      <div
+        className={
+          highlight && isSelected ? styles.highlightObject : styles.object
+        }
+      >
+        <div
+          onClick={() =>
+            !highlight || isSelected
+              ? props.onTogglePath({ path })
+              : props.onSelectPath({ path })}
+        >
+          <strong>{'{ '}</strong>
+        </div>
+        {keys.map((key, index) =>
+          renderProperty(key, value.value[key], index, index < keys.length - 1)
+        )}
+        <div>
+          <strong>{' }'}</strong>
+          {hasNext ? ',' : null}
+        </div>
       </div>
-    )
+    );
   }
 }
 
-function ArrayValue (props) {
+function ArrayValue(props) {
   const renderItem = (item, index, hasNext) => {
     return (
       <div className={styles.arrayItem} key={index}>
-        {renderType({
-          ...props,
-          propertyKey: null,
-          path: props.path.concat('value', index),
-          value: item,
-          hasNext: hasNext
-        })}
+        {renderType(
+          Object.assign(props, {
+            propertyKey: null,
+            path: props.path.concat('value', index),
+            value: item,
+            hasNext: hasNext,
+          })
+        )}
       </div>
-    )
-  }
-  const {value, hasNext, path, highlight} = props
-  const isSelected = String(props.selectedPath) === String(path)
+    );
+  };
+  const { value, hasNext, path, highlight } = props;
+  const isSelected = String(props.selectedPath) === String(path);
 
   if (value.isCollapsed) {
     return (
       <div
-        className={highlight && isSelected ? styles.highlightArray : styles.array}
-        onClick={() => !highlight || isSelected ? props.onTogglePath({path}) : props.onSelectPath({path})}>
+        className={
+          highlight && isSelected ? styles.highlightArray : styles.array
+        }
+        onClick={() =>
+          !highlight || isSelected
+            ? props.onTogglePath({ path })
+            : props.onSelectPath({ path })}
+      >
         {props.propertyKey ? props.propertyKey + ': ' : null}
-        <strong>{'[ '}</strong>{value.value.length}<strong>{' ]'}</strong>
+        <strong>{'[ '}</strong>
+        {value.value.length}
+        <strong>{' ]'}</strong>
         {hasNext ? ',' : null}
       </div>
-    )
+    );
   } else if (props.propertyKey) {
     return (
-      <div className={highlight && isSelected ? styles.highlightArray : styles.array}>
-        <div onClick={() => !highlight || isSelected ? props.onTogglePath({path}) : props.onSelectPath({path})}>{props.propertyKey}: <strong>{'[ '}</strong></div>
-        {value.value.map((item, index) => renderItem(item, index, index < value.value.length - 1))}
-        <div><strong>{' ]'}</strong>{hasNext ? ',' : null}</div>
+      <div
+        className={
+          highlight && isSelected ? styles.highlightArray : styles.array
+        }
+      >
+        <div
+          onClick={() =>
+            !highlight || isSelected
+              ? props.onTogglePath({ path })
+              : props.onSelectPath({ path })}
+        >
+          {props.propertyKey}: <strong>{'[ '}</strong>
+        </div>
+        {value.value.map((item, index) =>
+          renderItem(item, index, index < value.value.length - 1)
+        )}
+        <div>
+          <strong>{' ]'}</strong>
+          {hasNext ? ',' : null}
+        </div>
       </div>
-    )
+    );
   } else {
     return (
-      <div className={highlight && isSelected ? styles.highlightArray : styles.array}>
-        <div onClick={() => !highlight || isSelected ? props.onTogglePath({path}) : props.onSelectPath({path})}><strong>{'[ '}</strong></div>
-        {value.value.map((item, index) => renderItem(item, index, index < value.value.length - 1))}
-        <div><strong>{' ]'}</strong>{hasNext ? ',' : null}</div>
+      <div
+        className={
+          highlight && isSelected ? styles.highlightArray : styles.array
+        }
+      >
+        <div
+          onClick={() =>
+            !highlight || isSelected
+              ? props.onTogglePath({ path })
+              : props.onSelectPath({ path })}
+        >
+          <strong>{'[ '}</strong>
+        </div>
+        {value.value.map((item, index) =>
+          renderItem(item, index, index < value.value.length - 1)
+        )}
+        <div>
+          <strong>{' ]'}</strong>
+          {hasNext ? ',' : null}
+        </div>
       </div>
-    )
+    );
   }
 }
 
-function ErrorValue (props) {
-  return (
-    <div className={styles.error}>
-      {props.value.message}
-    </div>
-  )
+function ErrorValue(props) {
+  return <div className={styles.error}>{props.value.message}</div>;
 }
 
-function Value (props) {
-  let className = styles.string
-  let value = props.value
-  const isSelected = String(props.selectedPath) === String(props.path)
-  if (isNumber(value)) className = styles.number
-  if (isBoolean(value)) className = styles.boolean
-  if (isNull(value)) className = styles.null
+function Value(props) {
+  let className = styles.string;
+  let value = props.value;
+  const isSelected = String(props.selectedPath) === String(props.path);
+  if (isNumber(value)) className = styles.number;
+  if (isBoolean(value)) className = styles.boolean;
+  if (isNull(value)) className = styles.null;
   if (isUndefined(value)) {
-    className = styles.undefined
-    value = undefined
+    className = styles.undefined;
+    value = undefined;
   }
   return (
     <div className={className}>
-      <div onClick={() => props.onSelectPath({path: props.path})} className={props.highlight && isSelected ? styles.highlightValue : null}>
+      <div
+        onClick={() => props.onSelectPath({ path: props.path })}
+        className={props.highlight && isSelected ? styles.highlightValue : null}
+      >
         {props.propertyKey ? props.propertyKey + ': ' : <span />}
         <span>{isString(value) ? '"' + value + '"' : String(value)}</span>
         {props.hasNext ? ',' : null}
       </div>
     </div>
-  )
+  );
 }
 
-function FunctionValue (props) {
-  const isSelected = String(props.selectedPath) === String(props.path)
+function FunctionValue(props) {
+  const isSelected = String(props.selectedPath) === String(props.path);
   return (
-    <div onClick={() => props.onSelectPath({path: props.path})} className={props.highlight && isSelected ? styles.highlightFunction : null}>
+    <div
+      onClick={() => props.onSelectPath({ path: props.path })}
+      className={
+        props.highlight && isSelected ? styles.highlightFunction : null
+      }
+    >
       {props.propertyKey ? props.propertyKey + ': ' : <span />}
       <span className={styles.functionKeyword}>function </span>
       <span className={styles.functionName}>{props.value.name}</span>
       {props.hasNext ? ',' : null}
     </div>
-  )
+  );
 }
 
-function CircularValue (props) {
-  const isSelected = String(props.selectedPath) === String(props.path)
+function CircularValue(props) {
+  const isSelected = String(props.selectedPath) === String(props.path);
   return (
-    <div onClick={() => props.onSelectPath({path: props.path})} className={props.highlight && isSelected ? styles.highlightFunction : null}>
+    <div
+      onClick={() => props.onSelectPath({ path: props.path })}
+      className={
+        props.highlight && isSelected ? styles.highlightFunction : null
+      }
+    >
       {props.propertyKey ? props.propertyKey + ': ' : <span />}
       <span className={styles.circular}>[Circular]</span>
       {props.hasNext ? ',' : null}
     </div>
-  )
+  );
 }
 
-function Inspector (props) {
+function Inspector(props) {
   return renderType({
     value: props.value,
     propertyKey: null,
@@ -207,8 +294,8 @@ function Inspector (props) {
     highlight: props.highlight,
     onTogglePath: props.onTogglePath,
     onSelectPath: props.onSelectPath,
-    selectedPath: props.selectedPath
-  })
+    selectedPath: props.selectedPath,
+  });
 }
 
-export default Inspector
+export default Inspector;

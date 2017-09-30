@@ -1,34 +1,35 @@
-import React from 'react'
+import React from 'react';
 
-import IconButton from '../IconButton'
-import classNames from 'classnames'
-import styles from './styles.css'
+import IconButton from '../IconButton';
+import classNames from 'classnames';
+import styles from './styles.css';
 
 class PopoverIconButton extends React.Component {
-  onArrowBoxClick (e) {
-    e.stopPropagation()
+  onArrowBoxClick(e) {
+    e.stopPropagation();
   }
-  renderPopup () {
+  renderPopup() {
     return (
       <div className={styles.popup}>
         <div
           className={classNames(styles.arrowBox, {
             [styles.arrowBoxRight]: this.props.right,
-            [styles.arrowBoxMiddle]: this.props.middle
+            [styles.arrowBoxMiddle]: this.props.middle,
           })}
-          onClick={(e) => this.onArrowBoxClick(e)}>
-          <div className={styles.contentBox}>
-            {this.props.children}
-          </div>
+          onClick={e => this.onArrowBoxClick(e)}
+        >
+          <div className={styles.contentBox}>{this.props.children}</div>
         </div>
       </div>
-    )
+    );
   }
-  render () {
+  render() {
     return (
-      <div className={classNames(styles.wrapper, {
-        [this.props.className]: this.props.className
-      })}>
+      <div
+        className={classNames(styles.wrapper, {
+          [this.props.className]: this.props.className,
+        })}
+      >
         <IconButton
           disabled={this.props.disabled}
           active={this.props.show}
@@ -40,8 +41,8 @@ class PopoverIconButton extends React.Component {
         </IconButton>
         {this.props.show ? this.renderPopup() : null}
       </div>
-    )
+    );
   }
 }
 
-export default PopoverIconButton
+export default PopoverIconButton;

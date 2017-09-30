@@ -1,10 +1,10 @@
-import sandboxLoaded from './signals/sandboxLoaded'
-import binLogged from './signals/binLogged'
-import urlUpdated from './signals/urlUpdated'
-import urlChanged from './signals/urlChanged'
-import urlSubmitted from './signals/urlSubmitted'
-import historyChanged from './signals/historyChanged'
-import showSandboxClicked from './signals/showSandboxClicked'
+import sandboxLoaded from './signals/sandboxLoaded';
+import binLogged from './signals/binLogged';
+import urlUpdated from './signals/urlUpdated';
+import urlChanged from './signals/urlChanged';
+import urlSubmitted from './signals/urlSubmitted';
+import historyChanged from './signals/historyChanged';
+import showSandboxClicked from './signals/showSandboxClicked';
 
 export default {
   state: {
@@ -12,7 +12,7 @@ export default {
     isLoadingSandbox: false,
     sandboxMessage: null,
     url: null,
-    lastNavigation: null
+    lastNavigation: null,
   },
   signals: {
     sandboxLoaded,
@@ -21,6 +21,6 @@ export default {
     urlChanged,
     urlSubmitted,
     historyChanged,
-    showSandboxClicked
-  }
-}
+    showSandboxClicked,
+  },
+};

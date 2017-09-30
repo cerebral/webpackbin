@@ -1,7 +1,7 @@
-import React from 'react'
-import styles from './styles.css'
+import React from 'react';
+import styles from './styles.css';
 
-function Loader (props) {
+function Loader(props) {
   return (
     <div className={styles.overlayWrapper}>
       <div className={styles.overlay} />
@@ -10,7 +10,7 @@ function Loader (props) {
         {props.children}
       </div>
     </div>
-  )
+  );
 }
 
-export default Loader
+export default Loader;

@@ -1,5 +1,5 @@
-function setLastSavedDatetime ({state}) {
-  state.set('app.currentBin.lastSavedDatetime', Date.now())
+function setLastSavedDatetime({ state }) {
+  state.set('app.currentBin.lastSavedDatetime', Date.now());
 }
 
-export default setLastSavedDatetime
+export default setLastSavedDatetime;

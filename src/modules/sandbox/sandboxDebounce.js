@@ -1,3 +1,3 @@
-import {debounce} from 'cerebral/operators'
+import { debounce } from 'cerebral/operators';
 
-export default debounce.shared()
+export default debounce.shared();

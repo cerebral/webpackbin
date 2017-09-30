@@ -1,5 +1,5 @@
-import {compute} from 'cerebral'
-import {state} from 'cerebral/tags'
+import { compute } from 'cerebral';
+import { state } from 'cerebral/tags';
 
 export default compute(
   state`app.currentBinKey`,
@@ -7,14 +7,14 @@ export default compute(
   (currentBinKey, favorites) => {
     return Object.keys(favorites).reduce((isInFavorites, favoriteKey) => {
       if (isInFavorites) {
-        return isInFavorites
+        return isInFavorites;
       }
 
       if (favorites[favoriteKey].binKey === currentBinKey) {
-        return true
+        return true;
       }
 
-      return false
-    }, false)
+      return false;
+    }, false);
   }
-)
+);

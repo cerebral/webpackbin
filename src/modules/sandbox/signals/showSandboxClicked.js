@@ -1,6 +1,4 @@
-import {toggle} from 'cerebral/operators'
-import {state} from 'cerebral/tags'
+import { toggle } from 'cerebral/operators';
+import { state } from 'cerebral/tags';
 
-export default [
-  toggle(state`app.showSandbox`)
-]
+export default toggle(state`app.showSandbox`);

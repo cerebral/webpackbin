@@ -1,14 +1,14 @@
-import React from 'react'
-import styles from '../common.css'
+import React from 'react';
+import styles from '../common.css';
 
-function RawLoader () {
+function RawLoader() {
   return (
     <div className={styles.loaderWrapper}>
       <div className={styles.info}>
         Import vue templates on files with the .vue extension
       </div>
     </div>
-  )
+  );
 }
 
-export default RawLoader
+export default RawLoader;
