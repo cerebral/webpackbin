@@ -1,8 +1,5 @@
-import {set} from 'cerebral/operators'
-import {state} from 'cerebral/tags'
-import closeAllMenues from '../chains/closeAllMenues'
+import { set } from 'cerebral/operators';
+import { state } from 'cerebral/tags';
+import closeAllMenues from '../chains/closeAllMenues';
 
-export default [
-  closeAllMenues,
-  set(state`app.isProfileMenuOpen`, true)
-]
+export default [closeAllMenues, set(state`app.isProfileMenuOpen`, true)];

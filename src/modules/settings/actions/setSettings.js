@@ -1,7 +1,7 @@
-function setSettings ({props, state}) {
-  if (props.value) {
-    state.merge('settings', props.value)
+function setSettings({ props, state }) {
+  if (props.response.value) {
+    state.merge('settings', props.response.value);
   }
 }
 
-export default setSettings
+export default setSettings;

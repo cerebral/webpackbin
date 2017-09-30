@@ -1,5 +1,5 @@
-import Inferno from 'inferno'
-import {connect} from 'cerebral/inferno'
+import React from 'react'
+import {connect} from '@cerebral/react'
 import PopoverIconButton from 'common/components/PopoverIconButton'
 import {state, signal} from 'cerebral/tags'
 import styles from './styles.css'

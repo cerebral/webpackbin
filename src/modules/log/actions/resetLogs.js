@@ -1,5 +1,5 @@
-function resetLogs ({state}) {
-  state.set('log.list', [])
+function resetLogs({ state }) {
+  state.set('log.list', []);
 }
 
-export default resetLogs
+export default resetLogs;

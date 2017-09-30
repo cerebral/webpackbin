@@ -1,5 +1,5 @@
-function setPackagesFromLive ({input, state}) {
-  state.set('app.currentBin.packages', input.value || {})
+function setPackagesFromLive({ input, state }) {
+  state.set('app.currentBin.packages', input.value || {});
 }
 
-export default setPackagesFromLive
+export default setPackagesFromLive;

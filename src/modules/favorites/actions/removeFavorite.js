@@ -1,27 +1,28 @@
-function removeMyBin ({state, firebase, path}) {
-  const userUid = state.get('app.user.uid')
-  const currentBinKey = state.get('app.currentBinKey')
-  const favorites = state.get('favorites.list')
+function removeMyBin({ state, firebase, path }) {
+  const userUid = state.get('app.user.uid');
+  const currentBinKey = state.get('app.currentBinKey');
+  const favorites = state.get('favorites.list');
 
   const favoriteKey = Object.keys(favorites).reduce((favoriteKeyMatch, key) => {
     if (favoriteKeyMatch) {
-      return favoriteKeyMatch
+      return favoriteKeyMatch;
     }
 
     if (favorites[key].binKey === currentBinKey) {
-      return key
+      return key;
     }
 
-    return favoriteKeyMatch
-  }, null)
+    return favoriteKeyMatch;
+  }, null);
 
-  return firebase.set(`favorites.${userUid}.${favoriteKey}`, null)
+  return firebase
+    .set(`favorites.${userUid}.${favoriteKey}`, null)
     .then(() => {
       return path.success({
-        favoriteKey
-      })
+        favoriteKey,
+      });
     })
-    .catch(path.error)
+    .catch(path.error);
 }
 
-export default removeMyBin
+export default removeMyBin;

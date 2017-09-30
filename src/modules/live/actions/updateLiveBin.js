@@ -1,15 +1,16 @@
-function updateLiveBin ({state, firebase, path}) {
-  const key = state.get('app.currentBinKey')
-  const currentBin = state.get('app.currentBin')
+function updateLiveBin({ state, firebase, path }) {
+  const key = state.get('app.currentBinKey');
+  const currentBin = state.get('app.currentBin');
 
-  return firebase.update(`bins.${key}`, {
-    files: currentBin.files,
-    packages: currentBin.packages,
-    loaders: currentBin.loaders,
-    showConfiguration: currentBin.showConfiguration
-  })
+  return firebase
+    .update(`bins.${key}`, {
+      files: currentBin.files,
+      packages: currentBin.packages,
+      loaders: currentBin.loaders,
+      showConfiguration: currentBin.showConfiguration,
+    })
     .then(path.success)
-    .catch(path.error)
+    .catch(path.error);
 }
 
-export default updateLiveBin
+export default updateLiveBin;

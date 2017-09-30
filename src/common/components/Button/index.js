@@ -1,7 +1,7 @@
-import Inferno from 'inferno'
-import styles from './styles.css'
+import React from 'react';
+import styles from './styles.css';
 
-function Button (props) {
+function Button(props) {
   return (
     <button
       disabled={props.disabled}
@@ -10,7 +10,7 @@ function Button (props) {
     >
       {props.children}
     </button>
-  )
+  );
 }
 
-export default Button
+export default Button;

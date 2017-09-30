@@ -2,9 +2,9 @@ import '!style-loader!css-loader!./lint.css'
 import '!style-loader!css-loader!./../../../../node_modules/codemirror/lib/codemirror.css'
 import '!style-loader!css-loader!./codeEditor.css'
 import 'codemirror/addon/lint/lint.js'
-import Inferno from 'inferno'
-import Component from 'inferno-component'
-import {connect} from 'cerebral/inferno'
+import React from 'react'
+
+import {connect} from '@cerebral/react'
 import {state, signal} from 'cerebral/tags'
 import CodeMirror from 'codemirror'
 import styles from './styles.css'
@@ -24,7 +24,7 @@ export default connect({
   modeLoaded: signal`code.modeLoaded`,
   cursorChanged: signal`code.cursorChanged`
 },
-  class CodeEditor extends Component {
+  class CodeEditor extends React.Component {
     constructor (props) {
       super(props)
       this.onCodeChange = this.onCodeChange.bind(this)

@@ -1,15 +1,16 @@
-import {set} from 'cerebral/operators'
-import {state, string} from 'cerebral/tags'
-import addFile from '../actions/addFile'
-import selectNewFile from '../actions/selectNewFile'
-import isValidFile from '../actions/isValidFile'
-import showSnackbar from 'modules/app/factories/showSnackbar'
-import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin'
-import requiresLoader from '../actions/requiresLoader'
-import setLoader from '../actions/setLoader'
+import { set } from 'cerebral/operators';
+import { state, string } from 'cerebral/tags';
+import addFile from '../actions/addFile';
+import selectNewFile from '../actions/selectNewFile';
+import isValidFile from '../actions/isValidFile';
+import showSnackbar from 'modules/app/factories/showSnackbar';
+import updateFirebaseBin from 'modules/app/factories/updateFirebaseBin';
+import requiresLoader from '../actions/requiresLoader';
+import setLoader from '../actions/setLoader';
 
 export default [
-  isValidFile, {
+  isValidFile,
+  {
     true: [
       addFile,
       set(state`app.currentBin.newFileName`, ''),
@@ -17,7 +18,8 @@ export default [
       set(state`app.currentBin.showNewFileInput`, false),
       set(state`app.currentBin.showFolder`, false),
       selectNewFile,
-      requiresLoader, {
+      requiresLoader,
+      {
         true: [
           setLoader,
           updateFirebaseBin([
@@ -26,22 +28,22 @@ export default [
             'newFileIsEntry',
             'showFolder',
             'showNewFileInput',
-            'loaders'
-          ])
+            'loaders',
+          ]),
         ],
         false: updateFirebaseBin([
           'files',
           'selectedFileIndex',
           'newFileIsEntry',
           'showFolder',
-          'showNewFileInput'
-        ])
-      }
+          'showNewFileInput',
+        ]),
+      },
     ],
     false: showSnackbar(
       string`"${state`app.currentBin.newFileName`}" is not a valid filename`,
       5000,
       'error'
-    )
-  }
-]
+    ),
+  },
+];

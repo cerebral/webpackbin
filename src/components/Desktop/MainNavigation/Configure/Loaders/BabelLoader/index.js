@@ -1,24 +1,20 @@
-import Inferno from 'inferno'
-import {connect} from 'cerebral/inferno'
-import {state, signal} from 'cerebral/tags'
-import styles from '../common.css'
-import Input from 'common/components/Input'
-import Checkbox from 'common/components/Checkbox'
-import Description from 'common/components/Description'
+import React from 'react';
+import { connect } from '@cerebral/react';
+import { state, signal } from 'cerebral/tags';
+import styles from '../common.css';
+import Input from 'common/components/Input';
+import Checkbox from 'common/components/Checkbox';
+import Description from 'common/components/Description';
 
-export default connect({
-  config: state`app.currentBin.loaders.babel`,
-  loaderConfigChanged: signal`configure.loaderConfigChanged`
-},
-  function BabelLoader ({
-    config,
-    loaderConfigChanged
-  }) {
+export default connect(
+  {
+    config: state`app.currentBin.loaders.babel`,
+    loaderConfigChanged: signal`configure.loaderConfigChanged`,
+  },
+  function BabelLoader({ config, loaderConfigChanged }) {
     return (
       <div className={styles.loaderWrapper}>
-        <div className={styles.info}>
-          Transpile code to modern JavaScript
-        </div>
+        <div className={styles.info}>Transpile code to modern JavaScript</div>
         <div className={styles.section}>
           <Checkbox
             disabled={!config}
@@ -27,15 +23,13 @@ export default connect({
               loaderConfigChanged({
                 loaderName: 'babel',
                 configName: 'es2015',
-                configValue: !config.es2015
-              })
+                configValue: !config.es2015,
+              });
             }}
           >
             ES2015
           </Checkbox>
-          <Description>
-            Features according to ES2015 spec
-          </Description>
+          <Description>Features according to ES2015 spec</Description>
         </div>
         <div className={styles.section}>
           <Checkbox
@@ -45,15 +39,13 @@ export default connect({
               loaderConfigChanged({
                 loaderName: 'babel',
                 configName: 'stage0',
-                configValue: !config.stage0
-              })
+                configValue: !config.stage0,
+              });
             }}
           >
             Stage-0
           </Checkbox>
-          <Description>
-            Latest ES features
-          </Description>
+          <Description>Latest ES features</Description>
         </div>
         <div className={styles.section}>
           <Checkbox
@@ -63,8 +55,8 @@ export default connect({
               loaderConfigChanged({
                 loaderName: 'babel',
                 configName: 'decorators',
-                configValue: !config.decorators
-              })
+                configValue: !config.decorators,
+              });
             }}
           >
             Decorators
@@ -81,8 +73,8 @@ export default connect({
               loaderConfigChanged({
                 loaderName: 'babel',
                 configName: 'classProperties',
-                configValue: !config.classProperties
-              })
+                configValue: !config.classProperties,
+              });
             }}
           >
             Class properties
@@ -99,15 +91,13 @@ export default connect({
               loaderConfigChanged({
                 loaderName: 'babel',
                 configName: 'react',
-                configValue: !config.react
-              })
+                configValue: !config.react,
+              });
             }}
           >
             React
           </Checkbox>
-          <Description>
-            React JSX support
-          </Description>
+          <Description>React JSX support</Description>
         </div>
         <div className={styles.section}>
           <Checkbox
@@ -117,15 +107,13 @@ export default connect({
               loaderConfigChanged({
                 loaderName: 'babel',
                 configName: 'inferno',
-                configValue: !config.inferno
-              })
+                configValue: !config.inferno,
+              });
             }}
           >
             Inferno
           </Checkbox>
-          <Description>
-            Inferno JSX support (v3.2.0)
-          </Description>
+          <Description>Inferno JSX support (v3.2.0)</Description>
         </div>
         <div className={styles.section}>
           <Checkbox
@@ -135,22 +123,23 @@ export default connect({
               loaderConfigChanged({
                 loaderName: 'babel',
                 configName: 'jsx',
-                configValue: config.jsx ? false : 'h'
-              })
+                configValue: config.jsx ? false : 'h',
+              });
             }}
           >
             JSX
           </Checkbox>
           <div className={styles.input}>
-            Pragma: <Input
+            Pragma:{' '}
+            <Input
               disabled={!config || typeof config.jsx !== 'string'}
-              value={config && config.jsx || ''}
-              onInput={(event) => {
+              value={(config && config.jsx) || ''}
+              onInput={event => {
                 loaderConfigChanged({
                   loaderName: 'babel',
                   configName: 'jsx',
-                  configValue: event.target.value
-                })
+                  configValue: event.target.value,
+                });
               }}
             />
           </div>
@@ -159,6 +148,6 @@ export default connect({
           </Description>
         </div>
       </div>
-    )
+    );
   }
-)
+);

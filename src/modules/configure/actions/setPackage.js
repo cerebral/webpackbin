@@ -1,7 +1,10 @@
-import {encodeKey} from 'utils'
+import { encodeKey } from 'utils';
 
-function setPackage ({state, props}) {
-  state.set(`app.currentBin.packages.${encodeKey(props.result.name)}`, props.result.version)
+function setPackage({ state, props }) {
+  state.set(
+    `app.currentBin.packages.${encodeKey(props.response.result.name)}`,
+    props.response.result.version
+  );
 }
 
-export default setPackage
+export default setPackage;

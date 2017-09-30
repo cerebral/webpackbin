@@ -1,4 +1,4 @@
-import nodePath from 'path'
+import nodePath from 'path';
 
 const validFileNames = [
   '.js',
@@ -13,18 +13,18 @@ const validFileNames = [
   '.less',
   '.scss',
   '.vue',
-  '.pug'
-]
+  '.pug',
+];
 
-function isValidFile ({state, path}) {
-  const fileName = state.get('app.currentBin.newFileName')
-  const ext = nodePath.extname(fileName)
+function isValidFile({ state, path }) {
+  const fileName = state.get('app.currentBin.newFileName');
+  const ext = nodePath.extname(fileName);
 
   if (fileName === 'bundle.js' || validFileNames.indexOf(ext) === -1) {
-    return path.false()
+    return path.false();
   }
 
-  return path.true()
+  return path.true();
 }
 
-export default isValidFile
+export default isValidFile;

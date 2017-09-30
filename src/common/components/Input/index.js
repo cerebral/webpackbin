@@ -1,8 +1,8 @@
-import Inferno from 'inferno'
-import styles from './styles.css'
-import classnames from 'classnames'
+import React from 'react';
+import styles from './styles.css';
+import classnames from 'classnames';
 
-function Input (props) {
+function Input(props) {
   return (
     <input
       id={props.id}
@@ -10,20 +10,20 @@ function Input (props) {
       value={props.value}
       onClick={props.onClick}
       onInput={props.onInput}
-      onKeyDown={function (event) {
+      onKeyDown={function(event) {
         if (props.onSubmit && event.keyCode === 13) {
-          props.onSubmit()
+          props.onSubmit();
         } else if (props.onCancel && event.keyCode === 27) {
-          props.onCancel()
+          props.onCancel();
         }
       }}
       className={classnames(styles.input, props.className, {
-        [styles.dark]: Boolean(props.dark)
+        [styles.dark]: Boolean(props.dark),
       })}
       autoFocus={props.autoFocus}
       placeholder={props.placeholder}
-      />
-  )
+    />
+  );
 }
 
-export default Input
+export default Input;

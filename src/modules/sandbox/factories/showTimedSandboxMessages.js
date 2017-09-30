@@ -1,5 +1,5 @@
-import {set} from 'cerebral/operators';
-import {state} from 'cerebral/tags';
+import { set } from 'cerebral/operators';
+import { state } from 'cerebral/tags';
 import sandboxDebounce from '../sandboxDebounce';
 
 function showTimedSandboxMessages(messages) {
@@ -8,17 +8,20 @@ function showTimedSandboxMessages(messages) {
 
   messages.forEach((timeMessage, index) => {
     if (!chain) {
-      chain = currentChain = []
+      chain = currentChain = [];
     }
 
-    const continueChain = index === messages.length - 1 ? set(state`sandbox.sandboxMessage`, timeMessage.message) : [set(state`sandbox.sandboxMessage`, timeMessage.message)];
+    const continueChain =
+      index === messages.length - 1
+        ? set(state`sandbox.sandboxMessage`, timeMessage.message)
+        : [set(state`sandbox.sandboxMessage`, timeMessage.message)];
     currentChain.push(sandboxDebounce(timeMessage.time));
     currentChain.push({
       continue: continueChain,
-      discard: []
+      discard: [],
     });
     currentChain = continueChain;
-  })
+  });
 
   return chain;
 }

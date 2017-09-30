@@ -1,24 +1,24 @@
-import Inferno from 'inferno'
-import styles from './styles.css'
-import classnames from 'classnames'
+import React from 'react';
+import styles from './styles.css';
+import classnames from 'classnames';
 
-function Checkbox (props) {
+function Checkbox(props) {
   return (
     <label
       className={classnames(styles.wrapper, {
-        [styles.disabled]: props.disabled
+        [styles.disabled]: props.disabled,
       })}
-      onClick={(e) => e.stopPropagation()}
+      onClick={e => e.stopPropagation()}
     >
       <input
-        type='checkbox'
+        type="checkbox"
         checked={props.checked}
         disabled={props.disabled}
         onChange={props.onChange}
       />
       <span>{props.children}</span>
     </label>
-  )
+  );
 }
 
-export default Checkbox
+export default Checkbox;

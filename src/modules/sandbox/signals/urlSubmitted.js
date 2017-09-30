@@ -1,5 +1,3 @@
-import setUrlNavigation from '../actions/setUrlNavigation'
+import setUrlNavigation from '../actions/setUrlNavigation';
 
-export default [
-  setUrlNavigation
-]
+export default setUrlNavigation;

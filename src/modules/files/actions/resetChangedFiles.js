@@ -1,5 +1,5 @@
-function resetChangedFiles ({state}) {
-  state.set('app.currentBin.changedFiles', {})
+function resetChangedFiles({ state }) {
+  state.set('app.currentBin.changedFiles', {});
 }
 
-export default resetChangedFiles
+export default resetChangedFiles;

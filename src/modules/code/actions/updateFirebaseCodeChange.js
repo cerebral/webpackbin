@@ -1,9 +1,10 @@
-function updateFirebaseCodeChange ({props, state, firebase, path}) {
-  const binKey = state.get('app.currentBinKey')
+function updateFirebaseCodeChange({ props, state, firebase, path }) {
+  const binKey = state.get('app.currentBinKey');
 
-  return firebase.push(`codeChanges.${binKey}`, props.codeChange)
+  return firebase
+    .push(`codeChanges.${binKey}`, props.codeChange)
     .then(path.success)
-    .catch(path.error)
+    .catch(path.error);
 }
 
-export default updateFirebaseCodeChange
+export default updateFirebaseCodeChange;

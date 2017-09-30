@@ -1,8 +1,8 @@
-import Inferno from 'inferno'
-import styles from './styles.css'
+import React from 'react';
+import styles from './styles.css';
 
-function Separator () {
-  return <div className={styles.wrapper} />
+function Separator() {
+  return <div className={styles.wrapper} />;
 }
 
-export default Separator
+export default Separator;

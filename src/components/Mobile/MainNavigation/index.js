@@ -1,29 +1,30 @@
-import config from 'config'
-import Inferno from 'inferno'
-import {connect} from 'cerebral/inferno'
-import classNames from 'classnames'
-import styles from './styles.css'
-import NavigationBar from 'common/components/NavigationBar'
-import IconButton from 'common/components/IconButton'
-import {state, signal} from 'cerebral/tags'
-import liveStatus from 'computed/liveStatus'
-import binHasEntry from 'computed/binHasEntry'
-import ProfileMenu from '../ProfileMenu'
-import FilesMenu from '../FilesMenu'
+import config from 'config';
+import React from 'react';
+import { connect } from '@cerebral/react';
+import classNames from 'classnames';
+import styles from './styles.css';
+import NavigationBar from 'common/components/NavigationBar';
+import IconButton from 'common/components/IconButton';
+import { state, signal } from 'cerebral/tags';
+import liveStatus from 'computed/liveStatus';
+import binHasEntry from 'computed/binHasEntry';
+import ProfileMenu from '../ProfileMenu';
+import FilesMenu from '../FilesMenu';
 
-export default connect({
-  liveStatus,
-  binHasEntry,
-  region: state`settings.region`,
-  changedFiles: state`app.currentBin.changedFiles`,
-  isSaving: state`app.isSaving`,
-  showLog: state`app.currentBin.showLog`,
-  showSandbox: state`app.showSandbox`,
-  shouldCheckLog: state`log.shouldCheckLog`,
-  logToggled: signal`log.logToggled`,
-  showSandboxClicked: signal`sandbox.showSandboxClicked`
-},
-  function MainNavigation ({
+export default connect(
+  {
+    liveStatus,
+    binHasEntry,
+    region: state`settings.region`,
+    changedFiles: state`app.currentBin.changedFiles`,
+    isSaving: state`app.isSaving`,
+    showLog: state`app.currentBin.showLog`,
+    showSandbox: state`app.showSandbox`,
+    shouldCheckLog: state`log.shouldCheckLog`,
+    logToggled: signal`log.logToggled`,
+    showSandboxClicked: signal`sandbox.showSandboxClicked`,
+  },
+  function MainNavigation({
     liveStatus,
     binHasEntry,
     region,
@@ -34,7 +35,7 @@ export default connect({
     shouldCheckLog,
     logToggled,
     leftMenuButtonClicked,
-    showSandboxClicked
+    showSandboxClicked,
   }) {
     return (
       <NavigationBar>
@@ -44,7 +45,7 @@ export default connect({
             <IconButton
               active={showSandbox}
               disabled={liveStatus.isParticipant}
-              icon='eye'
+              icon="eye"
               onClick={() => showSandboxClicked()}
             >
               Preview
@@ -53,7 +54,7 @@ export default connect({
               active={showLog}
               disabled={liveStatus.isParticipant}
               notify={shouldCheckLog}
-              icon='log'
+              icon="log"
               onClick={() => logToggled()}
             >
               Log
@@ -63,7 +64,7 @@ export default connect({
             <IconButton
               disabled
               active={liveStatus.isConnected}
-              icon='live'
+              icon="live"
               onClick={() => liveToggled()}
             >
               Live
@@ -72,6 +73,6 @@ export default connect({
           </div>
         </div>
       </NavigationBar>
-    )
+    );
   }
-)
+);

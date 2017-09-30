@@ -35,11 +35,11 @@ const rules = [
       loader: require.resolve('babel-loader'),
       options: {
         presets: [
-          require.resolve('babel-preset-es2015')
+          require.resolve('babel-preset-es2015'),
+          require.resolve('babel-preset-react')
         ],
         plugins: [
           'syntax-dynamic-import',
-          'inferno',
           'transform-object-rest-spread'
         ]
       }
@@ -110,14 +110,14 @@ if (isProduction) {
  VENDORS
  */
 const common = [
-  'inferno',
-  'inferno-component',
-  'inferno-create-element',
+  'react',
+  'react-dom',
   'cerebral',
-  'cerebral-router',
-  'cerebral-provider-http',
-  'cerebral-provider-firebase',
-  'cerebral-module-useragent',
+  '@cerebral/react',
+  '@cerebral/router',
+  '@cerebral/http',
+  '@cerebral/firebase',
+  '@cerebral/useragent',
   'classnames',
   'firebase'
 ];

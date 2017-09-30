@@ -1,9 +1,10 @@
-function updateCurrentParticipantKey ({firebase, state, path, props}) {
-  const binKey = state.get('app.currentBinKey')
+function updateCurrentParticipantKey({ firebase, state, path, props }) {
+  const binKey = state.get('app.currentBinKey');
 
-  return firebase.set(`bins.${binKey}.currentParticipantKey`, props.participantKey)
+  return firebase
+    .set(`bins.${binKey}.currentParticipantKey`, props.participantKey)
     .then(path.success)
-    .catch(path.error)
+    .catch(path.error);
 }
 
-export default updateCurrentParticipantKey
+export default updateCurrentParticipantKey;

@@ -1,24 +1,24 @@
-import {createNewBin} from 'utils'
-import clicked from './signals/clicked'
-import routed from './signals/routed'
-import binRouted from './signals/binRouted'
-import authenticate from './factories/authenticate'
-import mainMenuButtonClicked from './signals/mainMenuButtonClicked'
-import filesMenuButtonClicked from './signals/filesMenuButtonClicked'
-import profileClicked from './signals/profileClicked'
-import createBinClicked from './signals/createBinClicked'
-import githubSignInClicked from './signals/githubSignInClicked'
-import githubSignUpClicked from './signals/githubSignUpClicked'
-import githubConvertClicked from './signals/githubConvertClicked'
-import githubSignInAborted from './signals/githubSignInAborted'
-import signOutClicked from './signals/signOutClicked'
-import saveClicked from './signals/saveClicked'
-import newBinClicked from './signals/newBinClicked'
-import copyBinClicked from './signals/copyBinClicked'
-import preventWhenLiveParticipant from './factories/preventWhenLiveParticipant'
-import currentBinViewCountUpdated from './signals/currentBinViewCountUpdated'
-import undoClicked from './signals/undoClicked'
-import invalidRouted from './signals/invalidRouted'
+import { createNewBin } from 'utils';
+import clicked from './signals/clicked';
+import routed from './signals/routed';
+import binRouted from './signals/binRouted';
+import authenticate from './factories/authenticate';
+import mainMenuButtonClicked from './signals/mainMenuButtonClicked';
+import filesMenuButtonClicked from './signals/filesMenuButtonClicked';
+import profileClicked from './signals/profileClicked';
+import createBinClicked from './signals/createBinClicked';
+import githubSignInClicked from './signals/githubSignInClicked';
+import githubSignUpClicked from './signals/githubSignUpClicked';
+import githubConvertClicked from './signals/githubConvertClicked';
+import githubSignInAborted from './signals/githubSignInAborted';
+import signOutClicked from './signals/signOutClicked';
+import saveClicked from './signals/saveClicked';
+import newBinClicked from './signals/newBinClicked';
+import copyBinClicked from './signals/copyBinClicked';
+import preventWhenLiveParticipant from './factories/preventWhenLiveParticipant';
+import currentBinViewCountUpdated from './signals/currentBinViewCountUpdated';
+import undoClicked from './signals/undoClicked';
+import invalidRouted from './signals/invalidRouted';
 
 export default {
   state: {
@@ -38,11 +38,11 @@ export default {
     stats: {
       createdCount: 0,
       viewCount: 0,
-      currentBinViewCount: 0
+      currentBinViewCount: 0,
     },
     showSandbox: true,
     undo: null,
-    invalidRoute: null
+    invalidRoute: null,
   },
   signals: {
     routed: authenticate(routed),
@@ -62,6 +62,6 @@ export default {
     copyBinClicked,
     currentBinViewCountUpdated,
     undoClicked,
-    invalidRouted
-  }
-}
+    invalidRouted,
+  },
+};

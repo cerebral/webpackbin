@@ -1,7 +1,7 @@
-function setHistoryNavigation ({props, state}) {
+function setHistoryNavigation({ props, state }) {
   state.set('sandbox.lastNavigation', {
-    type: props.type
-  })
+    type: props.type,
+  });
 }
 
-export default setHistoryNavigation
+export default setHistoryNavigation;
