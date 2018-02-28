@@ -1,3 +1,11 @@
+# Webpackbin has been deprecated
+
+Instead of working on two similar services Codesandbox.io creator and me are putting our efforts into one project. Please move on to Codesandbox.io for a much better experience than Webpackbin. Very sorry if this makes you sad, but promise that you will feel better when you move on :-)
+
+The domain of http://webpackbin.com  has expired, sorry about that, but was too much money to pay for keeping it up for another week. If you need your bin code, you can go to: https://webpackbin-prod.firebaseapp.com/  for now. Move it to http://codesandbox.io  :-)
+
+----
+
 # webpackbin
 A service to share and teach code, using webpack to bundle the code
 
