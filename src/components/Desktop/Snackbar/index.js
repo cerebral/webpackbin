@@ -11,7 +11,7 @@ export default connect(
     undoClicked: signal`app.undoClicked`,
   },
   function Snackbar(props) {
-    const snackbar = props.snackbar || { text: '', type: 'noral' };
+    const snackbar = props.snackbar || { text: '', type: 'normal' };
 
     return (
       <div
